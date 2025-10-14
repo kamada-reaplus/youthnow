@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Rounded+Mplus+1c:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-size: 16px;
+
+  /* Brand Colors - Tailwindで定義済み、shadcn/ui用のCSS変数のみ */
+  --brand-primary: 188 100% 41%; /* #00BCD4 - シアン */
+  --brand-secondary: 51 100% 50%; /* #FFD700 - ゴールド */
+
+  /* Neutral Colors - Tailwindで定義済み */
+  --neutral-white: 220 11% 98%; /* #F9FAFB */
+  --neutral-black: 217 19% 20%; /* #1F2937 */
+
+  /* Semantic Colors - Tailwindで定義済み */
+  --success: 158 64% 52%; /* #10B981 */
+  --warning: 51 100% 50%; /* #FFD700 */
+  --error: 0 100% 65%; /* #FF4D4D */
+  --info: 188 100% 41%; /* #00BCD4 */
+
+  /* Semantic Colors mapped to brand colors */
+  --background: var(--neutral-white);
+  --foreground: var(--neutral-black);
+  --card: var(--neutral-white);
+  --card-foreground: var(--neutral-black);
+  --popover: var(--neutral-white);
+  --popover-foreground: var(--neutral-black);
+  --primary: var(--brand-primary);
+  --primary-foreground: var(--neutral-white);
+  --secondary: var(--brand-secondary);
+  --secondary-foreground: var(--neutral-black);
+  --muted: 220 14% 96%;
+  --muted-foreground: 220 9% 46%;
+  --accent: var(--brand-secondary);
+  --accent-foreground: var(--neutral-black);
+  --destructive: var(--error);
+  --destructive-foreground: var(--neutral-white);
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: var(--brand-primary);
+  --chart-1: var(--brand-primary);
+  --chart-2: var(--success);
+  --chart-3: var(--warning);
+  --chart-4: var(--error);
+  --chart-5: var(--info);
+  --radius: 0.625rem;
+  --sidebar: var(--neutral-white);
+  --sidebar-foreground: var(--neutral-black);
+  --sidebar-primary: var(--brand-primary);
+  --sidebar-primary-foreground: var(--neutral-white);
+  --sidebar-accent: 220 14% 96%;
+  --sidebar-accent-foreground: var(--neutral-black);
+  --sidebar-border: 220 13% 91%;
+  --sidebar-ring: var(--brand-primary);
+}
+
+.dark {
+  --background: var(--neutral-black);
+  --foreground: var(--neutral-white);
+  --card: var(--neutral-black);
+  --card-foreground: var(--neutral-white);
+  --popover: var(--neutral-black);
+  --popover-foreground: var(--neutral-white);
+  --primary: var(--brand-primary);
+  --primary-foreground: var(--neutral-white);
+  --secondary: var(--brand-secondary);
+  --secondary-foreground: var(--neutral-black);
+  --muted: 217 32% 18%;
+  --muted-foreground: 215 20% 65%;
+  --accent: var(--brand-secondary);
+  --accent-foreground: var(--neutral-black);
+  --destructive: var(--error);
+  --destructive-foreground: var(--neutral-white);
+  --border: 217 32% 18%;
+  --input: 217 32% 18%;
+  --ring: var(--brand-primary);
+  --chart-1: var(--brand-primary);
+  --chart-2: var(--success);
+  --chart-3: var(--warning);
+  --chart-4: var(--error);
+  --chart-5: var(--info);
+  --sidebar: var(--neutral-black);
+  --sidebar-foreground: var(--neutral-white);
+  --sidebar-primary: var(--brand-primary);
+  --sidebar-primary-foreground: var(--neutral-white);
+  --sidebar-accent: 217 32% 18%;
+  --sidebar-accent-foreground: var(--neutral-white);
+  --sidebar-border: 217 32% 18%;
+  --sidebar-ring: var(--brand-primary);
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+    outline-color: hsl(var(--ring));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+/**
+ * Design System Typography
+ */
+@layer base {
+  * {
+    font-family: "Rounded Mplus 1c", system-ui, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    h3 {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    h4 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    h5 {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    h6 {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    p {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    label {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    button {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    input {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.7;
+    }
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
+
+/* Design System Utility Classes */
+@layer utilities {
+  /* セクション間スペーシング - デザインシステム仕様 */
+  .section-spacing {
+    @apply py-12 md:py-16;
+  } /* 48px mobile, 64px desktop */
+  .section-spacing-lg {
+    @apply py-16 md:py-24;
+  } /* 64px mobile, 96px desktop */
+}
