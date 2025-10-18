@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   darkMode: "class",
@@ -10,8 +11,24 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        "rounded-mplus": [
-          "Rounded Mplus 1c",
+        futura: [
+          "Futura",
+          "Futura PT",
+          "Avenir Next",
+          "Helvetica Neue",
+          "Arial",
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "sans-serif",
+        ],
+        sans: [
+          "Futura",
+          "Futura PT",
+          "Avenir Next",
+          "Helvetica Neue",
+          "Arial",
           "system-ui",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -63,6 +80,7 @@ const config: Config = {
         neutral: {
           white: "#F9FAFB",
           black: "#1F2937",
+          "light-cyan": "#f1fdff",
         },
         // Semantic Colors
         success: "#10B981",
@@ -125,8 +143,51 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      animation: {
+        "float-slow": "float 6s ease-in-out infinite",
+        "float-medium": "float 4s ease-in-out infinite",
+        "float-fast": "float 3s ease-in-out infinite",
+      },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addUtilities }) {
+      // テキストストロークユーティリティを追加
+      addUtilities({
+        ".text-stroke-white": {
+          "-webkit-text-stroke": "2px white",
+        },
+        ".text-stroke-black": {
+          "-webkit-text-stroke": "2px black",
+        },
+        ".text-stroke-1": {
+          "-webkit-text-stroke-width": "1px",
+        },
+        ".text-stroke-2": {
+          "-webkit-text-stroke-width": "2px",
+        },
+        ".text-stroke-3": {
+          "-webkit-text-stroke-width": "3px",
+        },
+        // セクション高さユーティリティを追加
+        ".section-height-full": {
+          "min-height": "100vh",
+        },
+        ".section-height-large": {
+          "min-height": "90vh",
+        },
+        ".section-height-medium": {
+          "min-height": "80vh",
+        },
+      });
+    }),
+  ],
 };
+
 export default config;

@@ -7,6 +7,11 @@ import {
   BarChart3,
 } from "lucide-react";
 import { SectionHeader } from "../ui/section-header";
+import { DiagonalBackground } from "../ui/DiagonalBackground";
+import { SectionTitle } from "../ui/SectionTitle";
+import { ContactButton } from "../ui/ContactButton";
+import arrow from "../../assets/arrow.png";
+import Image from "next/image";
 
 // デザインシステム使用コンポーネント
 // - カラー: neutral-white, neutral-black, brand-primary, brand-secondary など
@@ -61,13 +66,11 @@ export function FlowSection() {
   return (
     <section
       id="flow"
-      className="bg-neutral-white section-spacing px-lg relative overflow-hidden"
+      className="bg-neutral-light-cyan section-spacing px-lg relative overflow-hidden"
     >
-      {/* Background blur effects */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-[0.06] pointer-events-none">
-        <div className="absolute -top-28 -left-32 w-[719px] h-[646px] bg-brand-primary rounded-full blur-[120px]" />
-        <div className="absolute top-[280px] -right-48 w-[766px] h-[655px] bg-brand-secondary rounded-full blur-[120px]" />
-      </div>
+      {/* 斜めの白背景（特徴カードの途中から） */}
+      <DiagonalBackground bgColor="bg-brand-primary" position="lower" />
+      <SectionTitle title="FLOW" />
 
       <div className="container mx-auto max-w-4xl relative z-10">
         <div className="text-center mb-3xl">
@@ -156,7 +159,11 @@ export function FlowSection() {
                 {/* Connector */}
                 {index < steps.length - 1 && (
                   <div className="flex justify-center py-md md:py-lg">
-                    <div className="w-px h-2xl md:h-10 bg-brand-primary " />
+                    <Image
+                      src={arrow}
+                      alt="次のステップへ"
+                      className="w-20 h-auto md:w-20"
+                    />
                   </div>
                 )}
               </div>
@@ -165,22 +172,20 @@ export function FlowSection() {
         </div>
 
         {/* Support Message */}
-        <div className="relative">
-          {/* Decorative background elements */}
-          <div className="absolute inset-0 bg-brand-primary/5  rounded-2xl md:rounded-3xl" />
+        <div className="text-center">
+          <p className="text-body md:text-h6 font-bold text-neutral-black leading-relaxed mb-sm">
+            不明な点がございましたら、
+            <br />
+            いつでもお気軽にお問い合わせください。
+          </p>
+          <p className="text-body-sm md:text-body font-bold text-neutral-black/70">
+            専門スタッフが丁寧にサポートいたします
+          </p>
+        </div>
 
-          <div className="relative bg-neutral-white border border-neutral-black/20 rounded-2xl md:rounded-3xl p-xl md:p-2xl lg:p-3xl shadow-sm text-center">
-            {/* Top accent bar */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-6xl h-1 bg-brand-primary rounded-full" />
-
-            {/* Text content */}
-            <p className="text-body md:text-h6 text-neutral-black leading-relaxed mb-sm">
-              不明な点がございましたら、いつでもお気軽にお問い合わせください。
-            </p>
-            <p className="text-body-sm md:text-body text-neutral-black/70">
-              専門スタッフが丁寧にサポートいたします
-            </p>
-          </div>
+        {/* CTA Button */}
+        <div className="mt-12 flex justify-center">
+          <ContactButton variant="yellow" size="medium" />
         </div>
       </div>
     </section>

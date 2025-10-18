@@ -3,6 +3,8 @@
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { SectionHeader } from "../ui/section-header";
+import { DiagonalBackground } from "../ui/DiagonalBackground";
+import { SectionTitle } from "../ui/SectionTitle";
 
 // デザインシステム使用コンポーネント
 // - カラー: neutral-white, brand-primary, neutral-black など
@@ -48,18 +50,22 @@ export function FAQSection() {
   return (
     <section
       id="faq"
-      className="bg-neutral-white section-spacing px-lg relative overflow-hidden"
+      className="bg-brand-primary section-spacing px-lg relative overflow-hidden"
     >
+      {/* 斜めの白背景（特徴カードの途中から） */}
+      <DiagonalBackground bgColor="bg-neutral-light-cyan" position="lower" />
+      <SectionTitle title="FAQ" titleColor="text-neutral-white" />
       {/* Background blur effects */}
       <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
         <div className="absolute top-4xl -left-2xl w-[641px] h-[530px] bg-brand-primary rounded-full blur-3xl" />
         <div className="absolute top-[90px] -left-52 w-[709px] h-[629px] bg-brand-secondary rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto max-w-md relative z-10">
+      <div className="container mx-auto max-w-4xl relative z-10">
         <div className="mb-3xl">
           <SectionHeader
             title="よくあるご質問"
+            textColor="text-neutral-white"
             responsive
             className="mb-md md:mb-lg px-lg"
           />
@@ -94,16 +100,6 @@ export function FAQSection() {
               )}
             </div>
           ))}
-        </div>
-
-        {/* CTA */}
-        <div className="space-y-md">
-          <button className="w-full bg-brand-primary text-neutral-white py-lg px-xl rounded-full font-bold text-body-sm shadow-lg hover:opacity-90 transition-opacity">
-            不安を解消する。無料資料を確認
-          </button>
-          <p className="text-center text-body-sm text-neutral-black/60">
-            ※FAQ詳細版・β版事例集も同梱
-          </p>
         </div>
       </div>
     </section>

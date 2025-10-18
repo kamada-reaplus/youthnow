@@ -1,23 +1,15 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { useState } from "react";
 import { SectionHeader } from "../ui/section-header";
-
-// デザインシステム使用コンポーネント
-// - カラー: brand-primary, brand-secondary, error, neutral-white など
-// - スペーシング: section-spacing, px-lg, gap-md など
-// - タイポグラフィ: text-body-sm, text-h5, text-caption など
+import { SectionTitle } from "../ui/SectionTitle";
+import { Form, FormData } from "../ui/Form";
 
 export function ContactForm() {
-  const [formData, setFormData] = useState({
-    company: "",
-    name: "",
-    email: "",
-    phone: "",
-    interest: "",
-    agreement: false,
-  });
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const purposes = ["資料請求", "お問い合わせ", "その他"];
 
   const interests = [
     "まずは話を聞きたい",
@@ -26,20 +18,125 @@ export function ContactForm() {
     "その他",
   ];
 
+  // 目的ごとの送信ボタンテキスト
+  const submitButtonTexts = {
+    資料請求: "今すぐ無料で資料をダウンロード",
+    お問い合わせ: "お問い合わせを送信する",
+    その他: "送信する",
+  };
+
+  // フォームのカラー設定（視認性を改善）
+  const formColors = {
+    // フォーム背景
+    formBg: "bg-white/90",
+    formBorder: "border-brand-primary/20",
+    // テキスト
+    labelText: "text-brand-primary",
+    inputText: "text-brand-primary",
+    inputPlaceholder: "placeholder:text-brand-primary/50",
+    // 入力フィールド
+    inputBg: "bg-white",
+    inputBorder: "border-brand-primary/30",
+    inputBorderFocus: "focus:border-brand-primary",
+    inputBorderError: "border-error focus:border-error",
+    inputBorderValid: "border-green-500",
+    // ボタン（目的選択）
+    buttonBg: "bg-brand-primary/15",
+    buttonBgHover: "hover:bg-brand-primary/25",
+    buttonBgActive: "bg-brand-secondary",
+    buttonText: "text-brand-primary",
+    buttonTextActive: "text-brand-primary",
+    // ラジオボタン
+    radioBg: "bg-white",
+    radioBgActive: "bg-brand-secondary/30",
+    radioBorder: "border-brand-primary/20",
+    radioBorderActive: "border-brand-secondary",
+    radioText: "text-brand-primary",
+    radioBorderError: "border-error",
+    // チェックボックス
+    checkboxBg: "bg-white",
+    checkboxBorder: "border-brand-primary/20",
+    checkboxBorderHover: "hover:bg-brand-primary/5",
+    checkboxBorderError: "border-error",
+    checkboxText: "text-brand-primary",
+    checkboxLinkText: "text-brand-primary",
+    checkboxLinkHover: "hover:text-brand-secondary",
+    // 送信ボタン
+    submitBg: "bg-brand-secondary",
+    submitText: "text-brand-primary",
+    submitHover: "hover:brightness-110",
+    // エラー
+    errorText: "text-error",
+    errorBg: "bg-error/10",
+  };
+
+  // カラーカスタマイズ例（必要に応じて指定）
+  // const formColors = {
+  //   formBg: "bg-blue-50",
+  //   formBorder: "border-blue-200",
+  //   labelText: "text-blue-900",
+  //   inputText: "text-blue-900",
+  //   inputPlaceholder: "placeholder:text-blue-400",
+  //   inputBg: "bg-blue-100",
+  //   inputBorder: "border-blue-300",
+  //   inputBorderFocus: "focus:border-blue-500",
+  //   inputBorderError: "border-red-500 focus:border-red-500",
+  //   inputBorderValid: "border-green-500",
+  //   buttonBg: "bg-blue-100",
+  //   buttonBgHover: "hover:bg-blue-200",
+  //   buttonBgActive: "bg-blue-500",
+  //   buttonText: "text-blue-700",
+  //   buttonTextActive: "text-white",
+  //   radioBg: "bg-blue-50",
+  //   radioBgActive: "bg-blue-100",
+  //   radioBorder: "border-transparent",
+  //   radioBorderActive: "border-blue-500",
+  //   radioText: "text-blue-900",
+  //   radioBorderError: "border-red-500",
+  //   checkboxBg: "bg-blue-50",
+  //   checkboxBorder: "border-transparent",
+  //   checkboxBorderHover: "hover:bg-blue-100",
+  //   checkboxBorderError: "border-red-500",
+  //   checkboxText: "text-blue-800",
+  //   checkboxLinkText: "text-blue-900",
+  //   checkboxLinkHover: "hover:text-blue-600",
+  //   submitBg: "bg-blue-500",
+  //   submitText: "text-white",
+  //   submitHover: "hover:bg-blue-600",
+  //   errorText: "text-red-600",
+  //   errorBg: "bg-red-50",
+  // };
+
+  const handleSubmit = async (data: FormData) => {
+    // ここで実際のAPI呼び出しを行う
+    // const response = await fetch('/api/contact', {
+    //   method: 'POST',
+    //   body: JSON.stringify(data),
+    // });
+
+    // デモ用の遅延
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+    console.log("送信データ:", data);
+  };
+
+  const handleSuccess = () => {
+    setSubmitSuccess(true);
+  };
+
+  const handleError = () => {
+    alert("送信に失敗しました。もう一度お試しください。");
+  };
+
   return (
     <section
       id="contact"
-      className="bg-brand-primary  section-spacing px-lg relative overflow-hidden"
+      className="bg-neutral-light-cyan section-spacing px-lg relative overflow-hidden scroll-mt-20"
     >
-      {/* Background subtle effects */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none">
-        <div className="absolute -top-6xl -left-4xl w-[500px] h-[400px] bg-neutral-white/20 rounded-full blur-xl" />
-      </div>
-
-      <div className="container mx-auto max-w-md relative z-10">
+      <SectionTitle title="CONTACT" />
+      <div className="container mx-auto max-w-md md:max-w-2xl lg:max-w-3xl relative z-10">
         <SectionHeader
-          title="まずは無料資料で<br />Youth Now!を体験してください"
-          textColor="text-neutral-white"
+          title="Youth Now!を体験してください"
+          textColor="text-brand-primary"
           leadingTight
           className="text-center mb-lg"
         />
@@ -50,146 +147,56 @@ export function ContactForm() {
           </div>
         </div>
 
-        {/* Form */}
-        <div className="bg-neutral-white/5 backdrop-blur-sm border border-neutral-white/10 rounded-[48px] p-2xl mb-xl">
-          <div className="space-y-xl">
-            {/* Company Name */}
-            <div>
-              <label className="block text-body-sm font-bold text-neutral-white mb-sm">
-                会社名 <span className="text-error">*</span>
-              </label>
-              <input
-                type="text"
-                placeholder="株式会社〇〇"
-                value={formData.company}
-                onChange={(e) =>
-                  setFormData({ ...formData, company: e.target.value })
-                }
-                className="w-full bg-neutral-white/10 border border-neutral-white/20 rounded-lg px-lg py-md text-neutral-white placeholder:text-neutral-white/40 focus:outline-none focus:border-neutral-white/40"
-              />
-            </div>
-
-            {/* Name */}
-            <div>
-              <label className="block text-body-sm font-bold text-neutral-white mb-sm">
-                お名前 <span className="text-error">*</span>
-              </label>
-              <input
-                type="text"
-                placeholder="山田 太郎"
-                value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
-                className="w-full bg-neutral-white/10 border border-neutral-white/20 rounded-lg px-lg py-md text-neutral-white placeholder:text-neutral-white/40 focus:outline-none focus:border-neutral-white/40"
-              />
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="block text-body-sm font-bold text-neutral-white mb-sm">
-                メールアドレス <span className="text-error">*</span>
-              </label>
-              <input
-                type="email"
-                placeholder="example@company.com"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                className="w-full bg-neutral-white/10 border border-neutral-white/20 rounded-lg px-lg py-md text-neutral-white placeholder:text-neutral-white/40 focus:outline-none focus:border-neutral-white/40"
-              />
-            </div>
-
-            {/* Phone */}
-            <div>
-              <label className="block text-body-sm font-bold text-neutral-white mb-sm">
-                電話番号
-              </label>
-              <input
-                type="tel"
-                placeholder="03-1234-5678"
-                value={formData.phone}
-                onChange={(e) =>
-                  setFormData({ ...formData, phone: e.target.value })
-                }
-                className="w-full bg-neutral-white/10 border border-neutral-white/20 rounded-lg px-lg py-md text-neutral-white placeholder:text-neutral-white/40 focus:outline-none focus:border-neutral-white/40"
-              />
-            </div>
-
-            {/* Interest */}
-            <div>
-              <label className="block text-body-sm font-bold text-neutral-white mb-md">
-                最も知りたいこと <span className="text-error">*</span>
-              </label>
-              <div className="space-y-md">
-                {interests.map((interest, index) => (
-                  <label
-                    key={index}
-                    className="flex items-center gap-md bg-neutral-white/5 rounded-lg px-lg py-md cursor-pointer hover:bg-neutral-white/10 transition-colors"
-                  >
-                    <input
-                      type="radio"
-                      name="interest"
-                      value={interest}
-                      checked={formData.interest === interest}
-                      onChange={(e) =>
-                        setFormData({ ...formData, interest: e.target.value })
-                      }
-                      className="w-4 h-4 text-brand-secondary bg-transparent border-neutral-white/40 focus:ring-0"
-                    />
-                    <span className="text-body-sm text-neutral-white">
-                      {interest}
-                    </span>
-                  </label>
-                ))}
+        {/* 成功メッセージ */}
+        {submitSuccess && (
+          <div className="bg-green-50 border border-green-200 rounded-2xl p-xl mb-xl animate-fade-in">
+            <div className="flex items-start gap-md">
+              <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
+              <div>
+                <h3 className="text-h6 text-green-800 font-bold mb-sm">
+                  送信完了しました!
+                </h3>
+                <p className="text-body-sm text-green-700">
+                  ご登録いただいたメールアドレスに資料をお送りしました。
+                  <br />
+                  24時間以内に特典のトレンドレポートもお届けします。
+                </p>
               </div>
             </div>
-
-            {/* Agreement */}
-            <div>
-              <label className="flex items-start gap-md bg-neutral-white/5 rounded-lg px-lg py-lg cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={formData.agreement}
-                  onChange={(e) =>
-                    setFormData({ ...formData, agreement: e.target.checked })
-                  }
-                  className="mt-1 w-4 h-4 text-brand-secondary bg-transparent border-neutral-white/40 rounded focus:ring-0"
-                />
-                <span className="text-body-sm text-neutral-white/80">
-                  <a href="#privacy" className="text-brand-primary underline">
-                    個人情報の取り扱い
-                  </a>
-                  に同意する <span className="text-error">*</span>
-                </span>
-              </label>
-            </div>
-
-            {/* Submit Button */}
-            <button className="w-full bg-brand-secondary  text-brand-primary py-lg px-xl rounded-full font-bold shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-sm">
-              今すぐ無料で資料をダウンロード
-              <ArrowRight className="w-4 h-4" />
-            </button>
-
-            {/* Bonus */}
-            <div className="text-center">
-              <p className="text-body-sm text-brand-secondary mb-xs">
-                今なら5万円相当のトレンドレポートも同時プレゼント
-              </p>
-              <p className="text-caption text-neutral-white/60">
-                ※資料DL後24時間以内限定
-              </p>
-            </div>
           </div>
-        </div>
+        )}
+
+        {/* Form */}
+        <Form
+          purposes={purposes}
+          interests={interests}
+          showPurposeField={true}
+          showPhoneField={true}
+          phoneRequired={true}
+          submitButtonText={submitButtonTexts}
+          colors={formColors}
+          onSubmit={handleSubmit}
+          onSuccess={handleSuccess}
+          onError={handleError}
+          className="mb-xl"
+        />
+
+        {/* Bonus Message */}
+        {/* <div className="text-center mb-xl">
+          <p className="text-body-sm text-brand-secondary mb-xs font-bold">
+            🎁 今なら5万円相当のトレンドレポートも同時プレゼント
+          </p>
+          <p className="text-caption text-brand-primary/60">
+            ※資料DL後24時間以内限定
+          </p>
+        </div> */}
 
         {/* Resource Info */}
-        <div className="bg-neutral-white/5 backdrop-blur-sm rounded-3xl p-2xl">
-          <h3 className="text-h6 text-neutral-white font-bold mb-lg">
+        {/* <div className="bg-brand-primary/5 backdrop-blur-sm rounded-3xl p-2xl">
+          <h3 className="text-h6 text-brand-primary font-bold mb-lg">
             資料に含まれる内容
           </h3>
-          <ul className="space-y-sm text-body-sm text-neutral-white/80">
+          <ul className="space-y-sm text-body-sm text-brand-primary/80">
             <li>• サービス詳細(全20ページ)</li>
             <li>• 料金プラン・見積もり例</li>
             <li>• 調査プロセス・スケジュール</li>
@@ -199,7 +206,7 @@ export function ContactForm() {
               • 【特典】2025年Z世代トレンドレポート(5万円相当)
             </li>
           </ul>
-        </div>
+        </div> */}
       </div>
     </section>
   );

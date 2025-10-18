@@ -1,50 +1,52 @@
-import { Clock, Target, TrendingUp } from "lucide-react";
+import { DiagonalBackground } from "../ui/DiagonalBackground";
 import { SectionHeader } from "../ui/section-header";
-
-// デザインシステム使用コンポーネント
-// - カラー: brand-primary, brand-secondary, neutral-white など
-// - スペーシング: section-spacing, px-lg, gap-xl など
-// - タイポグラフィ: text-h4, text-h5, text-body など
+import { SectionTitle } from "../ui/SectionTitle";
+import { ContactButton } from "../ui/ContactButton";
+import StrengthCard from "../ui/StrengthCard";
 
 export function SolutionSection() {
-  const solutions = [
+  const strengths = [
     {
-      icon: Clock,
-      badge: "違い 1",
-      title: "スピード",
-      subtitle: "最短24時間で仮説検証",
+      badge: "STRENGTH01",
+      title: "SNS時代の即時性", // コンパクト化
+      subtitle:
+        "独自のインフルエンサーネットワークで、調査結果を最短24時間でご報告", // サブタイトルでメリットを補足
       description:
-        "インフルエンサーネットワークを活かし、従来1〜2ヶ月かかる調査を最短24時間で完了。トレンドを逃しません。",
-      scenes: [
-        "商品企画会議の前日に急ぎで若年層の反応を知りたい",
-        "SNSでバズった競合の勝因を即座に分析したい",
-        "週末のキャンペーン前に仮説を検証したい",
+        "一般調査会社が「募集」から始める作業を、私たちは「即座に依頼」できる独自のコミュニティを保有。SNSのトレンドに合わせたスピーディな調査・フィードバックを実現します。",
+      iconName: "zap",
+      stats: [
+        { value: "523名", label: "登録インフルエンサー" },
+        { value: "1,247万", label: "フォロワー総数" },
+        { value: "24h", label: "平均レスポンス" },
+        { value: "2.5年", label: "平均契約期間" },
+      ],
+      note: "→ 若年層に特化したリサーチ手法と効率的なデータ収集システムにより、従来の調査期間を大幅短縮",
+    },
+    {
+      badge: "STRENGTH02",
+      title: "ワントップ支援", // コンパクト化
+      subtitle: "調査から実行まで一気通貫。D2C運営で培った実践知見を施策に直結", // サブタイトルで一気通貫と実践知見を補足
+      description:
+        "自社D2Cブランドで若年層マーケを200回以上実践。調査データを「机上の空論」で終わらせません。",
+      iconName: "lightbulb",
+      features: [
+        "「なぜ刺さるか」の肌感覚とデータに基づく確度の高い示唆",
+        "失敗も成功も含めた、リアルなノウハウ蓄積",
+        "調査に留まらず、実行可能な施策提案まで一気通貫サポート",
       ],
     },
     {
-      icon: Target,
-      badge: "違い 2",
-      title: "精度",
-      subtitle: "トレンドの発信源に直接アクセス",
+      badge: "STRENGTH03",
+      title: "立体的なインサイト", // コンパクト化
+      subtitle:
+        "定量×定性のハイブリッド調査で、「なぜ？」と「どれくらい？」の両方に回答", // サブタイトルで多角的なアプローチを補足
       description:
-        "一般消費者ではなく、Z世代トレンドを作る「インフルエンサー」に直接調査。表面的でない本質的なインサイトが得られます。",
-      scenes: [
-        "なぜこの商品がTikTokでバズったのか理由を知りたい",
-        "次に流行りそうなテイストやデザインの傾向を掴みたい",
-        "競合がヒットした理由を深掘りしたい",
-      ],
-    },
-    {
-      icon: TrendingUp,
-      badge: "違い 3",
-      title: "実行性",
-      subtitle: "調査だけでなく施策提案まで",
-      description:
-        "D2Cブランド運営の実践知見を活かし、データ分析で終わらず「具体的に何をすべきか」まで提案。すぐ動けます。",
-      scenes: [
-        "調査結果を見ても、何から手をつければいいか分からない",
-        "上司や経営層を説得できる具体的な施策案が欲しい",
-        "実行フェーズまでサポートしてほしい",
+        "定量×定性のハイブリッド設計で、「なぜ?」と「どれくらい?」の両方に答えます。",
+      iconName: "barChart3",
+      features: [
+        "アンケート（定量）だけでは見えない、若年層の「生の声・本音」",
+        "インタビュー（定性）だけでは見えない、市場全体の「傾向・全体像」",
+        "多様な手法を組み合わせた、漏れのない立体的なインサイト提供",
       ],
     },
   ];
@@ -52,78 +54,55 @@ export function SolutionSection() {
   return (
     <section
       id="solution"
-      className="bg-brand-primary text-neutral-white section-spacing px-lg md:px-xl relative overflow-hidden"
+      className="bg-brand-primary section-spacing px-xl md:px-lg relative overflow-x-hidden -mb-px"
     >
-      {/* Background blur effect */}
-      <div className="absolute top-[500px] left-0 w-full h-full opacity-5 pointer-events-none">
-        <div className="absolute w-[936px] h-[791px] bg-neutral-white rounded-full blur-3xl" />
+      {/* 斜めの白背景（特徴カードの途中から） */}
+      <DiagonalBackground bgColor="bg-neutral-light-cyan" position="lower" />
+      <SectionTitle title="SOLUTION" titleColor="text-neutral-white" />
+
+      {/* Background blur effects */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-[0.04] pointer-events-none">
+        <div className="absolute -top-20 -left-12 w-[700px] h-[580px] bg-brand-primary rounded-full blur-[120px]" />
+        <div className="absolute top-[500px] -right-40 w-[766px] h-[655px] bg-brand-secondary rounded-full blur-[120px]" />
       </div>
 
-      <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="text-center mb-3xl md:mb-4xl lg:mb-5xl">
+      <div className="container mx-auto max-w-7xl relative z-10 px-xl lg:px-2xl">
+        {/* Section Header */}
+        <div className="mb-2xl lg:mb-3xl">
           <SectionHeader
-            title="その悩み<br />Youth Now!が解決します"
+            title="Youth Now!が解決する"
+            subtitle="3つの決定的な違い"
             textColor="text-neutral-white"
+            highlightWord="解決"
+            highlightColor="text-brand-secondary"
+            highlightSize="text-5xl md:text-6xl lg:text-7xl"
+            subtitleHighlightWord="3"
             leadingTight
             responsive
             className="mb-0"
           />
         </div>
 
-        {/* Solutions */}
-        <div className="space-y-3xl md:space-y-4xl lg:space-y-5xl">
-          {solutions.map((solution, index) => (
-            <div
+        {/* Strengths - Full Width Cards */}
+        <div className="space-y-3xl lg:space-y-4xl">
+          {strengths.map((strength, index) => (
+            <StrengthCard
               key={index}
-              className="bg-neutral-white/10 backdrop-blur-sm border border-neutral-white/20 rounded-[48px] p-2xl"
-            >
-              {/* Header */}
-              <div className="flex items-start gap-lg mb-xl">
-                <div className="bg-brand-secondary  rounded-2xl p-lg shadow-lg flex-shrink-0">
-                  <solution.icon className="w-8 h-8 text-brand-primary" />
-                </div>
-                <div className="flex-1 pt-2">
-                  <div className="bg-brand-primary  text-neutral-white px-lg py-xs rounded-full text-body-sm font-bold inline-block mb-md shadow-sm">
-                    {solution.badge}
-                  </div>
-                  <h3 className="text-h4 font-bold mb-sm">{solution.title}</h3>
-                  <p className="text-brand-secondary text-h5">
-                    {solution.subtitle}
-                  </p>
-                </div>
-              </div>
-
-              {/* Description */}
-              <div className="bg-neutral-white/5 backdrop-blur-sm border border-neutral-white/10 rounded-2xl p-xl mb-xl">
-                <p className="text-h6 text-neutral-white/90 leading-relaxed">
-                  {solution.description}
-                </p>
-              </div>
-
-              {/* Scenes */}
-              <div>
-                <div className="flex items-center gap-sm mb-lg">
-                  <span className="text-h6">💡</span>
-                  <h4 className="text-h6 font-bold">こんなシーンで活躍</h4>
-                </div>
-                <div className="space-y-md">
-                  {solution.scenes.map((scene, sceneIndex) => (
-                    <div
-                      key={sceneIndex}
-                      className="bg-neutral-white/5 backdrop-blur-sm border border-neutral-white/10 rounded-2xl p-lg flex gap-md"
-                    >
-                      <div className="bg-brand-secondary text-brand-primary rounded-full w-6 h-6 flex items-center justify-center flex-shrink-0 text-body-sm font-bold">
-                        {sceneIndex + 1}
-                      </div>
-                      <p className="text-body-sm text-neutral-white/90 leading-relaxed pt-0.5">
-                        {scene}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+              index={index}
+              title={strength.title}
+              subtitle={strength.subtitle}
+              description={strength.description}
+              iconName={strength.iconName}
+              stats={strength.stats}
+              features={strength.features}
+              note={strength.note}
+            />
           ))}
+        </div>
+
+        {/* CTA Button */}
+        <div className="mt-3xl lg:mt-4xl flex justify-center">
+          <ContactButton variant="yellow" size="medium" />
         </div>
       </div>
     </section>

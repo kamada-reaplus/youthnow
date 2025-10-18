@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Rounded+Mplus+1c:wght@400;700&display=swap");
+/* Futuraフォントはシステムフォントまたは別途購入が必要です */
+/* ここでは代替としてAvenir NextやHelvetica Neueを使用します */
 
 @tailwind base;
 @tailwind components;
@@ -102,6 +103,16 @@
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
   }
+
+  /* セクション間の隙間を完全に削除 */
+  section {
+    display: block;
+    margin: 0;
+    border: 0;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
 }
 
 /**
@@ -184,9 +195,37 @@ html {
 @layer utilities {
   /* セクション間スペーシング - デザインシステム仕様 */
   .section-spacing {
-    @apply py-12 md:py-16;
+    @apply pb-12 md:pb-16 pt-12 md:pt-16;
   } /* 48px mobile, 64px desktop */
   .section-spacing-lg {
-    @apply py-16 md:py-24;
+    @apply pb-16 md:pb-24 pt-16 md:pt-24;
   } /* 64px mobile, 96px desktop */
+
+  /* セクション間の継ぎ目をなくすためのクラス */
+  .section-no-gap {
+    @apply pb-12 md:pb-16 pt-0;
+  }
+
+  /* フォント関連のユーティリティクラス */
+
+  /* テキストストロークユーティリティ */
+  .text-stroke-white {
+    -webkit-text-stroke: 2px white;
+  }
+
+  /* アニメーション */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }

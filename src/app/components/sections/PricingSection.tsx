@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Check } from "lucide-react";
 import { SectionHeader } from "../ui/section-header";
+import { SectionTitle } from "../ui/SectionTitle";
+import { PricingCard } from "../ui/PricingCard";
+import { DiagonalBackground } from "../ui/DiagonalBackground";
 
 // デザインシステム使用コンポーネント
 // - カラー: neutral-white, neutral-black, brand-primary, brand-secondary など
@@ -57,12 +59,15 @@ export function PricingSection() {
   return (
     <section
       id="pricing"
-      className="section-spacing bg-neutral-white relative overflow-hidden"
+      className="section-spacing bg-neutral-light-cyan relative overflow-hidden -mb-px"
     >
+      {" "}
+      {/* 斜めの白背景（特徴カードの途中から） */}
+      <DiagonalBackground bgColor="bg-brand-primary" position="lower" />
+      <SectionTitle title="PRICING" />
       {/* 楕円形装飾 */}
       <div className="absolute top-5xl left-10 w-[600px] h-[400px] bg-brand-primary rounded-full opacity-5 blur-3xl transform rotate-[-20deg]"></div>
       <div className="absolute bottom-5xl right-10 w-[650px] h-[420px] bg-brand-secondary rounded-full opacity-5 blur-3xl transform rotate-[-28deg]"></div>
-
       <div className="container mx-auto px-lg relative z-10">
         <div className="max-w-6xl mx-auto">
           <SectionHeader title="料金プラン" responsive className="mb-4xl" />
@@ -88,11 +93,6 @@ export function PricingSection() {
                     : "text-neutral-medium hover:text-neutral-dark"
                 }`}
               >
-                {selectedPlan === "standard" && (
-                  <span className="absolute -top-4 -right-4 bg-brand-secondary  text-brand-primary text-xs px-2 py-0.5 rounded-full shadow-sm text-[10px]">
-                    おすすめ
-                  </span>
-                )}
                 スタンダード
               </button>
               <button
@@ -110,277 +110,53 @@ export function PricingSection() {
 
           {/* SP: 選択されたプラン詳細 */}
           <div className="md:hidden mb-8">
-            <div
-              className={`rounded-[3rem] p-8 shadow-2xl border-2 transition-all ${
-                selectedPlan === "standard"
-                  ? "bg-brand-primary text-neutral-white border-brand-primary"
-                  : "bg-neutral-lighter text-neutral-dark border-neutral-light"
-              }`}
-            >
-              <div className="text-center mb-8">
-                <h3
-                  className="text-2xl mb-4"
-                  style={{ fontFamily: "'Fredoka', sans-serif" }}
-                >
-                  {currentPlan.name}
-                </h3>
-                <div className="mb-4">
-                  <span
-                    className={`text-4xl font-bold ${
-                      selectedPlan === "standard"
-                        ? "text-neutral-white"
-                        : "text-brand-primary"
-                    }`}
-                  >
-                    {currentPlan.price}
-                  </span>
-                  <span
-                    className={`ml-2 text-sm ${
-                      selectedPlan === "standard"
-                        ? "text-neutral-white/80"
-                        : "text-neutral-medium"
-                    }`}
-                  >
-                    (税抜)
-                  </span>
-                </div>
-                <p
-                  className={`text-base ${
-                    selectedPlan === "standard"
-                      ? "text-neutral-white/90"
-                      : "text-neutral-medium"
-                  }`}
-                >
-                  {currentPlan.description}
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div>
-                  <h4
-                    className={`font-bold mb-3 ${
-                      selectedPlan === "standard"
-                        ? "text-neutral-white"
-                        : "text-neutral-dark"
-                    }`}
-                  >
-                    調査内容
-                  </h4>
-                  <div className="space-y-3">
-                    {currentPlan.features.map((feature, index) => (
-                      <div key={index} className="flex items-start gap-3">
-                        <div
-                          className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center ${
-                            selectedPlan === "standard"
-                              ? "bg-brand-secondary"
-                              : "bg-brand-primary"
-                          }`}
-                        >
-                          <Check
-                            className={`w-3 h-3 ${
-                              selectedPlan === "standard"
-                                ? "text-brand-primary"
-                                : "text-neutral-white"
-                            }`}
-                          />
-                        </div>
-                        <span
-                          className={`text-sm ${
-                            selectedPlan === "standard"
-                              ? "text-neutral-white"
-                              : "text-neutral-dark"
-                          }`}
-                        >
-                          {feature}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <p
-                    className={`font-bold ${
-                      selectedPlan === "standard"
-                        ? "text-neutral-white"
-                        : "text-neutral-dark"
-                    }`}
-                  >
-                    レポート：{currentPlan.report}
-                  </p>
-                  <p
-                    className={`font-bold ${
-                      selectedPlan === "standard"
-                        ? "text-neutral-white"
-                        : "text-neutral-dark"
-                    }`}
-                  >
-                    納期目安：{currentPlan.timeline}
-                  </p>
-                  <p
-                    className={`font-bold text-center ${
-                      selectedPlan === "standard"
-                        ? "text-neutral-white"
-                        : "text-brand-primary"
-                    }`}
-                  >
-                    {currentPlan.usage}
-                  </p>
-                </div>
-              </div>
-            </div>
+            <PricingCard
+              name={currentPlan.name}
+              price={currentPlan.price}
+              description={currentPlan.description}
+              features={currentPlan.features}
+              report={currentPlan.report}
+              timeline={currentPlan.timeline}
+              usage={currentPlan.usage}
+              badge={"badge" in currentPlan ? currentPlan.badge : undefined}
+              variant={selectedPlan === "standard" ? "standard" : "default"}
+              className="rounded-[3rem] shadow-2xl"
+            />
           </div>
 
           {/* PC: 3カラム表示 */}
           <div className="hidden md:grid md:grid-cols-3 gap-8">
-            {/* Light Plan */}
-            <div className="bg-neutral-white border-2 border-neutral-light rounded-3xl p-8 relative">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-brand-primary mb-2">
-                  {plans.light.name}
-                </h3>
-                <div className="text-4xl font-bold text-neutral-dark mb-2">
-                  {plans.light.price}
-                </div>
-                <div className="text-sm text-neutral-medium">(税抜)</div>
-              </div>
+            <PricingCard
+              name={plans.light.name}
+              price={plans.light.price}
+              description={plans.light.description}
+              features={plans.light.features}
+              report={plans.light.report}
+              timeline={plans.light.timeline}
+              usage={plans.light.usage}
+            />
 
-              <div className="space-y-6">
-                <div>
-                  <h4 className="font-bold text-neutral-dark mb-3">調査内容</h4>
-                  <div className="space-y-2">
-                    {plans.light.features.map((feature, index) => (
-                      <div key={index} className="flex gap-2 items-start">
-                        <div className="bg-brand-primary rounded-full w-4 h-4 flex items-center justify-center flex-shrink-0 mt-1">
-                          <Check className="w-3 h-3 text-neutral-white" />
-                        </div>
-                        <p className="text-sm text-neutral-dark">{feature}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+            <PricingCard
+              name={plans.standard.name}
+              price={plans.standard.price}
+              description={plans.standard.description}
+              features={plans.standard.features}
+              report={plans.standard.report}
+              timeline={plans.standard.timeline}
+              usage={plans.standard.usage}
+              badge={plans.standard.badge}
+              variant="standard"
+            />
 
-                <div>
-                  <p className="font-bold text-neutral-dark">
-                    レポート：{plans.light.report}
-                  </p>
-                </div>
-
-                <div>
-                  <p className="font-bold text-neutral-dark">
-                    納期目安：{plans.light.timeline}
-                  </p>
-                </div>
-
-                <div>
-                  <p className="font-bold text-brand-primary text-center">
-                    {plans.light.usage}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Standard Plan */}
-            <div className="bg-brand-primary border-2 border-brand-primary rounded-3xl p-8 relative scale-105 shadow-xl">
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                <div className="bg-brand-secondary text-brand-primary text-xs px-4 py-1 rounded-full font-bold">
-                  {plans.standard.badge}
-                </div>
-              </div>
-
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-neutral-white mb-2">
-                  {plans.standard.name}
-                </h3>
-                <div className="text-4xl font-bold text-neutral-white mb-2">
-                  {plans.standard.price}
-                </div>
-                <div className="text-sm text-neutral-white/80">(税抜)</div>
-              </div>
-
-              <div className="space-y-6">
-                <div>
-                  <h4 className="font-bold text-neutral-white mb-3">
-                    調査内容
-                  </h4>
-                  <div className="space-y-2">
-                    {plans.standard.features.map((feature, index) => (
-                      <div key={index} className="flex gap-2 items-start">
-                        <div className="bg-brand-secondary rounded-full w-4 h-4 flex items-center justify-center flex-shrink-0 mt-1">
-                          <Check className="w-3 h-3 text-brand-primary" />
-                        </div>
-                        <p className="text-sm text-neutral-white">{feature}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <p className="font-bold text-neutral-white">
-                    レポート：{plans.standard.report}
-                  </p>
-                </div>
-
-                <div>
-                  <p className="font-bold text-neutral-white">
-                    納期目安：{plans.standard.timeline}
-                  </p>
-                </div>
-
-                <div>
-                  <p className="font-bold text-neutral-white text-center">
-                    {plans.standard.usage}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Custom Plan */}
-            <div className="bg-neutral-white border-2 border-neutral-light rounded-3xl p-8 relative">
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-brand-primary mb-2">
-                  {plans.custom.name}
-                </h3>
-                <div className="text-4xl font-bold text-neutral-dark mb-2">
-                  {plans.custom.price}
-                </div>
-                <div className="text-sm text-neutral-medium">(税抜)</div>
-              </div>
-
-              <div className="space-y-6">
-                <div>
-                  <h4 className="font-bold text-neutral-dark mb-3">調査内容</h4>
-                  <div className="space-y-2">
-                    {plans.custom.features.map((feature, index) => (
-                      <div key={index} className="flex gap-2 items-start">
-                        <div className="bg-brand-primary rounded-full w-4 h-4 flex items-center justify-center flex-shrink-0 mt-1">
-                          <Check className="w-3 h-3 text-neutral-white" />
-                        </div>
-                        <p className="text-sm text-neutral-dark">{feature}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <p className="font-bold text-neutral-dark">
-                    レポート：{plans.custom.report}
-                  </p>
-                </div>
-
-                <div>
-                  <p className="font-bold text-neutral-dark">
-                    納期目安：{plans.custom.timeline}
-                  </p>
-                </div>
-
-                <div>
-                  <p className="font-bold text-brand-primary text-center">
-                    {plans.custom.usage}
-                  </p>
-                </div>
-              </div>
-            </div>
+            <PricingCard
+              name={plans.custom.name}
+              price={plans.custom.price}
+              description={plans.custom.description}
+              features={plans.custom.features}
+              report={plans.custom.report}
+              timeline={plans.custom.timeline}
+              usage={plans.custom.usage}
+            />
           </div>
         </div>
 

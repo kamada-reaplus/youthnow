@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { ContactButton } from "../ui/ContactButton";
+import { MessageCircle } from "lucide-react";
 
 // デザインシステム使用コンポーネント
 // - カラー: brand-primary, neutral-white など
@@ -12,8 +12,6 @@ export function FloatingCTAButton() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // ヘッダーと同じロジック：ヒーローセクションの高さを取得
-      const heroHeight = 800;
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
@@ -31,13 +29,17 @@ export function FloatingCTAButton() {
       const isNearBottom =
         scrollPosition + windowHeight >= documentHeight - 100;
 
-      // ヒーローセクションを過ぎて、ContactFormセクションが見えておらず、最下部でもない場合に表示
-      setIsVisible(
-        scrollPosition > heroHeight * 0.7 &&
-          !hideInContactSection &&
-          !isNearBottom
-      );
+      // スクロール位置が300px以上で、ContactFormセクションが見えておらず、最下部でもない場合に表示
+      const shouldShow =
+        scrollPosition > 300 &&
+        !hideInContactSection &&
+        !isNearBottom;
+
+      setIsVisible(shouldShow);
     };
+
+    // 初回チェック
+    handleScroll();
 
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleScroll);
@@ -57,21 +59,35 @@ export function FloatingCTAButton() {
 
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 z-40 bg-neutral-white border-t border-brand-primary/20 shadow-md backdrop-blur-sm transition-transform duration-300 ${
-        isVisible ? "translate-y-0" : "translate-y-full"
+      className={`fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[9999] transition-all duration-300 ${
+        isVisible ? "translate-y-0 opacity-100 pointer-events-auto" : "translate-y-20 opacity-0 pointer-events-none"
       }`}
     >
-            <div className="container mx-auto px-lg py-sm max-w-7xl">
-        <div className="flex justify-center">
-          <ContactButton
-            variant="blue"
-            size="small"
-            label="簡単30秒で入力完了"
-            text="無料資料をダウンロード"
-            onClick={handleClick}
-          />
-        </div>
-      </div>
+      {/* メインのフローティングボタン */}
+      <button
+        onClick={handleClick}
+        className="relative bg-brand-primary hover:bg-brand-primary/90 active:bg-brand-primary/80 text-white rounded-full px-4 py-3 md:px-5 md:py-4 shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 md:gap-3 group"
+        aria-label="お問い合わせ"
+      >
+        {/* アイコン */}
+        <MessageCircle className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
+
+        {/* テキスト（スマホでは常に表示、PCではホバー時に展開） */}
+        <span className="block md:hidden font-bold text-sm whitespace-nowrap">
+          お問い合わせ
+        </span>
+        <span className="hidden md:block max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 whitespace-nowrap font-bold text-sm">
+          お問い合わせ
+        </span>
+
+        {/* パルスアニメーション */}
+        <span className="absolute inset-0 rounded-full bg-brand-primary animate-ping opacity-20 pointer-events-none"></span>
+      </button>
+
+      {/* バッジ（未読風） */}
+      <span className="absolute -top-1 -right-1 bg-brand-secondary text-brand-primary text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center shadow-md pointer-events-none">
+        !
+      </span>
     </div>
   );
 }

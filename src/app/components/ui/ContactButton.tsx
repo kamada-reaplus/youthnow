@@ -1,3 +1,5 @@
+"use client";
+
 import { ArrowRight } from "lucide-react";
 
 interface ContactButtonProps {
@@ -15,6 +17,16 @@ export function ContactButton({
   text = "お問い合わせはこちら",
   onClick,
 }: ContactButtonProps) {
+  // デフォルトのonClickイベント - contactセクションへのスクロール
+  const defaultOnClick = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  // onClickが提供されている場合はそれを使用、そうでなければデフォルトを使用
+  const handleClick = onClick || defaultOnClick;
   const colors = {
     yellow: {
       bg: "bg-brand-secondary",
@@ -28,7 +40,7 @@ export function ContactButton({
     },
     blue: {
       bg: "bg-brand-primary",
-      hoverBg: "<hover:bg-brand-primary></hover:bg-brand-primary>/90",
+      hoverBg: "hover:bg-brand-primary/90",
       labelBg: "bg-white",
       labelText: "text-brand-primary",
       buttonText: "text-white",
@@ -84,7 +96,9 @@ export function ContactButton({
   return (
     <div className={`relative inline-block ${sizeConfig.container}`}>
       {/* Label - positioned on top of button */}
-      <div className={`flex justify-center relative z-10 ${sizeConfig.labelMargin}`}>
+      <div
+        className={`flex justify-center relative z-10 ${sizeConfig.labelMargin}`}
+      >
         <div
           className={`${color.labelBg} ${color.labelText} ${color.labelBorder} border-2 rounded-full ${sizeConfig.labelPadding} shadow-sm font-bold ${sizeConfig.labelText}`}
         >
@@ -94,7 +108,7 @@ export function ContactButton({
 
       {/* Main Button */}
       <button
-        onClick={onClick}
+        onClick={handleClick}
         className={`relative ${color.bg} ${color.hoverBg} ${color.buttonText} rounded-full ${sizeConfig.buttonPadding} transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] w-full ${sizeConfig.buttonMinWidth} group font-bold`}
       >
         <span className={`block ${sizeConfig.buttonText} pr-12`}>{text}</span>

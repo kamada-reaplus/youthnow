@@ -17,8 +17,13 @@ export function Header() {
       const scrollPosition = window.scrollY;
 
       // ヒーローセクションを過ぎたらヘッダーを表示
-      setIsVisible(scrollPosition > heroHeight * 0.7);
+      const shouldShow = scrollPosition > heroHeight * 0.7;
+      console.log("Header scroll:", { scrollPosition, heroHeight, shouldShow });
+      setIsVisible(shouldShow);
     };
+
+    // 初回チェック
+    handleScroll();
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
