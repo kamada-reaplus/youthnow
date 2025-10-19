@@ -30,7 +30,12 @@ export function CTABlock({
 
       {/* ロゴ */}
       <div className="w-full max-w-[200px] md:max-w-[250px] mx-auto">
-        <Image src={logo} alt="Youth Now ロゴ" className="w-full h-auto" />
+        <Image
+          src={logo}
+          alt="Youth Now ロゴ"
+          className="w-full h-auto"
+          loading="lazy"
+        />
       </div>
 
       {/* 下部テキスト */}

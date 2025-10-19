@@ -111,6 +111,7 @@ export function Header() {
               width={120}
               height={40}
               className="h-2xl w-auto"
+              loading="lazy"
             />
           </a>
 
@@ -141,6 +142,7 @@ export function Header() {
               width={100}
               height={40}
               className="h-10 w-auto object-contain"
+              loading="lazy"
             />
           </a>
 

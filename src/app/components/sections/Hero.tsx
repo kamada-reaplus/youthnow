@@ -42,6 +42,10 @@ export function Hero() {
     <section className="text-white min-h-screen flex flex-col items-center px-5 py-6 md:py-12 relative overflow-hidden">
       <BackgroundLayer />
 
+      <h1 className="sr-only">
+        Youth Now - 若年層インサイトマーケティング 最短24時間で数千人から本音収集
+      </h1>
+
       <Logo />
 
       <MainContent />

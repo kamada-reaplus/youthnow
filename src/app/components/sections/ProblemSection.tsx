@@ -110,7 +110,12 @@ function ArrowDivider() {
   return (
     <div className="mb-xl flex justify-center md:mb-lg">
       <div className="w-16 lg:w-16">
-        <Image src={arrow} alt="矢印" className="h-auto w-full" />
+        <Image
+          src={arrow}
+          alt="矢印"
+          className="h-auto w-full"
+          loading="lazy"
+        />
       </div>
     </div>
   );

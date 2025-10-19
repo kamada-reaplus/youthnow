@@ -17,30 +17,30 @@ export default function Home() {
       <div className="relative z-10">
         <Header />
         <main>
-          <div id="hero">
+          <section id="hero" aria-label="メインビジュアル">
             <Hero />
-          </div>
-          <div id="problem">
+          </section>
+          <section id="problem" aria-label="課題セクション">
             <ProblemSection />
-          </div>
-          <div id="solution">
+          </section>
+          <section id="solution" aria-label="ソリューションセクション">
             <SolutionSection />
-          </div>
-          <div id="pricing">
+          </section>
+          <section id="pricing" aria-label="料金プランセクション">
             <PricingSection />
-          </div>
-          <div id="strength">
+          </section>
+          <section id="strength" aria-label="強みセクション">
             <StorySection />
-          </div>
-          <div id="flow">
+          </section>
+          <section id="flow" aria-label="利用フローセクション">
             <FlowSection />
-          </div>
-          <div id="faq">
+          </section>
+          <section id="faq" aria-label="よくある質問セクション">
             <FAQSection />
-          </div>
-          <div id="contact">
+          </section>
+          <section id="contact" aria-label="お問い合わせフォーム">
             <ContactForm />
-          </div>
+          </section>
         </main>
         <Footer />
         <FloatingCTAButton />

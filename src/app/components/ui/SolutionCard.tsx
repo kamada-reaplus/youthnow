@@ -68,6 +68,7 @@ export function SolutionCard({
                     src={problemImage}
                     alt={problemText}
                     className="w-full h-full object-contain"
+                    loading="lazy"
                   />
                 </div>
               ) : (

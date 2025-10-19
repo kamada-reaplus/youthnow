@@ -63,6 +63,7 @@ export function StorySection() {
                     alt="Z世代向け商品を作りたいが、何が刺さるかわからない"
                     fill
                     className="object-contain"
+                    loading="lazy"
                   />
                 </div>
                 <div className="text-center">
@@ -122,6 +123,7 @@ export function StorySection() {
                 width={240}
                 height={86}
                 className="mx-auto mb-sm"
+                loading="lazy"
               />
               <p className="text-body text-neutral-black/70 leading-relaxed">
                 です。
@@ -147,6 +149,7 @@ export function StorySection() {
                     alt="Z世代向け商品を作りたいが、何が刺さるかわからない"
                     fill
                     className="object-contain"
+                    loading="lazy"
                   />
                 </div>
                 <div className="max-w-lg">
@@ -214,6 +217,7 @@ export function StorySection() {
                 width={240}
                 height={86}
                 className="mx-auto mb-sm"
+                loading="lazy"
               />
               <p className="text-body md:text-h6 text-neutral-black/70 leading-relaxed">
                 です。

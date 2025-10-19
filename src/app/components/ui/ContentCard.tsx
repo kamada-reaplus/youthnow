@@ -34,6 +34,7 @@ export function ContentCard({
             src={image}
             alt={imageAlt}
             className="w-full h-full object-contain"
+            loading="lazy"
           />
         </div>
       )}
