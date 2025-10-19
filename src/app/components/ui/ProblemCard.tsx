@@ -3,11 +3,13 @@ import { Frown, Check } from "lucide-react";
 interface ProblemCardProps {
   items: string[];
   variant?: "problem" | "capability";
+  layout?: "vertical" | "horizontal";
 }
 
 export function ProblemCard({
   items,
   variant = "problem",
+  layout = "vertical",
 }: ProblemCardProps) {
   const isProblem = variant === "problem";
 
@@ -36,13 +38,40 @@ export function ProblemCard({
       : "text-body text-neutral-black font-bold";
   };
 
+  const getContainerClass = () => {
+    if (layout === "vertical") return "space-y-md";
+
+    // horizontal layout: 2 items = 2 cols, 3+ items = 3 cols
+    const cols =
+      items.length === 2 ? "md:grid-cols-2" : "md:grid-cols-2 lg:grid-cols-3";
+    return `grid grid-cols-1 ${cols} gap-md`;
+  };
+
+  const containerClass = getContainerClass();
+
+  const getItemLayout = () => {
+    if (layout === "vertical") {
+      return "flex items-center gap-md pl-4 md:pl-20";
+    }
+    // horizontal: center alignment for capability cards
+    return variant === "capability"
+      ? "flex flex-col items-center gap-md text-center"
+      : "flex items-center gap-md pl-4";
+  };
+
   return (
-    <div className="space-y-md">
+    <div className={containerClass}>
       {items.map((item, index) => (
         <div key={index} className={`${getCardBackground()} rounded-2xl p-lg`}>
-          <div className="flex items-center gap-md pl-4 md:pl-20">
+          <div className={getItemLayout()}>
             {renderIcon()}
-            <div>
+            <div
+              className={
+                layout === "horizontal" && variant === "capability"
+                  ? ""
+                  : "flex-1"
+              }
+            >
               <p
                 className={`${getTextStyle()} leading-relaxed whitespace-pre-line`}
               >

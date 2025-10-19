@@ -11,7 +11,7 @@ export function SectionTitle({
     <div className="text-center mb-4">
       {/* 大きなタイトル（PROBLEM風） */}
       <h2
-        className={`text-7xl md:text-8xl font-black ${titleColor} opacity-40 leading-none`}
+        className={`text-5xl md:text-6xl font-black ${titleColor} opacity-40 leading-none`}
       >
         {title}
       </h2>

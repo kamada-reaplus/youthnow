@@ -5,6 +5,7 @@ import { SectionHeader } from "../ui/section-header";
 import { SectionTitle } from "../ui/SectionTitle";
 import Story from "../../assets/story.png";
 import LogoBlack from "../../assets/logo-black.png";
+import { ContactButton } from "../ui/ContactButton";
 
 // デザインシステム使用コンポーネント
 // - カラー: neutral-white, neutral-black, brand-primary など
@@ -25,50 +26,38 @@ export function StorySection() {
 
   return (
     <section
-      id="problem"
-      className="bg-brand-primary section-spacing px-lg relative overflow-hidden -mb-px"
+      id="story"
+      className="bg-brand-primary py-8 md:py-12 px-lg relative overflow-hidden -mb-px min-h-screen flex items-center"
     >
       {/* 斜めの白背景（特徴カードの途中から） */}
       <DiagonalBackground bgColor="bg-neutral-light-cyan" position="lower" />
-      <SectionTitle title="REASON" titleColor="text-neutral-white" />
-      {/* Background blur effects */}
-      <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
-        <div className="absolute -top-6xl -left-40 w-[583px] h-[509px] bg-brand-primary  rounded-full blur-3xl" />
-        <div className="absolute top-[450px] -left-10 w-[633px] h-[522px] bg-brand-secondary  rounded-full blur-3xl" />
-      </div>
 
-      <div className="container mx-auto max-w-5xl relative z-10">
+      <div className="container mx-auto max-w-5xl relative z-10 w-full">
         {/* Section Header */}
-        <div className="mb-3xl">
+        <SectionTitle title="REASON" titleColor="text-neutral-white" />
+
+        <div className="mb-lg md:mb-xl">
           <SectionHeader
-            title="なぜYouth Now!を"
-            subtitle="作ったのか?"
+            title="なぜYouth Now!を作ったのか?"
             textColor="text-neutral-white"
-            highlightColor="text-brand-secondary"
-            highlightSize="text-5xl md:text-6xl lg:text-7xl"
-            subtitleHighlightWord="作った"
             leadingTight
             responsive
             className="mb-0"
           />
         </div>
         {/* Story Content */}
-        <div className="bg-neutral-white rounded-[48px] shadow-lg p-2xl">
-          <div className="space-y-2xl">
+        <div className="bg-neutral-white rounded-3xl md:rounded-[48px] shadow-lg p-lg md:p-xl">
+          {/* Mobile: 縦レイアウト */}
+          <div className="md:hidden space-y-lg">
             {/* Introduction */}
-            <p className="text-h6 text-neutral-black/70 leading-relaxed text-center">
-              Reaplusは
-              <br />
-              広告代理店事業、インフルエンサー事務所、D2Cブランドを運営する中で、
-              <br />
-              何度も同じ悩みを聞いてきました。
+            <p className="text-body text-neutral-black/70 leading-relaxed text-center">
+              Reaplusは広告代理店事業、インフルエンサー事務所、D2Cブランドを運営する中で、何度も同じ悩みを聞いてきました。
             </p>
 
             {/* Pain Point */}
-            <div className="relative py-xl">
-              <div className="flex flex-col items-center gap-lg">
-                {/* イラスト画像 */}
-                <div className="w-full max-w-xs mx-auto relative aspect-square">
+            <div className="relative py-md">
+              <div className="flex flex-col items-center gap-md">
+                <div className="w-full max-w-[200px] relative aspect-square">
                   <Image
                     src={Story}
                     alt="Z世代向け商品を作りたいが、何が刺さるかわからない"
@@ -76,9 +65,8 @@ export function StorySection() {
                     className="object-contain"
                   />
                 </div>
-                {/* メインメッセージ */}
                 <div className="text-center">
-                  <p className="text-h5 text-brand-primary leading-relaxed font-bold">
+                  <p className="text-body-sm text-brand-primary leading-relaxed font-bold">
                     「Z世代向け商品を作りたいが、
                     <br />
                     何が刺さるか分からない」
@@ -88,8 +76,8 @@ export function StorySection() {
             </div>
 
             {/* Problem */}
-            <div className="space-y-lg">
-              <p className="text-h5 text-neutral-black font-bold text-center">
+            <div className="space-y-md">
+              <p className="text-h6 text-neutral-black font-bold text-center">
                 既存の会社では・・・
               </p>
               <div className="max-w-md mx-auto">
@@ -97,57 +85,145 @@ export function StorySection() {
               </div>
             </div>
 
-            <div className="mb-3xl">
-              <SectionHeader
-                title="だからこそ私たちは"
-                subtitle="決意しました"
-                textColor="text-neutral-black"
-                highlightColor="text-brand-secondary"
-                highlightSize="text-5xl md:text-5xl lg:text-6xl"
-                subtitleHighlightWord="決意"
-                leadingTight
-                responsive
-                className="mb-0"
-              />
+            <div className="mb-lg text-center">
+              <p className="text-h5 text-neutral-black leading-tight">
+                だからこそ私たちは<span className="text-2xl font-bold text-brand-secondary mx-1">決意</span>しました
+              </p>
             </div>
 
             {/* Capabilities */}
-            <div className="bg-gradient-to-br from-brand-primary/10 via-brand-secondary/10 to-brand-primary/10 rounded-3xl p-2xl">
+            <div className="bg-gradient-to-br from-brand-primary/10 via-brand-secondary/10 to-brand-primary/10 rounded-2xl p-lg">
               <div className="max-w-md mx-auto">
                 <ProblemCard items={capabilities} variant="capability" />
               </div>
             </div>
 
             {/* Mission */}
-            <div className="text-center py-lg">
-              <p className="text-h6 text-neutral-black/70 leading-relaxed">
+            <div className="text-center py-md">
+              <p className="text-body text-neutral-black/70 leading-relaxed">
                 これらすべてを掛け合わせた
               </p>
-              <p className="text-h4 text-brand-primary font-bold my-md leading-relaxed">
+              <p className="text-h5 text-brand-primary font-bold my-sm leading-relaxed">
                 「今までにない調査体験」
               </p>
-              <p className="text-h6 text-neutral-black/70 leading-relaxed">
+              <p className="text-body text-neutral-black/70 leading-relaxed">
                 を提供しよう、と。
               </p>
             </div>
 
             {/* Conclusion */}
-            <div className="text-center pt-xl pb-lg">
-              <p className="text-h6 text-neutral-black/70 leading-relaxed mb-md">
+            <div className="text-center pt-md pb-sm">
+              <p className="text-body text-neutral-black/70 leading-relaxed mb-sm">
                 それが
               </p>
               <Image
                 src={LogoBlack}
                 alt="Youth Now! ロゴ"
-                width={280}
-                height={100}
-                className="mx-auto mb-md"
+                width={240}
+                height={86}
+                className="mx-auto mb-sm"
               />
-              <p className="text-h6 text-neutral-black/70 leading-relaxed">
+              <p className="text-body text-neutral-black/70 leading-relaxed">
                 です。
               </p>
             </div>
           </div>
+
+          {/* Desktop: 縦スクロール、一部横配置 */}
+          <div className="hidden md:block space-y-lg">
+            {/* Introduction */}
+            <p className="text-body md:text-h6 text-neutral-black/70 leading-relaxed text-center">
+              Reaplusは広告代理店事業、インフルエンサー事務所、D2Cブランドを運営する中で、
+              <br />
+              何度も同じ悩みを聞いてきました。
+            </p>
+
+            {/* Pain Point */}
+            <div className="relative py-md flex justify-center">
+              <div className="flex items-center gap-xl bg-brand-primary/5 rounded-2xl p-lg max-w-fit mx-auto">
+                <div className="w-48 lg:w-56 h-48 lg:h-56 relative flex-shrink-0">
+                  <Image
+                    src={Story}
+                    alt="Z世代向け商品を作りたいが、何が刺さるかわからない"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <div className="max-w-lg">
+                  <p className="text-h5 lg:text-h4 text-brand-primary leading-relaxed font-bold">
+                    「Z世代向け商品を作りたいが、
+                    <br />
+                    何が刺さるか分からない」
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Problem - 横並び */}
+            <div className="space-y-md">
+              <p className="text-h6 md:text-h5 text-neutral-black font-bold text-center">
+                既存の会社では・・・
+              </p>
+              <div className="max-w-4xl mx-auto">
+                <ProblemCard
+                  items={problems}
+                  variant="problem"
+                  layout="horizontal"
+                />
+              </div>
+            </div>
+
+            <div className="mb-md text-center">
+              <p className="text-h5 md:text-h4 text-neutral-black leading-tight">
+                だからこそ私たちは<span className="text-3xl md:text-4xl font-bold text-brand-secondary mx-1">決意</span>しました
+              </p>
+            </div>
+
+            {/* Capabilities - 横並び */}
+            <div className="bg-gradient-to-br from-brand-primary/10 via-brand-secondary/10 to-brand-primary/10 rounded-3xl p-lg">
+              <div className="max-w-5xl mx-auto">
+                <ProblemCard
+                  items={capabilities}
+                  variant="capability"
+                  layout="horizontal"
+                />
+              </div>
+            </div>
+
+            {/* Mission */}
+            <div className="text-center py-md">
+              <p className="text-body md:text-h6 text-neutral-black/70 leading-relaxed">
+                これらすべてを掛け合わせた
+              </p>
+              <p className="text-h5 md:text-h4 text-brand-primary font-bold my-sm leading-relaxed">
+                「今までにない調査体験」
+              </p>
+              <p className="text-body md:text-h6 text-neutral-black/70 leading-relaxed">
+                を提供しよう、と。
+              </p>
+            </div>
+
+            {/* Conclusion */}
+            <div className="text-center pt-md pb-sm">
+              <p className="text-body md:text-h6 text-neutral-black/70 leading-relaxed mb-sm">
+                それが
+              </p>
+              <Image
+                src={LogoBlack}
+                alt="Youth Now! ロゴ"
+                width={240}
+                height={86}
+                className="mx-auto mb-sm"
+              />
+              <p className="text-body md:text-h6 text-neutral-black/70 leading-relaxed">
+                です。
+              </p>
+            </div>
+          </div>
+        </div>
+        {/* CTA Button */}
+        <div className="flex justify-center">
+          <ContactButton variant="yellow" size="medium" />
         </div>
       </div>
     </section>

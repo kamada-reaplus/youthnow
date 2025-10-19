@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, AlertCircle } from "lucide-react";
+import { ArrowRight, AlertCircle, CheckCircle2 } from "lucide-react";
 import { useState, FormEvent } from "react";
 
 // フォームデータの型
@@ -234,27 +234,30 @@ export function Form({
     <form
       onSubmit={handleSubmit}
       noValidate
-      className={`${colors.formBg} backdrop-blur-sm border ${colors.formBorder} rounded-[48px] p-2xl ${className}`}
+      className={`${colors.formBg} backdrop-blur-sm border ${colors.formBorder} rounded-3xl md:rounded-[48px] p-xl md:p-2xl ${className}`}
     >
-      <div className="space-y-xl">
+      <div className="space-y-lg">
         {/* 目的選択 */}
         {showPurposeField && (
           <div>
             <label
-              className={`block text-body-sm font-bold ${colors.labelText} mb-md`}
+              className={`block text-body-sm font-bold ${colors.labelText} mb-sm`}
             >
               お問い合わせ目的
             </label>
+            <p className={`text-caption ${colors.labelText}/60 mb-sm`}>
+              お問い合わせ内容に応じて最適な資料をご用意いたします
+            </p>
             <div className="grid grid-cols-3 gap-sm">
               {purposes.map((purpose) => (
                 <button
                   key={purpose}
                   type="button"
                   onClick={() => handleChange("purpose", purpose)}
-                  className={`px-sm py-sm rounded-lg text-caption sm:text-body-sm font-medium transition-all whitespace-nowrap ${
+                  className={`px-sm py-sm rounded-lg text-body-sm font-medium transition-all whitespace-nowrap ${
                     formData.purpose === purpose
-                      ? `${colors.buttonBgActive} ${colors.buttonTextActive} shadow-md`
-                      : `${colors.buttonBg} ${colors.buttonText} ${colors.buttonBgHover}`
+                      ? `${colors.buttonBgActive} ${colors.buttonTextActive} shadow-md scale-105`
+                      : `${colors.buttonBg} ${colors.buttonText} ${colors.buttonBgHover} hover:scale-102`
                   }`}
                 >
                   {purpose}
@@ -275,6 +278,7 @@ export function Form({
           error={touched.company ? errors.company : undefined}
           placeholder="株式会社〇〇"
           autoComplete="organization"
+          helpText="資料送付先の確認に使用します"
           colors={colors}
         />
 
@@ -289,6 +293,7 @@ export function Form({
           error={touched.name ? errors.name : undefined}
           placeholder="山田 太郎"
           autoComplete="name"
+          helpText="担当者様のお名前をご記入ください"
           colors={colors}
         />
 
@@ -304,6 +309,7 @@ export function Form({
           error={touched.email ? errors.email : undefined}
           placeholder="example@company.com"
           autoComplete="email"
+          helpText="資料とレポートをこちらのアドレスにお送りします"
           colors={colors}
         />
 
@@ -320,6 +326,7 @@ export function Form({
             error={touched.phone ? errors.phone : undefined}
             placeholder="03-1234-5678"
             autoComplete="tel"
+            helpText="緊急時のご連絡先として使用します（営業電話はいたしません）"
             colors={colors}
           />
         )}
@@ -327,46 +334,41 @@ export function Form({
         {/* 興味のある内容 */}
         <div>
           <label
-            className={`block text-body-sm font-bold ${colors.labelText} mb-md`}
+            htmlFor="interest"
+            className={`block text-body-sm font-bold ${colors.labelText} mb-sm`}
           >
             最も知りたいこと{" "}
             <span className={`${colors.labelText}/60`}>(任意)</span>
           </label>
-          <div className="space-y-md">
+          <p className={`text-caption ${colors.labelText}/60 mb-xs`}>
+            ご希望に合わせたご提案をさせていただきます
+          </p>
+          <select
+            id="interest"
+            name="interest"
+            value={formData.interest}
+            onChange={(e) => handleChange("interest", e.target.value)}
+            onBlur={() => handleBlur("interest")}
+            aria-invalid={touched.interest && errors.interest ? "true" : "false"}
+            aria-describedby={touched.interest && errors.interest ? "interest-error" : undefined}
+            className={`w-full ${colors.inputBg} border-2 rounded-lg px-lg py-md ${
+              colors.inputText
+            } ${colors.inputPlaceholder} focus:outline-none transition-all ${
+              touched.interest && errors.interest
+                ? colors.inputBorderError
+                : `${colors.inputBorder} ${colors.inputBorderFocus}`
+            } ${!errors.interest && formData.interest ? colors.inputBorderValid : ""}`}
+          >
+            <option value="">選択してください</option>
             {interests.map((interest, index) => (
-              <label
-                key={index}
-                className={`flex items-center gap-md ${
-                  colors.radioBg
-                } rounded-lg px-lg py-md cursor-pointer transition-all ${
-                  formData.interest === interest
-                    ? `${colors.radioBgActive} border-2 ${colors.radioBorderActive}`
-                    : `border-2 ${colors.radioBorder} hover:bg-brand-primary/10`
-                } ${
-                  touched.interest && errors.interest
-                    ? `border-2 ${colors.radioBorderError}`
-                    : ""
-                }`}
-              >
-                <input
-                  type="radio"
-                  name="interest"
-                  value={interest}
-                  checked={formData.interest === interest}
-                  onChange={(e) => handleChange("interest", e.target.value)}
-                  onBlur={() => handleBlur("interest")}
-                  className="w-5 h-5 text-brand-secondary bg-transparent border-brand-primary/40 focus:ring-2 focus:ring-brand-secondary cursor-pointer"
-                />
-                <span
-                  className={`text-body-sm ${colors.radioText} font-medium`}
-                >
-                  {interest}
-                </span>
-              </label>
+              <option key={index} value={interest}>
+                {interest}
+              </option>
             ))}
-          </div>
+          </select>
           {touched.interest && errors.interest && (
             <div
+              id="interest-error"
               className={`mt-sm flex items-center gap-xs ${colors.errorText} text-caption`}
               role="alert"
             >
@@ -379,7 +381,7 @@ export function Form({
         {/* 同意 */}
         <div>
           <label
-            className={`flex items-start gap-md rounded-lg px-lg py-lg cursor-pointer transition-colors ${
+            className={`flex items-start gap-md rounded-lg px-lg py-md cursor-pointer transition-colors ${
               touched.agreement && errors.agreement
                 ? `${colors.errorBg} border-2 ${colors.checkboxBorderError}`
                 : `${colors.checkboxBg} border-2 ${colors.checkboxBorder} ${colors.checkboxBorderHover}`
@@ -425,48 +427,53 @@ export function Form({
         </div>
 
         {/* 送信ボタン */}
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          className={`w-full ${colors.submitBg} ${
-            colors.submitText
-          } py-lg px-xl rounded-full font-bold shadow-lg transition-all flex items-center justify-center gap-sm ${
-            isSubmitting
-              ? "opacity-50 cursor-not-allowed"
-              : `${colors.submitHover} hover:shadow-xl hover:scale-[1.02]`
-          }`}
-        >
-          {isSubmitting ? (
-            <>
-              <svg
-                className="animate-spin h-5 w-5"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                />
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                />
-              </svg>
-              送信中...
-            </>
-          ) : (
-            <>
-              {getSubmitButtonText()}
-              <ArrowRight className="w-4 h-4" />
-            </>
-          )}
-        </button>
+        <div className="pt-md">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={`w-full ${colors.submitBg} ${
+              colors.submitText
+            } py-lg px-xl rounded-full font-bold text-body shadow-lg transition-all flex items-center justify-center gap-sm ${
+              isSubmitting
+                ? "opacity-50 cursor-not-allowed"
+                : `${colors.submitHover} hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]`
+            }`}
+          >
+            {isSubmitting ? (
+              <>
+                <svg
+                  className="animate-spin h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  />
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  />
+                </svg>
+                送信中...
+              </>
+            ) : (
+              <>
+                {getSubmitButtonText()}
+                <ArrowRight className="w-5 h-5" />
+              </>
+            )}
+          </button>
+          <p className={`text-caption ${colors.labelText}/60 text-center mt-sm`}>
+            ※ 送信後すぐにメールが届きます（通常1分以内）
+          </p>
+        </div>
       </div>
     </form>
   );
@@ -484,6 +491,7 @@ type FormFieldProps = {
   onBlur: () => void;
   error?: string;
   autoComplete?: string;
+  helpText?: string; // マイクロコピー追加
   colors: {
     labelText: string;
     inputText: string;
@@ -508,8 +516,12 @@ function FormField({
   onBlur,
   error,
   autoComplete,
+  helpText,
   colors,
 }: FormFieldProps) {
+  // バリデーション状態を視覚化
+  const isValid = !error && value && value.length > 0;
+
   return (
     <div>
       <label
@@ -523,26 +535,41 @@ function FormField({
           <span className={`${colors.labelText}/60`}>(任意)</span>
         )}
       </label>
-      <input
-        id={id}
-        name={id}
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        onBlur={onBlur}
-        autoComplete={autoComplete}
-        required={required}
-        aria-invalid={error ? "true" : "false"}
-        aria-describedby={error ? `${id}-error` : undefined}
-        className={`w-full ${colors.inputBg} border rounded-lg px-lg py-md ${
-          colors.inputText
-        } ${colors.inputPlaceholder} focus:outline-none transition-colors ${
-          error
-            ? colors.inputBorderError
-            : `${colors.inputBorder} ${colors.inputBorderFocus}`
-        } ${!error && value ? colors.inputBorderValid : ""}`}
-      />
+      {helpText && (
+        <p className={`text-caption ${colors.labelText}/60 mb-xs`}>
+          {helpText}
+        </p>
+      )}
+      <div className="relative">
+        <input
+          id={id}
+          name={id}
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          onBlur={onBlur}
+          autoComplete={autoComplete}
+          required={required}
+          aria-invalid={error ? "true" : "false"}
+          aria-describedby={error ? `${id}-error` : helpText ? `${id}-help` : undefined}
+          className={`w-full ${colors.inputBg} border-2 rounded-lg px-lg py-md ${
+            colors.inputText
+          } ${colors.inputPlaceholder} focus:outline-none transition-all ${
+            error
+              ? colors.inputBorderError
+              : isValid
+              ? colors.inputBorderValid
+              : `${colors.inputBorder} ${colors.inputBorderFocus}`
+          }`}
+        />
+        {/* 成功時のチェックマーク */}
+        {isValid && (
+          <div className="absolute right-3 top-1/2 -translate-y-1/2">
+            <CheckCircle2 className="w-5 h-5 text-green-500" />
+          </div>
+        )}
+      </div>
       {error && (
         <div
           id={`${id}-error`}

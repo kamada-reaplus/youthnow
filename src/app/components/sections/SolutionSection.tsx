@@ -1,52 +1,68 @@
+"use client";
+
 import { DiagonalBackground } from "../ui/DiagonalBackground";
 import { SectionHeader } from "../ui/section-header";
 import { SectionTitle } from "../ui/SectionTitle";
 import { ContactButton } from "../ui/ContactButton";
-import StrengthCard from "../ui/StrengthCard";
+import { SolutionCard } from "../ui/SolutionCard";
+import problem1 from "../../assets/problem_1.png";
+import problem2 from "../../assets/problem_2.png";
+import problem3 from "../../assets/problem_3.png";
 
 export function SolutionSection() {
-  const strengths = [
+  const solutions = [
     {
-      badge: "STRENGTH01",
-      title: "SNS時代の即時性", // コンパクト化
-      subtitle:
-        "独自のインフルエンサーネットワークで、調査結果を最短24時間でご報告", // サブタイトルでメリットを補足
-      description:
-        "一般調査会社が「募集」から始める作業を、私たちは「即座に依頼」できる独自のコミュニティを保有。SNSのトレンドに合わせたスピーディな調査・フィードバックを実現します。",
+      problemNumber: "01",
+      problemCategory: "時間・コスト",
+      problemText: "調査したいけど、時間もコストもかかりすぎて手が出せない",
+      problemImage: problem1,
+      solutionNumber: "01",
+      solutionTitle: "24時間×低コストで<br />若者の声が集まる",
+      solutionDescription:
+        "独自のインフルエンサーネットワークにより、一般的な調査会社が「募集」から始める作業を省略。最短24時間、従来の1/10の期間・1/8のコストで若者の本音を収集します。",
       iconName: "zap",
+      features: [
+        "最短24時間で調査結果をご報告",
+        "従来の1/10の期間、1/8のコストを実現",
+        "523名のインフルエンサーと即座に繋がる",
+      ],
       stats: [
         { value: "523名", label: "登録インフルエンサー" },
         { value: "1,247万", label: "フォロワー総数" },
         { value: "24h", label: "平均レスポンス" },
         { value: "2.5年", label: "平均契約期間" },
       ],
-      note: "→ 若年層に特化したリサーチ手法と効率的なデータ収集システムにより、従来の調査期間を大幅短縮",
     },
     {
-      badge: "STRENGTH02",
-      title: "ワントップ支援", // コンパクト化
-      subtitle: "調査から実行まで一気通貫。D2C運営で培った実践知見を施策に直結", // サブタイトルで一気通貫と実践知見を補足
-      description:
-        "自社D2Cブランドで若年層マーケを200回以上実践。調査データを「机上の空論」で終わらせません。",
+      problemNumber: "02",
+      problemCategory: "活用方法",
+      problemText: "調査はしたけど、結局どう施策に繋げればいいかわからない",
+      problemImage: problem2,
+      solutionNumber: "02",
+      solutionTitle: "データと実践知見で<br />刺さる施策をご提案",
+      solutionDescription:
+        "自社D2Cブランドで若年層マーケを200回以上実践した経験から、「なぜ刺さるか」を肌感覚とデータで理解。調査データを「机上の空論」で終わらせず、実行可能な施策として提案します。",
       iconName: "lightbulb",
       features: [
-        "「なぜ刺さるか」の肌感覚とデータに基づく確度の高い示唆",
-        "失敗も成功も含めた、リアルなノウハウ蓄積",
-        "調査に留まらず、実行可能な施策提案まで一気通貫サポート",
+        "200回以上の実践から得た「刺さるポイント」",
+        "データと肌感覚を組み合わせた確度の高い施策",
+        "調査から実行まで一気通貫でサポート",
       ],
     },
     {
-      badge: "STRENGTH03",
-      title: "立体的なインサイト", // コンパクト化
-      subtitle:
-        "定量×定性のハイブリッド調査で、「なぜ？」と「どれくらい？」の両方に回答", // サブタイトルで多角的なアプローチを補足
-      description:
-        "定量×定性のハイブリッド設計で、「なぜ?」と「どれくらい?」の両方に答えます。",
+      problemNumber: "03",
+      problemCategory: "仮説検証",
+      problemText: "施策を打ってみたけど、思ったような成果が出なかった",
+      problemImage: problem3,
+      solutionNumber: "03",
+      solutionTitle: "定量×定性で<br />若者ニーズを完全把握",
+      solutionDescription:
+        "アンケートだけでは見えない「生の声」と、インタビューだけでは見えない「全体像」。両方を組み合わせることで、若年層を立体的に理解できます。仮説検証を繰り返し、精度の高い施策へ。",
       iconName: "barChart3",
       features: [
-        "アンケート（定量）だけでは見えない、若年層の「生の声・本音」",
-        "インタビュー（定性）だけでは見えない、市場全体の「傾向・全体像」",
-        "多様な手法を組み合わせた、漏れのない立体的なインサイト提供",
+        "定量調査で市場全体の傾向を数値化",
+        "定性調査で若者の本音・感情を深掘り",
+        "多角的なアプローチで次の一手が見える",
       ],
     },
   ];
@@ -70,32 +86,29 @@ export function SolutionSection() {
         {/* Section Header */}
         <div className="mb-2xl lg:mb-3xl">
           <SectionHeader
-            title="Youth Now!が解決する"
-            subtitle="3つの決定的な違い"
+            title="その課題Youth Now!が解決します"
             textColor="text-neutral-white"
-            highlightWord="解決"
             highlightColor="text-brand-secondary"
-            highlightSize="text-5xl md:text-6xl lg:text-7xl"
-            subtitleHighlightWord="3"
             leadingTight
             responsive
             className="mb-0"
           />
         </div>
 
-        {/* Strengths - Full Width Cards */}
-        <div className="space-y-3xl lg:space-y-4xl">
-          {strengths.map((strength, index) => (
-            <StrengthCard
+        {/* Solutions - Before/After Cards */}
+        <div className="space-y-2xl lg:space-y-3xl">
+          {solutions.map((solution, index) => (
+            <SolutionCard
               key={index}
-              index={index}
-              title={strength.title}
-              subtitle={strength.subtitle}
-              description={strength.description}
-              iconName={strength.iconName}
-              stats={strength.stats}
-              features={strength.features}
-              note={strength.note}
+              problemNumber={solution.problemNumber}
+              problemCategory={solution.problemCategory}
+              problemText={solution.problemText}
+              problemImage={solution.problemImage}
+              solutionTitle={solution.solutionTitle}
+              solutionDescription={solution.solutionDescription}
+              iconName={solution.iconName}
+              features={solution.features}
+              stats={solution.stats}
             />
           ))}
         </div>

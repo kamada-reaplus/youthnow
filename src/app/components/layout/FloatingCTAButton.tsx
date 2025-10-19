@@ -31,9 +31,7 @@ export function FloatingCTAButton() {
 
       // スクロール位置が300px以上で、ContactFormセクションが見えておらず、最下部でもない場合に表示
       const shouldShow =
-        scrollPosition > 300 &&
-        !hideInContactSection &&
-        !isNearBottom;
+        scrollPosition > 300 && !hideInContactSection && !isNearBottom;
 
       setIsVisible(shouldShow);
     };
@@ -60,7 +58,9 @@ export function FloatingCTAButton() {
   return (
     <div
       className={`fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[9999] transition-all duration-300 ${
-        isVisible ? "translate-y-0 opacity-100 pointer-events-auto" : "translate-y-20 opacity-0 pointer-events-none"
+        isVisible
+          ? "translate-y-0 opacity-100 pointer-events-auto"
+          : "translate-y-20 opacity-0 pointer-events-none"
       }`}
     >
       {/* メインのフローティングボタン */}

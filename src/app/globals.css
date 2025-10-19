@@ -228,4 +228,13 @@ html {
       transform: translateY(0);
     }
   }
+
+  /* スクロールバーを非表示 */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }

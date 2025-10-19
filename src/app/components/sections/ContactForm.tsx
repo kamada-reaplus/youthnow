@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Shield } from "lucide-react";
 import { useState } from "react";
 import { SectionHeader } from "../ui/section-header";
 import { SectionTitle } from "../ui/SectionTitle";
@@ -18,11 +18,11 @@ export function ContactForm() {
     "その他",
   ];
 
-  // 目的ごとの送信ボタンテキスト
+  // 目的ごとの送信ボタンテキスト（ベネフィット重視に変更）
   const submitButtonTexts = {
-    資料請求: "今すぐ無料で資料をダウンロード",
-    お問い合わせ: "お問い合わせを送信する",
-    その他: "送信する",
+    資料請求: "無料で資料とトレンドレポートを今すぐ受け取る",
+    お問い合わせ: "専門スタッフに相談する（無料）",
+    その他: "今すぐ問い合わせる",
   };
 
   // フォームのカラー設定（視認性を改善）
@@ -130,26 +130,94 @@ export function ContactForm() {
   return (
     <section
       id="contact"
-      className="bg-neutral-light-cyan section-spacing px-lg relative overflow-hidden scroll-mt-20"
+      className="bg-neutral-light-cyan py-8 md:py-12 px-lg relative overflow-hidden scroll-mt-20"
     >
       <SectionTitle title="CONTACT" />
       <div className="container mx-auto max-w-md md:max-w-2xl lg:max-w-3xl relative z-10">
-        <SectionHeader
-          title="Youth Now!を体験してください"
-          textColor="text-brand-primary"
-          leadingTight
-          className="text-center mb-lg"
-        />
-        <div className="text-center mb-3xl">
-          <div className="inline-flex items-center gap-sm text-body-sm text-neutral-white">
-            <Clock className="w-5 h-5 text-brand-secondary" />
-            <span className="font-bold">60秒で完了</span>
-          </div>
+        <div className="text-center mb-md md:mb-lg">
+          <SectionHeader
+            title="Youth Now!を体験してください"
+            textColor="text-brand-primary"
+            leadingTight
+            className="mb-0"
+          />
+          <p className="text-body text-brand-primary/80 mt-sm">
+            最短1分で完了。今なら無料トレンドレポート付き
+          </p>
         </div>
+
+        {/* ソーシャルプルーフ */}
+        {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-sm mb-lg">
+          <div className="bg-white/60 backdrop-blur-sm border border-brand-primary/10 rounded-xl p-md text-center">
+            <div className="flex items-center justify-center mb-xs">
+              <Users className="w-5 h-5 text-brand-secondary" />
+            </div>
+            <div className="text-h5 font-bold text-brand-primary">500+</div>
+            <div className="text-caption text-brand-primary/70">導入企業</div>
+          </div>
+          <div className="bg-white/60 backdrop-blur-sm border border-brand-primary/10 rounded-xl p-md text-center">
+            <div className="flex items-center justify-center mb-xs">
+              <TrendingUp className="w-5 h-5 text-brand-secondary" />
+            </div>
+            <div className="text-h5 font-bold text-brand-primary">98%</div>
+            <div className="text-caption text-brand-primary/70">満足度</div>
+          </div>
+          <div className="bg-white/60 backdrop-blur-sm border border-brand-primary/10 rounded-xl p-md text-center">
+            <div className="flex items-center justify-center mb-xs">
+              <Clock className="w-5 h-5 text-brand-secondary" />
+            </div>
+            <div className="text-h5 font-bold text-brand-primary">24時間</div>
+            <div className="text-caption text-brand-primary/70">以内に返信</div>
+          </div>
+          <div className="bg-white/60 backdrop-blur-sm border border-brand-primary/10 rounded-xl p-md text-center">
+            <div className="flex items-center justify-center mb-xs">
+              <Shield className="w-5 h-5 text-brand-secondary" />
+            </div>
+            <div className="text-h5 font-bold text-brand-primary">SSL</div>
+            <div className="text-caption text-brand-primary/70">暗号化通信</div>
+          </div>
+        </div> */}
+
+        {/* ベネフィットリスト（フォーム上部） */}
+        <div className="bg-brand-secondary/10 border border-brand-secondary/20 rounded-2xl p-lg mb-lg">
+          <h3 className="text-h6 font-bold text-brand-primary mb-md text-center">
+            資料請求で今すぐ手に入るもの
+          </h3>
+          <ul className="space-y-sm">
+            <li className="flex items-start gap-sm">
+              <CheckCircle2 className="w-5 h-5 text-brand-secondary flex-shrink-0 mt-0.5" />
+              <span className="text-body-sm text-brand-primary">
+                <strong>サービス紹介資料（PDF）</strong> -
+                機能と料金プランの詳細
+              </span>
+            </li>
+            <li className="flex items-start gap-sm">
+              <CheckCircle2 className="w-5 h-5 text-brand-secondary flex-shrink-0 mt-0.5" />
+              <span className="text-body-sm text-brand-primary">
+                <strong>最新トレンドレポート（限定）</strong> -
+                Z世代の最新動向分析
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        {/* Form */}
+        <Form
+          purposes={purposes}
+          interests={interests}
+          showPurposeField={true}
+          showPhoneField={true}
+          phoneRequired={true}
+          submitButtonText={submitButtonTexts}
+          colors={formColors}
+          onSubmit={handleSubmit}
+          onSuccess={handleSuccess}
+          onError={handleError}
+        />
 
         {/* 成功メッセージ */}
         {submitSuccess && (
-          <div className="bg-green-50 border border-green-200 rounded-2xl p-xl mb-xl animate-fade-in">
+          <div className="bg-green-50 border border-green-200 rounded-2xl p-lg mb-lg animate-fade-in">
             <div className="flex items-start gap-md">
               <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
               <div>
@@ -165,67 +233,24 @@ export function ContactForm() {
             </div>
           </div>
         )}
-
-        {/* Form */}
-        <Form
-          purposes={purposes}
-          interests={interests}
-          showPurposeField={true}
-          showPhoneField={true}
-          phoneRequired={true}
-          submitButtonText={submitButtonTexts}
-          colors={formColors}
-          onSubmit={handleSubmit}
-          onSuccess={handleSuccess}
-          onError={handleError}
-          className="mb-xl"
-        />
-
-        {/* Bonus Message */}
-        {/* <div className="text-center mb-xl">
-          <p className="text-body-sm text-brand-secondary mb-xs font-bold">
-            🎁 今なら5万円相当のトレンドレポートも同時プレゼント
+        {/* トラストシグナル（フォーム下部） */}
+        <div className="mt-lg text-center">
+          <div className="flex items-center justify-center gap-md flex-wrap">
+            <div className="flex items-center gap-xs text-brand-primary/70 text-caption">
+              <Shield className="w-4 h-4" />
+              <span>SSL暗号化通信</span>
+            </div>
+            <div className="text-brand-primary/40">•</div>
+            <div className="flex items-center gap-xs text-brand-primary/70 text-caption">
+              <CheckCircle2 className="w-4 h-4" />
+              <span>個人情報保護方針準拠</span>
+            </div>
+          </div>
+          <p className="text-caption text-brand-primary/60 mt-sm">
+            入力いただいた情報は厳重に管理し、サービスのご案内以外には使用いたしません
           </p>
-          <p className="text-caption text-brand-primary/60">
-            ※資料DL後24時間以内限定
-          </p>
-        </div> */}
-
-        {/* Resource Info */}
-        {/* <div className="bg-brand-primary/5 backdrop-blur-sm rounded-3xl p-2xl">
-          <h3 className="text-h6 text-brand-primary font-bold mb-lg">
-            資料に含まれる内容
-          </h3>
-          <ul className="space-y-sm text-body-sm text-brand-primary/80">
-            <li>• サービス詳細(全20ページ)</li>
-            <li>• 料金プラン・見積もり例</li>
-            <li>• 調査プロセス・スケジュール</li>
-            <li>• FAQ詳細版</li>
-            <li>• β版テスト事例集</li>
-            <li className="text-brand-secondary">
-              • 【特典】2025年Z世代トレンドレポート(5万円相当)
-            </li>
-          </ul>
-        </div> */}
+        </div>
       </div>
     </section>
-  );
-}
-
-function Clock({ className }: { className?: string }) {
-  return (
-    <svg
-      className={className}
-      fill="none"
-      viewBox="0 0 20 20"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
-    </svg>
   );
 }

@@ -28,6 +28,10 @@ interface StrengthCardProps {
   }>;
   features?: string[];
   note?: string;
+  solvesProblem?: {
+    number: string;
+    category: string;
+  };
 }
 
 export default function StrengthCard({
@@ -42,6 +46,7 @@ export default function StrengthCard({
   stats,
   features,
   note,
+  solvesProblem,
 }: StrengthCardProps) {
   const isEven = index % 2 === 0;
   const Icon = iconName ? iconMap[iconName] : icon;
@@ -118,6 +123,26 @@ export default function StrengthCard({
             }`}
           >
             <div className="max-w-full overflow-hidden">
+              {/* 解決する課題バッジ */}
+              {solvesProblem && (
+                <div className="mb-lg flex items-center gap-2 md:gap-3">
+                  <div className="flex items-center gap-2 bg-brand-secondary/10 border-2 border-brand-secondary rounded-full px-3 md:px-4 py-1.5 md:py-2">
+                    <span className="text-brand-secondary font-bold text-sm md:text-base">
+                      ✓
+                    </span>
+                    <span className="text-xs md:text-sm font-bold text-neutral-black/80">
+                      解決する課題:
+                    </span>
+                    <span className="inline-flex items-center justify-center bg-brand-primary text-neutral-white font-bold text-xs md:text-sm px-2 md:px-2.5 py-0.5 md:py-1 rounded-full">
+                      課題{solvesProblem.number}
+                    </span>
+                    <span className="text-sm md:text-base font-bold text-brand-primary">
+                      {solvesProblem.category}
+                    </span>
+                  </div>
+                </div>
+              )}
+
               <div className="mb-lg">
                 <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-brand-primary leading-none">
                   {String(index + 1).padStart(2, "0")}

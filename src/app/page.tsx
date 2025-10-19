@@ -17,14 +17,30 @@ export default function Home() {
       <div className="relative z-10">
         <Header />
         <main>
-          <Hero />
-          <ProblemSection />
-          <SolutionSection />
-          <PricingSection />
-          <StorySection />
-          <FlowSection />
-          <FAQSection />
-          <ContactForm />
+          <div id="hero">
+            <Hero />
+          </div>
+          <div id="problem">
+            <ProblemSection />
+          </div>
+          <div id="solution">
+            <SolutionSection />
+          </div>
+          <div id="pricing">
+            <PricingSection />
+          </div>
+          <div id="strength">
+            <StorySection />
+          </div>
+          <div id="flow">
+            <FlowSection />
+          </div>
+          <div id="faq">
+            <FAQSection />
+          </div>
+          <div id="contact">
+            <ContactForm />
+          </div>
         </main>
         <Footer />
         <FloatingCTAButton />
