@@ -108,23 +108,44 @@ export function ContactForm() {
   // };
 
   const handleSubmit = async (data: FormData) => {
-    // ここで実際のAPI呼び出しを行う
-    // const response = await fetch('/api/contact', {
-    //   method: 'POST',
-    //   body: JSON.stringify(data),
-    // });
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-    // デモ用の遅延
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log("送信データ:", data);
+      const result = await response.json();
+
+      if (!response.ok) {
+        // APIからのエラーレスポンス
+        throw new Error(result.error || result.errors?.join(', ') || '送信に失敗しました');
+      }
+
+      // 送信成功
+      return result;
+    } catch (error) {
+      // ネットワークエラーやその他のエラー
+      console.error('送信エラー:', error);
+      throw error;
+    }
   };
 
   const handleSuccess = () => {
     setSubmitSuccess(true);
+    // 成功メッセージ表示後、ページトップにスクロール
+    setTimeout(() => {
+      const successMessage = document.querySelector('.animate-fade-in');
+      successMessage?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 100);
   };
 
-  const handleError = () => {
-    alert("送信に失敗しました。もう一度お試しください。");
+  const handleError = (error: Error) => {
+    // エラーメッセージを表示
+    const errorMessage = error.message || "送信に失敗しました。もう一度お試しください。";
+    alert(errorMessage);
   };
 
   return (
@@ -224,11 +245,19 @@ export function ContactForm() {
                 <h3 className="text-h6 text-green-800 font-bold mb-sm">
                   送信完了しました!
                 </h3>
-                <p className="text-body-sm text-green-700">
+                <p className="text-body-sm text-green-700 mb-sm">
                   ご登録いただいたメールアドレスに資料をお送りしました。
                   <br />
-                  24時間以内に特典のトレンドレポートもお届けします。
+                  メールが届かない場合は、迷惑メールフォルダもご確認ください。
                 </p>
+                <div className="text-caption text-green-600 bg-green-100 rounded-lg p-sm mt-sm">
+                  <strong>📧 メールをご確認ください</strong>
+                  <br />
+                  • サービス紹介資料(PDF)
+                  <br />
+                  • Z世代トレンドレポート(PDF・特典)
+                  <br />が添付されています
+                </div>
               </div>
             </div>
           </div>
