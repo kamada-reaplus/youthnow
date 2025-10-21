@@ -109,10 +109,10 @@ export function ContactForm() {
 
   const handleSubmit = async (data: FormData) => {
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
@@ -121,14 +121,16 @@ export function ContactForm() {
 
       if (!response.ok) {
         // APIからのエラーレスポンス
-        throw new Error(result.error || result.errors?.join(', ') || '送信に失敗しました');
+        throw new Error(
+          result.error || result.errors?.join(", ") || "送信に失敗しました"
+        );
       }
 
       // 送信成功
       return result;
     } catch (error) {
       // ネットワークエラーやその他のエラー
-      console.error('送信エラー:', error);
+      console.error("送信エラー:", error);
       throw error;
     }
   };
@@ -137,14 +139,15 @@ export function ContactForm() {
     setSubmitSuccess(true);
     // 成功メッセージ表示後、ページトップにスクロール
     setTimeout(() => {
-      const successMessage = document.querySelector('.animate-fade-in');
-      successMessage?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const successMessage = document.querySelector(".animate-fade-in");
+      successMessage?.scrollIntoView({ behavior: "smooth", block: "center" });
     }, 100);
   };
 
   const handleError = (error: Error) => {
     // エラーメッセージを表示
-    const errorMessage = error.message || "送信に失敗しました。もう一度お試しください。";
+    const errorMessage =
+      error.message || "送信に失敗しました。もう一度お試しください。";
     alert(errorMessage);
   };
 
@@ -165,6 +168,16 @@ export function ContactForm() {
           <p className="text-body text-brand-primary/80 mt-sm">
             最短1分で完了。今なら無料トレンドレポート付き
           </p>
+
+          {/* 緊急性・希少性の追加 */}
+          {/* <div className="mt-6 inline-block bg-brand-secondary/10 border-2 border-brand-secondary rounded-lg px-6 py-3">
+            <p className="text-brand-primary font-bold text-lg">
+              ⏰ 今月の無料相談枠 残り<span className="text-2xl mx-2">3</span>社
+            </p>
+            <p className="text-sm text-neutral-dark mt-2">
+              ※ 無料トレンドレポートは先着50社様限定
+            </p>
+          </div> */}
         </div>
 
         {/* ソーシャルプルーフ */}
@@ -256,7 +269,8 @@ export function ContactForm() {
                   • サービス紹介資料(PDF)
                   <br />
                   • Z世代トレンドレポート(PDF・特典)
-                  <br />が添付されています
+                  <br />
+                  が添付されています
                 </div>
               </div>
             </div>

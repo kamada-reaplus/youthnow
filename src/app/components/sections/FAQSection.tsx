@@ -53,7 +53,7 @@ export function FAQSection() {
       className="bg-brand-primary section-spacing px-lg relative overflow-hidden"
     >
       {/* 斜めの白背景（特徴カードの途中から） */}
-      <DiagonalBackground bgColor="bg-neutral-light-cyan" position="lower" />
+      <DiagonalBackground bgColor="bg-neutral-light-cyan" />
       <SectionTitle title="FAQ" titleColor="text-neutral-white" />
       {/* Background blur effects */}
       <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">

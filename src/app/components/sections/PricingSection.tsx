@@ -5,6 +5,7 @@ import { SectionHeader } from "../ui/section-header";
 import { SectionTitle } from "../ui/SectionTitle";
 import { PricingCard } from "../ui/PricingCard";
 import { DiagonalBackground } from "../ui/DiagonalBackground";
+import { ContactButton } from "../ui/ContactButton";
 
 // デザインシステム使用コンポーネント
 // - カラー: neutral-white, neutral-black, brand-primary, brand-secondary など
@@ -60,7 +61,7 @@ export function PricingSection() {
     >
       {" "}
       {/* 斜めの白背景（特徴カードの途中から） */}
-      <DiagonalBackground bgColor="bg-brand-primary" position="lower" />
+      <DiagonalBackground bgColor="bg-brand-primary" />
       <SectionTitle title="PRICING" />
       {/* 楕円形装飾 */}
       <div className="absolute top-5xl left-10 w-[600px] h-[400px] bg-brand-primary rounded-full opacity-5 blur-3xl transform rotate-[-20deg]"></div>
@@ -150,6 +151,19 @@ export function PricingSection() {
               report={plans.custom.report}
               timeline={plans.custom.timeline}
             />
+          </div>
+
+          {/* CTA追加 */}
+          <div className="mt-12 lg:mt-16 text-center">
+            <ContactButton
+              variant="yellow"
+              size="large"
+              label="今すぐ無料相談（所要時間30秒）"
+              text="料金プランを詳しく相談する"
+            />
+            <p className="mt-4 text-sm text-neutral-dark">
+              ※ 強引な営業は一切いたしません。まずはお気軽にご相談ください。
+            </p>
           </div>
         </div>
       </div>

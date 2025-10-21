@@ -1,14 +1,20 @@
+import dynamic from 'next/dynamic';
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
 import { FloatingCTAButton } from "./components/layout/FloatingCTAButton";
 import { Hero } from "./components/sections/Hero";
 import { ProblemSection } from "./components/sections/ProblemSection";
-import { SolutionSection } from "./components/sections/SolutionSection";
-import { PricingSection } from "./components/sections/PricingSection";
-import { StorySection } from "./components/sections/StorySection";
-import { FlowSection } from "./components/sections/FlowSection";
-import { FAQSection } from "./components/sections/FAQSection";
-import { ContactForm } from "./components/sections/ContactForm";
+
+// Below-the-foldは動的インポート
+const SolutionSection = dynamic(() => import("./components/sections/SolutionSection").then(mod => ({ default: mod.SolutionSection })), {
+  loading: () => <div className="h-screen" />
+});
+const ServicesSection = dynamic(() => import("./components/sections/ServicesSection").then(mod => ({ default: mod.ServicesSection })));
+const PricingSection = dynamic(() => import("./components/sections/PricingSection").then(mod => ({ default: mod.PricingSection })));
+const StorySection = dynamic(() => import("./components/sections/StorySection").then(mod => ({ default: mod.StorySection })));
+const FlowSection = dynamic(() => import("./components/sections/FlowSection").then(mod => ({ default: mod.FlowSection })));
+const FAQSection = dynamic(() => import("./components/sections/FAQSection").then(mod => ({ default: mod.FAQSection })));
+const ContactForm = dynamic(() => import("./components/sections/ContactForm").then(mod => ({ default: mod.ContactForm })));
 
 export default function Home() {
   return (
@@ -25,6 +31,9 @@ export default function Home() {
           </section>
           <section id="solution" aria-label="ソリューションセクション">
             <SolutionSection />
+          </section>
+          <section id="services" aria-label="サービスセクション">
+            <ServicesSection />
           </section>
           <section id="pricing" aria-label="料金プランセクション">
             <PricingSection />

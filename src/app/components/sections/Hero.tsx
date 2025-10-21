@@ -72,8 +72,9 @@ function Logo() {
         src={logoHeader}
         alt="次世代型 インサイトマーケティング Youth Now!"
         className="w-full h-auto"
-        quality={100}
+        quality={75}
         priority
+        placeholder="blur"
       />
     </div>
   );
@@ -123,8 +124,10 @@ function MobileImageAndText() {
           src={FirstView}
           alt="スマートフォンを見る女性"
           className="w-full h-auto rounded-2xl"
-          quality={100}
+          quality={80}
           priority
+          sizes="(max-width: 768px) 42vw, 25vw"
+          placeholder="blur"
         />
       </div>
 
@@ -187,8 +190,10 @@ function DesktopLayout() {
               src={FirstView}
               alt="スマートフォンを見る女性"
               className="w-full h-auto rounded-2xl"
-              quality={100}
+              quality={80}
               priority
+              sizes="(max-width: 768px) 42vw, 25vw"
+              placeholder="blur"
             />
           </div>
         </div>

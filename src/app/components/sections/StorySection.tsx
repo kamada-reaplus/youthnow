@@ -30,7 +30,7 @@ export function StorySection() {
       className="bg-brand-primary py-8 md:py-12 px-lg relative overflow-hidden -mb-px min-h-screen flex items-center"
     >
       {/* 斜めの白背景（特徴カードの途中から） */}
-      <DiagonalBackground bgColor="bg-neutral-light-cyan" position="lower" />
+      <DiagonalBackground bgColor="bg-neutral-light-cyan" />
 
       <div className="container mx-auto max-w-5xl relative z-10 w-full">
         {/* Section Header */}

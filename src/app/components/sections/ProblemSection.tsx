@@ -50,7 +50,7 @@ export function ProblemSection() {
       id="problem"
       className="relative overflow-hidden bg-neutral-light-cyan px-lg pb-8 md:py-6"
     >
-      <DiagonalBackground bgColor="bg-brand-primary" position="lower" />
+      <DiagonalBackground bgColor="bg-brand-primary" />
 
       <SectionTitle title="PROBLEM" />
 

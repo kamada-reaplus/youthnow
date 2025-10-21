@@ -196,7 +196,7 @@ export function FlowSection() {
       id="flow"
       className="bg-neutral-light-cyan py-12 md:py-16 px-lg relative overflow-hidden min-h-screen"
     >
-      <DiagonalBackground bgColor="bg-brand-primary" position="lower" />
+      <DiagonalBackground bgColor="bg-brand-primary" />
       <SectionTitle title="FLOW" />
 
       <div className="container mx-auto max-w-[1400px] relative z-10 w-full flex flex-col justify-center">

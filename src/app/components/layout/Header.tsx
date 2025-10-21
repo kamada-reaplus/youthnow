@@ -110,8 +110,8 @@ export function Header() {
               alt="Youth Now Logo"
               width={120}
               height={40}
-              className="h-2xl w-auto"
-              loading="lazy"
+              style={{ height: 'auto', width: '120px' }}
+              priority
             />
           </a>
 
@@ -141,8 +141,9 @@ export function Header() {
               alt="Youth Now Logo"
               width={100}
               height={40}
-              className="h-10 w-auto object-contain"
-              loading="lazy"
+              className="object-contain"
+              style={{ height: '40px', width: 'auto' }}
+              priority
             />
           </a>
 
