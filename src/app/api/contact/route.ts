@@ -240,41 +240,66 @@ export async function POST(request: NextRequest) {
       attachments: attachments.length > 0 ? attachments : undefined,
     });
 
-    // メール送信: 管理者宛
-    const adminEmailText = `
-新しいお問い合わせがありました。
+    // Discord Webhook通知
+    if (process.env.DISCORD_WEBHOOK_URL) {
+      try {
+        const discordMessage = {
+          embeds: [
+            {
+              title: "📬 新しいお問い合わせ",
+              color: 0x00bcd4, // ブランドカラー（シアン）
+              fields: [
+                {
+                  name: "🎯 お問い合わせ目的",
+                  value: formData.purpose,
+                  inline: false,
+                },
+                {
+                  name: "🏢 会社名",
+                  value: formData.company,
+                  inline: true,
+                },
+                {
+                  name: "👤 お名前",
+                  value: formData.name,
+                  inline: true,
+                },
+                {
+                  name: "📧 メールアドレス",
+                  value: formData.email,
+                  inline: false,
+                },
+                {
+                  name: "📞 電話番号",
+                  value: formData.phone || "(未入力)",
+                  inline: true,
+                },
+                {
+                  name: "💡 最も知りたいこと",
+                  value: formData.interest || "(未選択)",
+                  inline: true,
+                },
+              ],
+              timestamp: new Date().toISOString(),
+              footer: {
+                text: "Youth Now お問い合わせフォーム",
+              },
+            },
+          ],
+        };
 
-■ お問い合わせ目的
-${formData.purpose}
-
-■ 会社名
-${formData.company}
-
-■ お名前
-${formData.name}
-
-■ メールアドレス
-${formData.email}
-
-■ 電話番号
-${formData.phone || "(未入力)"}
-
-■ 最も知りたいこと
-${formData.interest || "(未選択)"}
-
----
-このメールは自動送信されています。
-お問い合わせ者への返信は、上記メールアドレス宛にお願いいたします。
-    `;
-
-    await resend.emails.send({
-      from: `Youth Now Contact Form <${
-        process.env.FROM_EMAIL || "onboarding@resend.dev"
-      }>`,
-      to: process.env.ADMIN_EMAIL || "kamada@reaplus.jp",
-      subject: `【お問い合わせ】${formData.company} ${formData.name}様 - ${formData.purpose}`,
-      text: adminEmailText,
-    });
+        await fetch(process.env.DISCORD_WEBHOOK_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(discordMessage),
+        });
+      } catch (error) {
+        console.error("Discord通知エラー:", error);
+        // Discord通知が失敗してもメイン処理は継続
+      }
+    }
 
     // 成功レスポンス
     return NextResponse.json({
