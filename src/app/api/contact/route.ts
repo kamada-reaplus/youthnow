@@ -240,6 +240,36 @@ export async function POST(request: NextRequest) {
       attachments: attachments.length > 0 ? attachments : undefined,
     });
 
+    // Google スプレッドシートへのデータ送信
+    if (process.env.GOOGLE_APPS_SCRIPT_URL) {
+      try {
+        const submissionId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+        const spreadsheetData = {
+          type: "contact",
+          id: submissionId,
+          submittedAt: new Date().toISOString(),
+          purpose: formData.purpose,
+          company: formData.company,
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || "",
+          interest: formData.interest || "",
+        };
+
+        await fetch(process.env.GOOGLE_APPS_SCRIPT_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(spreadsheetData),
+        });
+      } catch (error) {
+        console.error("スプレッドシート送信エラー:", error);
+        // スプレッドシート送信が失敗してもメイン処理は継続
+      }
+    }
+
     // Discord Webhook通知
     if (process.env.DISCORD_WEBHOOK_URL) {
       try {
