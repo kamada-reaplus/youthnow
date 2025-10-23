@@ -139,13 +139,12 @@ export async function POST(request: NextRequest) {
       console.error("PDF読み込みエラー:", error);
     }
 
-    // ロゴ画像の読み込みとBase64エンコード
-    let logoBase64 = "";
+    // ロゴSVGの読み込み
+    let logoSvg = "";
     try {
-      const logoPath = path.join(process.cwd(), "src/app/assets/logo.png");
+      const logoPath = path.join(process.cwd(), "src/app/assets/logo.svg");
       if (fs.existsSync(logoPath)) {
-        const logoBuffer = fs.readFileSync(logoPath);
-        logoBase64 = `data:image/png;base64,${logoBuffer.toString("base64")}`;
+        logoSvg = fs.readFileSync(logoPath, "utf-8");
       }
     } catch (error) {
       console.error("ロゴ読み込みエラー:", error);
@@ -164,11 +163,7 @@ export async function POST(request: NextRequest) {
         <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
           <!-- ヘッダー -->
           <div style="background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%); padding: 40px 20px; text-align: center;">
-            ${
-              logoBase64
-                ? `<img src="${logoBase64}" alt="Youth Now Logo" style="max-width: 200px; height: auto; margin: 0 0 20px 0;" />`
-                : ""
-            }
+            ${logoSvg ? `<div style="margin: 0 0 20px 0;">${logoSvg}</div>` : ""}
             <h1 style="color: #ffffff; font-size: 28px; margin: 0; font-weight: bold;">Youth Now</h1>
             <p style="color: #ffffff; font-size: 14px; margin: 10px 0 0 0; opacity: 0.9;">次世代型インサイトマーケティング</p>
           </div>
