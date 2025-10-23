@@ -30,10 +30,10 @@ const FEATURES: Feature[] = [
     alt: "発信源に調査",
   },
   {
-    title: "圧倒的コスパ",
-    description: "1/8のコスト<br />1/10の期間",
+    title: "一気通貫サポート",
+    description: "調査から施策提案まで<br />丸ごと対応",
     image: imgCost,
-    alt: "圧倒的コスパ",
+    alt: "一気通貫サポート",
   },
 ];
 
@@ -43,7 +43,8 @@ export function Hero() {
       <BackgroundLayer />
 
       <h1 className="sr-only">
-        Youth Now - 若年層インサイトマーケティング 最短24時間で数千人から本音収集
+        Youth Now - 若年層インサイトマーケティング
+        最短24時間で数千人から本音収集
       </h1>
 
       <Logo />

@@ -66,7 +66,7 @@ export function FloatingCTAButton() {
       {/* メインのフローティングボタン */}
       <button
         onClick={handleClick}
-        className="relative bg-brand-primary hover:bg-brand-primary/90 active:bg-brand-primary/80 text-white rounded-full px-4 py-3 md:px-5 md:py-4 shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 md:gap-3 group"
+        className="relative bg-brand-primary hover:bg-brand-primary/90 active:bg-brand-primary/80 text-white rounded-full px-4 py-3 md:px-5 md:py-4 shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 md:gap-3 group border-2 border-neutral-white"
         aria-label="お問い合わせ"
       >
         {/* アイコン */}

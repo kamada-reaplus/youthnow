@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { Resend } from 'resend';
-import fs from 'fs';
-import path from 'path';
+import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
+import fs from "fs";
+import path from "path";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -38,33 +38,45 @@ function validateFormData(data: unknown): { valid: boolean; errors: string[] } {
   const errors: string[] = [];
 
   // データがオブジェクトであることを確認
-  if (!data || typeof data !== 'object') {
-    errors.push('不正なデータ形式です');
+  if (!data || typeof data !== "object") {
+    errors.push("不正なデータ形式です");
     return { valid: false, errors };
   }
 
   const formData = data as Record<string, unknown>;
 
-  if (!formData.company || typeof formData.company !== 'string' || formData.company.trim().length === 0) {
-    errors.push('会社名を入力してください');
+  if (
+    !formData.company ||
+    typeof formData.company !== "string" ||
+    formData.company.trim().length === 0
+  ) {
+    errors.push("会社名を入力してください");
   }
 
-  if (!formData.name || typeof formData.name !== 'string' || formData.name.trim().length === 0) {
-    errors.push('お名前を入力してください');
+  if (
+    !formData.name ||
+    typeof formData.name !== "string" ||
+    formData.name.trim().length === 0
+  ) {
+    errors.push("お名前を入力してください");
   }
 
-  if (!formData.email || typeof formData.email !== 'string') {
-    errors.push('メールアドレスを入力してください');
+  if (!formData.email || typeof formData.email !== "string") {
+    errors.push("メールアドレスを入力してください");
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-    errors.push('正しいメールアドレスを入力してください');
+    errors.push("正しいメールアドレスを入力してください");
   }
 
-  if (formData.phone && typeof formData.phone === 'string' && !/^[\d-+() ]+$/.test(formData.phone)) {
-    errors.push('正しい電話番号を入力してください');
+  if (
+    formData.phone &&
+    typeof formData.phone === "string" &&
+    !/^[\d-+() ]+$/.test(formData.phone)
+  ) {
+    errors.push("正しい電話番号を入力してください");
   }
 
   if (!formData.agreement || formData.agreement !== true) {
-    errors.push('個人情報の取り扱いに同意してください');
+    errors.push("個人情報の取り扱いに同意してください");
   }
 
   return {
@@ -89,17 +101,29 @@ export async function POST(request: NextRequest) {
     }
 
     // レート制限チェック
-    const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+    const ip =
+      request.headers.get("x-forwarded-for") ||
+      request.headers.get("x-real-ip") ||
+      "unknown";
     if (!checkRateLimit(ip)) {
       return NextResponse.json(
-        { success: false, error: '送信間隔が短すぎます。1分以上空けて再度お試しください。' },
+        {
+          success: false,
+          error: "送信間隔が短すぎます。1分以上空けて再度お試しください。",
+        },
         { status: 429 }
       );
     }
 
     // PDFファイルの読み込み
-    const serviceGuidePath = path.join(process.cwd(), 'public/downloads/service-guide.pdf');
-    const trendReportPath = path.join(process.cwd(), 'public/downloads/trend-report.pdf');
+    const serviceGuidePath = path.join(
+      process.cwd(),
+      "public/downloads/service-guide.pdf"
+    );
+    const trendReportPath = path.join(
+      process.cwd(),
+      "public/downloads/trend-report.pdf"
+    );
 
     let serviceGuideBuffer: Buffer | undefined;
     let trendReportBuffer: Buffer | undefined;
@@ -112,7 +136,19 @@ export async function POST(request: NextRequest) {
         trendReportBuffer = fs.readFileSync(trendReportPath);
       }
     } catch (error) {
-      console.error('PDF読み込みエラー:', error);
+      console.error("PDF読み込みエラー:", error);
+    }
+
+    // ロゴ画像の読み込みとBase64エンコード
+    let logoBase64 = "";
+    try {
+      const logoPath = path.join(process.cwd(), "src/app/assets/logo.png");
+      if (fs.existsSync(logoPath)) {
+        const logoBuffer = fs.readFileSync(logoPath);
+        logoBase64 = `data:image/png;base64,${logoBuffer.toString("base64")}`;
+      }
+    } catch (error) {
+      console.error("ロゴ読み込みエラー:", error);
     }
 
     // メール送信: ユーザー宛
@@ -122,22 +158,29 @@ export async function POST(request: NextRequest) {
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Youth Now - サービス資料送付</title>
+        <title>Youth Now! - サービス資料送付</title>
       </head>
       <body style="margin: 0; padding: 0; font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; background-color: #f9fafb;">
         <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
           <!-- ヘッダー -->
           <div style="background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%); padding: 40px 20px; text-align: center;">
+            ${
+              logoBase64
+                ? `<img src="${logoBase64}" alt="Youth Now Logo" style="max-width: 200px; height: auto; margin: 0 0 20px 0;" />`
+                : ""
+            }
             <h1 style="color: #ffffff; font-size: 28px; margin: 0; font-weight: bold;">Youth Now</h1>
-            <p style="color: #ffffff; font-size: 14px; margin: 10px 0 0 0; opacity: 0.9;">Z世代トレンド調査プラットフォーム</p>
+            <p style="color: #ffffff; font-size: 14px; margin: 10px 0 0 0; opacity: 0.9;">次世代型インサイトマーケティング</p>
           </div>
 
           <!-- メインコンテンツ -->
           <div style="padding: 40px 30px;">
-            <h2 style="color: #1F2937; font-size: 22px; margin: 0 0 20px 0;">${formData.name} 様</h2>
+            <h2 style="color: #1F2937; font-size: 22px; margin: 0 0 20px 0;">${
+              formData.name
+            } 様</h2>
 
             <p style="color: #4B5563; font-size: 16px; line-height: 1.8; margin: 0 0 20px 0;">
-              この度は<strong style="color: #00BCD4;">Youth Now</strong>にご興味をお持ちいただき、誠にありがとうございます。
+              この度は<strong style="color: #00BCD4;">Youth Now!</strong>にご興味をお持ちいただき、誠にありがとうございます。
             </p>
 
             <p style="color: #4B5563; font-size: 16px; line-height: 1.8; margin: 0 0 30px 0;">
@@ -171,7 +214,7 @@ export async function POST(request: NextRequest) {
           <div style="background-color: #F9FAFB; padding: 30px 20px; text-align: center; border-top: 1px solid #E5E7EB;">
             <p style="color: #6B7280; font-size: 12px; line-height: 1.6; margin: 0 0 10px 0;">
               <strong>Youth Now 運営事務局</strong><br>
-              Email: ${process.env.FROM_EMAIL || 'onboarding@resend.dev'}<br>
+              Email: ${process.env.FROM_EMAIL || "onboarding@resend.dev"}<br>
               このメールに心当たりがない場合は、お手数ですが削除をお願いいたします。
             </p>
           </div>
@@ -183,21 +226,21 @@ export async function POST(request: NextRequest) {
     const attachments = [];
     if (serviceGuideBuffer) {
       attachments.push({
-        filename: 'Youth_Now_サービス紹介資料.pdf',
+        filename: "Youth_Now_サービス紹介資料.pdf",
         content: serviceGuideBuffer,
       });
     }
     if (trendReportBuffer) {
       attachments.push({
-        filename: 'Z世代トレンドレポート_特典.pdf',
+        filename: "Z世代トレンドレポート_特典.pdf",
         content: trendReportBuffer,
       });
     }
 
     await resend.emails.send({
-      from: `Youth Now <${process.env.FROM_EMAIL || 'onboarding@resend.dev'}>`,
+      from: `Youth Now <${process.env.FROM_EMAIL || "onboarding@resend.dev"}>`,
       to: formData.email,
-      subject: '【Youth Now】サービス資料をお送りします',
+      subject: "【Youth Now】サービス資料をお送りします",
       html: userEmailHtml,
       attachments: attachments.length > 0 ? attachments : undefined,
     });
@@ -219,10 +262,10 @@ ${formData.name}
 ${formData.email}
 
 ■ 電話番号
-${formData.phone || '(未入力)'}
+${formData.phone || "(未入力)"}
 
 ■ 最も知りたいこと
-${formData.interest || '(未選択)'}
+${formData.interest || "(未選択)"}
 
 ---
 このメールは自動送信されています。
@@ -230,8 +273,10 @@ ${formData.interest || '(未選択)'}
     `;
 
     await resend.emails.send({
-      from: `Youth Now Contact Form <${process.env.FROM_EMAIL || 'onboarding@resend.dev'}>`,
-      to: process.env.ADMIN_EMAIL || 'kamada@reaplus.jp',
+      from: `Youth Now Contact Form <${
+        process.env.FROM_EMAIL || "onboarding@resend.dev"
+      }>`,
+      to: process.env.ADMIN_EMAIL || "kamada@reaplus.jp",
       subject: `【お問い合わせ】${formData.company} ${formData.name}様 - ${formData.purpose}`,
       text: adminEmailText,
     });
@@ -239,16 +284,16 @@ ${formData.interest || '(未選択)'}
     // 成功レスポンス
     return NextResponse.json({
       success: true,
-      message: 'お問い合わせを受け付けました。メールをご確認ください。',
+      message: "お問い合わせを受け付けました。メールをご確認ください。",
     });
-
   } catch (error) {
-    console.error('メール送信エラー:', error);
+    console.error("メール送信エラー:", error);
 
     return NextResponse.json(
       {
         success: false,
-        error: 'メール送信に失敗しました。しばらく時間をおいて再度お試しください。',
+        error:
+          "メール送信に失敗しました。しばらく時間をおいて再度お試しください。",
       },
       { status: 500 }
     );
@@ -257,8 +302,5 @@ ${formData.interest || '(未選択)'}
 
 // GET リクエストは許可しない
 export async function GET() {
-  return NextResponse.json(
-    { error: 'Method not allowed' },
-    { status: 405 }
-  );
+  return NextResponse.json({ error: "Method not allowed" }, { status: 405 });
 }

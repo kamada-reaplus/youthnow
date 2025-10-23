@@ -14,7 +14,8 @@ export function SolutionSection() {
     {
       solutionNumber: "01",
       problemCategory: "スピード",
-      problemText: "トレンドの移り変わりが早いのに、調査に時間がかかりすぎて追いつけない...",
+      problemText:
+        "トレンドの移り変わりが早いのに、調査に時間がかかりすぎて追いつけない...",
       problemImage: problem1,
       solutionTitle: "独自ネットワークで<br />最短24時間で若者の声が集まる",
       solutionDescription:
@@ -100,7 +101,11 @@ export function SolutionSection() {
 
         {/* CTA Button */}
         <div className="mt-3xl lg:mt-4xl flex justify-center">
-          <ContactButton variant="yellow" size="medium" />
+          <ContactButton
+            variant="yellow"
+            size="medium"
+            text="Youth Nowで解決！"
+          />
         </div>
       </div>
     </section>

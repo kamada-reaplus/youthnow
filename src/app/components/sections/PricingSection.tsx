@@ -63,12 +63,13 @@ export function PricingSection() {
       {/* 斜めの白背景（特徴カードの途中から） */}
       <DiagonalBackground bgColor="bg-brand-primary" />
       <SectionTitle title="PRICING" />
-      {/* 楕円形装飾 */}
-      <div className="absolute top-5xl left-10 w-[600px] h-[400px] bg-brand-primary rounded-full opacity-5 blur-3xl transform rotate-[-20deg]"></div>
-      <div className="absolute bottom-5xl right-10 w-[650px] h-[420px] bg-brand-secondary rounded-full opacity-5 blur-3xl transform rotate-[-28deg]"></div>
       <div className="container mx-auto px-lg relative z-10">
         <div className="max-w-6xl mx-auto">
-          <SectionHeader title="料金プラン" responsive className="mb-4xl md:mb-xl" />
+          <SectionHeader
+            title="料金プラン"
+            responsive
+            className="mb-4xl md:mb-4xl"
+          />
 
           {/* SP: プラン選択ボタン */}
           <div className="flex justify-center mb-8 md:hidden">
@@ -157,9 +158,8 @@ export function PricingSection() {
           <div className="mt-12 lg:mt-16 text-center">
             <ContactButton
               variant="yellow"
-              size="large"
               label="今すぐ無料相談（所要時間30秒）"
-              text="料金プランを詳しく相談する"
+              text="料金プランを相談する"
             />
             <p className="mt-4 text-sm text-neutral-dark">
               ※ 強引な営業は一切いたしません。まずはお気軽にご相談ください。
