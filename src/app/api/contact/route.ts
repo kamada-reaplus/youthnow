@@ -241,7 +241,10 @@ export async function POST(request: NextRequest) {
     });
 
     // Google スプレッドシートへのデータ送信
-    if (process.env.GOOGLE_APPS_SCRIPT_URL) {
+    if (
+      process.env.GOOGLE_APPS_SCRIPT_URL &&
+      process.env.GOOGLE_APPS_SCRIPT_API_KEY
+    ) {
       try {
         const submissionId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
@@ -255,15 +258,35 @@ export async function POST(request: NextRequest) {
           email: formData.email,
           phone: formData.phone || "",
           interest: formData.interest || "",
+          apiKey: process.env.GOOGLE_APPS_SCRIPT_API_KEY, // APIキー追加
+          clientIp: ip, // レート制限用のIP情報
         };
 
-        await fetch(process.env.GOOGLE_APPS_SCRIPT_URL, {
+        console.log("スプレッドシートへ送信するデータ:", {
+          ...spreadsheetData,
+          apiKey: "***", // ログではAPIキーをマスク
+        });
+
+        const response = await fetch(process.env.GOOGLE_APPS_SCRIPT_URL, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(spreadsheetData),
         });
+
+        const responseText = await response.text();
+        console.log("スプレッドシートAPIレスポンス:", {
+          status: response.status,
+          statusText: response.statusText,
+          body: responseText,
+        });
+
+        if (!response.ok) {
+          throw new Error(
+            `スプレッドシートAPI エラー: ${response.status} ${responseText}`
+          );
+        }
       } catch (error) {
         console.error("スプレッドシート送信エラー:", error);
         // スプレッドシート送信が失敗してもメイン処理は継続
