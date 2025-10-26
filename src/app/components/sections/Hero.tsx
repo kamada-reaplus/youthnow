@@ -5,41 +5,41 @@ import { DiagonalBackground } from "../ui/DiagonalBackground";
 import imgSpeed from "../../assets/speed.png";
 import imgSearch from "../../assets/saerch.png";
 import imgCost from "../../assets/cost.png";
-import logoHeader from "../../assets/header-logo.png";
+import logoHeader from "../../assets/logo.png";
 import FirstView from "../../assets/first_view.png";
 import type { StaticImageData } from "next/image";
 
 interface Feature {
   title: string;
-  description: string;
+  description: string[];
   image: StaticImageData;
   alt: string;
 }
 
 const FEATURES: Feature[] = [
   {
-    title: "最短24時間",
-    description: "数千人から<br />本音収集",
+    title: "最短24時間で回答回収",
+    description: ["数千人のSNS発信者やトレンド層から", '"生の声"を収集'],
     image: imgSpeed,
-    alt: "最短24時間",
+    alt: "最短24時間で回答回収",
   },
   {
-    title: "発信源に調査",
-    description: "インフルエンサー<br />直接調査",
+    title: "SNS発信源に直接リーチ",
+    description: ["フォロワーを動かす人たちの", "リアルな意見を直接取得"],
     image: imgSearch,
-    alt: "発信源に調査",
+    alt: "SNS発信源に直接リーチ",
   },
   {
-    title: "一気通貫サポート",
-    description: "調査から施策提案まで<br />丸ごと対応",
+    title: "コスパよく即活用",
+    description: ["一般調査の1/8コスト"],
     image: imgCost,
-    alt: "一気通貫サポート",
+    alt: "コスパよく即活用",
   },
 ];
 
 export function Hero() {
   return (
-    <section className="text-white min-h-screen flex flex-col items-center px-5 py-6 md:py-12 relative overflow-hidden">
+    <section className="text-white min-h-screen flex flex-col items-center px-3 py-6 relative overflow-hidden">
       <BackgroundLayer />
 
       <h1 className="sr-only">
@@ -68,7 +68,7 @@ function BackgroundLayer() {
 
 function Logo() {
   return (
-    <div className="mb-12 md:mb-8 lg:mb-4 z-10 w-full max-w-[280px] md:max-w-md lg:max-w-[360px]">
+    <div className="mb-4 md:mb-5 lg:mb-6 z-10 w-full max-w-[180px] md:max-w-[240px] lg:max-w-[280px]">
       <Image
         src={logoHeader}
         alt="次世代型 インサイトマーケティング Youth Now!"
@@ -83,170 +83,186 @@ function Logo() {
 
 function MainContent() {
   return (
-    <div className="flex-1 flex flex-col items-center justify-start w-full z-10 pb-8 px-2">
+    <div className="flex flex-col items-center w-full z-10 space-y-6 md:space-y-8">
       <MobileLayout />
       <DesktopLayout />
 
       {/* CTAボタン */}
-      <ContactButton />
+      <div className="w-full flex justify-center">
+        <ContactButton />
+      </div>
     </div>
   );
 }
 
 function MobileLayout() {
   return (
-    <div className="md:hidden w-full mb-12">
-      <MobileImageAndText />
-
-      <MobileCatchPhrase />
-
-      {/* 3つの特徴カード */}
-      <div className="grid grid-cols-3 gap-2.5 w-full max-w-[350px] mx-auto mt-6">
-        {FEATURES.map((feature, index) => (
-          <FeatureCard
-            key={`mobile-feature-${index}`}
-            title={feature.title}
-            description={feature.description}
-            image={feature.image}
-            alt={feature.alt}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function MobileImageAndText() {
-  return (
-    <div className="grid grid-cols-[auto_1fr] items-start gap-1">
-      {/* スマートフォン画像 */}
-      <div className="w-[clamp(160px,42vw,200px)] flex-shrink-0">
-        <Image
-          src={FirstView}
-          alt="スマートフォンを見る女性"
-          className="w-full h-auto rounded-2xl"
-          quality={80}
-          priority
-          sizes="(max-width: 768px) 42vw, 25vw"
-          placeholder="blur"
-        />
-      </div>
-
-      {/* テキストエリア */}
-      <div className="flex flex-col justify-center items-start pt-0 space-y-4 -ml-8">
-        {/* 若年層が 吹き出し */}
-        <div className="inline-block transform rotate-[-8deg]">
-          <div className="flex items-center whitespace-nowrap">
-            <div className="bg-brand-secondary text-brand-primary px-3 py-1.5 rounded-full shadow-lg">
-              <span className="font-bold text-[clamp(2.5rem,9vw,3.25rem)] leading-none">
-                若年層
-              </span>
-            </div>
-            <span className="text-[clamp(2.25rem,8vw,2.75rem)] text-transparent text-stroke-white text-stroke-2 font-black leading-none -ml-2">
-              が
-            </span>
-          </div>
-        </div>
-
-        {/* "本当に買いたい" テキスト */}
-        <div className="inline-block transform rotate-[-8deg] ml-3">
-          <div className="text-[clamp(2.5rem,9vw,3.25rem)] leading-tight">
-            <div className="whitespace-nowrap mb-4">
-              <span className="font-bold text-white drop-shadow-lg">
-                &quot;本当に
-              </span>
-            </div>
-            <div className="whitespace-nowrap ml-2">
-              <span className="font-bold text-white drop-shadow-lg">
-                買いたい&quot;
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function MobileCatchPhrase() {
-  return (
-    <div className="-mt-6 z-20 relative">
-      <div className="w-full transform rotate-[-8deg] flex justify-center">
-        <div className="bg-brand-primary text-brand-secondary text-[clamp(2.5rem,10vw,4rem)] font-bold py-2 px-4 whitespace-nowrap tracking-widest inline-block">
-          ものがわかる！
-        </div>
-      </div>
+    <div className="md:hidden w-full flex flex-col items-center">
+      <SharedContent isMobile={true} />
     </div>
   );
 }
 
 function DesktopLayout() {
   return (
-    <div className="hidden md:flex flex-row items-start justify-center w-full mb-6 lg:mb-8">
-      <div className="flex flex-row items-start gap-6 lg:gap-8">
-        {/* 左側: スマートフォン画像 */}
-        <div className="flex-shrink-0">
-          <div className="w-[clamp(250px,25vw,320px)] lg:w-[clamp(260px,26vw,340px)]">
-            <Image
-              src={FirstView}
-              alt="スマートフォンを見る女性"
-              className="w-full h-auto rounded-2xl"
-              quality={80}
-              priority
-              sizes="(max-width: 768px) 42vw, 25vw"
-              placeholder="blur"
-            />
+    <div className="hidden md:flex flex-row items-start justify-center w-full">
+      <SharedContent isMobile={false} />
+    </div>
+  );
+}
+
+interface SharedContentProps {
+  isMobile: boolean;
+}
+
+function SharedContent({ isMobile }: SharedContentProps) {
+  if (isMobile) {
+    return (
+      <div className="flex flex-col items-center w-full space-y-4">
+        {/* 画像とテキストエリア */}
+        <div className="flex flex-row items-center justify-center gap-2 w-full max-w-[450px] mx-auto px-2">
+          {/* スマートフォン画像 */}
+          <div className="flex-shrink-0">
+            <div className="w-[clamp(120px,35vw,160px)]">
+              <Image
+                src={FirstView}
+                alt="スマートフォンを見る女性"
+                className="w-full h-auto rounded-xl"
+                quality={80}
+                priority
+                sizes="35vw"
+                placeholder="blur"
+              />
+            </div>
+          </div>
+
+          {/* テキストエリア */}
+          <div className="flex flex-col space-y-2 flex-1">
+            {/* メインキャッチ - PC版と同じ白背景 */}
+            <div className="self-start">
+              <div className="bg-white rounded-lg border-2 border-brand-primary px-3 py-1.5 shadow-[2px_2px_0px_0px_rgba(255,215,0,1)]">
+                <h2 className="font-extrabold leading-tight text-brand-primary text-[clamp(1rem,5vw,1.3rem)]">
+                  企画も販促も
+                </h2>
+              </div>
+            </div>
+
+            {/* サブキャッチ - マーカー風 */}
+            <div className="self-start -mt-0.5">
+              <p className="font-bold leading-tight text-white text-[clamp(0.85rem,6vw,1rem)]">
+                若年層の
+                <br />
+                <span className="relative inline-block mx-0.5">
+                  <span className="relative z-10 font-extrabold text-white text-[clamp(0.95rem,7vw,1.5rem)]">
+                    &quot;リアルな声&quot;
+                  </span>
+                  <span className="absolute bottom-0 left-0 w-full h-[35%] bg-brand-secondary/80 -z-0"></span>
+                </span>
+                から！
+              </p>
+            </div>
+
+            {/* サブメッセージ - PC版と同じデザイン */}
+            <div className="self-start">
+              <p className="text-white font-extrabold leading-tight text-[clamp(0.75rem,2vw,1rem)]">
+                <span className="inline-block text-brand-primary bg-brand-secondary rounded-lg border-2 border-brand-primary px-1.5 py-1 mx-1 shadow-[2px_2px_0px_0px_rgba(255,255,255,1)]">
+                  データ
+                </span>
+                と
+                <span className="inline-block text-brand-primary bg-brand-secondary rounded-lg border-2 border-brand-primary px-1.5 py-1 mx-1 shadow-[2px_2px_0px_0px_rgba(255,255,255,1)]">
+                  インサイト
+                </span>
+                で、
+                <br />
+                <span className="inline-block mt-2">次の一手を早く。</span>
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* 右側: テキストエリアとFeatureCard */}
-        <div className="flex flex-col justify-start pt-0 space-y-2 lg:space-y-3">
-          {/* 若年層が 吹き出し */}
-          <div className="inline-block transform rotate-[-8deg] self-start">
-            <div className="flex items-center whitespace-nowrap">
-              <div className="bg-brand-secondary text-brand-primary px-4 lg:px-5 py-1.5 lg:py-2 rounded-full shadow-lg">
-                <span className="font-bold text-4xl lg:text-5xl leading-none">
-                  若年層
-                </span>
-              </div>
-              <span className="text-4xl lg:text-4xl text-transparent text-stroke-white text-stroke-2 font-black leading-none -ml-2 lg:-ml-3">
-                が
+        {/* 3つの特徴カード - 横並び */}
+        <div className="grid grid-cols-3 gap-2 w-full max-w-[420px] mx-auto px-2">
+          {FEATURES.map((feature, index) => (
+            <FeatureCard
+              key={`feature-${index}`}
+              title={feature.title}
+              description={feature.description}
+              image={feature.image}
+              alt={feature.alt}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // デスクトップレイアウト
+  return (
+    <div className="flex flex-row items-center justify-center w-full gap-6 lg:gap-8">
+      {/* 左側: スマートフォン画像 */}
+      <div className="flex-shrink-0 pt-4">
+        <div className="w-[clamp(240px,26vw,320px)] lg:w-[clamp(260px,28vw,340px)]">
+          <Image
+            src={FirstView}
+            alt="スマートフォンを見る女性"
+            className="w-full h-auto rounded-xl"
+            quality={80}
+            priority
+            sizes="28vw"
+            placeholder="blur"
+          />
+        </div>
+      </div>
+
+      {/* 右側: テキストエリアとFeatureCard */}
+      <div className="flex flex-col justify-start space-y-4">
+        <div className="self-start">
+          <div className="bg-white rounded-lg border-2 border-brand-primary px-6 py-3 shadow-[4px_4px_0px_0px_rgba(255,215,0,1)]">
+            <h2 className="font-extrabold leading-tight text-brand-primary text-[clamp(2rem,3vw,2.5rem)]">
+              企画も販促も
+            </h2>
+          </div>
+        </div>
+
+        <div className="self-start -mt-1">
+          <p className="font-bold leading-tight text-white text-[clamp(1.6rem,2.8vw,2.2rem)] lg:text-[clamp(1.8rem,3.2vw,2.6rem)]">
+            若年層の
+            <span className="relative inline-block mx-1">
+              <span className="relative z-10 font-extrabold text-white text-[clamp(1.8rem,3.2vw,2.5rem)] lg:text-[clamp(2rem,3.6vw,2.8rem)]">
+                &quot;リアルな声&quot;
               </span>
-            </div>
-          </div>
+              <span className="absolute bottom-0 left-0 w-full h-[35%] bg-brand-secondary/80 -z-0"></span>
+            </span>
+            から！
+          </p>
+        </div>
 
-          {/* "本当に買いたい" テキスト */}
-          <div className="inline-block transform rotate-[-8deg] self-start">
-            <div className="text-4xl lg:text-5xl leading-[1.3]">
-              <div className="whitespace-nowrap">
-                <span className="font-bold text-white drop-shadow-lg">
-                  &quot;本当に買いたい&quot;
-                </span>
-              </div>
-            </div>
+        <div className="self-start">
+          <div>
+            <p className="text-neutral-white font-extrabold leading-tight text-[clamp(1.1rem,2vw,1.5rem)] lg:text-[clamp(1.3rem,2.3vw,1.8rem)]">
+              <span className="inline-block text-brand-primary bg-brand-secondary rounded-lg border-2 border-brand-primary px-2 py-2 mx-1 shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">
+                データ
+              </span>
+              と
+              <span className="inline-block text-brand-primary bg-brand-secondary rounded-lg border-2 border-brand-primary px-2 py-2 mx-2 shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">
+                インサイト
+              </span>
+              で、次の一手を早く。
+            </p>
           </div>
+        </div>
 
-          {/* ものがわかる！ */}
-          <div className="z-20 relative">
-            <div className="transform rotate-[-8deg]">
-              <div className="text-brand-secondary text-4xl lg:text-5xl font-bold py-2 lg:py-3 px-3 lg:px-4 whitespace-nowrap tracking-widest inline-block">
-                ものがわかる！
-              </div>
-            </div>
-          </div>
-
-          {/* 3つの特徴カード */}
-          <div className="grid grid-cols-3 gap-2 lg:gap-3 w-full max-w-[450px] lg:max-w-[500px] !mt-6 lg:!mt-8">
-            {FEATURES.map((feature, index) => (
-              <FeatureCard
-                key={`desktop-feature-${index}`}
-                title={feature.title}
-                description={feature.description}
-                image={feature.image}
-                alt={feature.alt}
-              />
-            ))}
-          </div>
+        {/* 3つの特徴カード */}
+        <div className="grid grid-cols-3 w-full gap-2 lg:gap-2.5 max-w-[420px] lg:max-w-[480px] !mt-4 lg:!mt-5">
+          {FEATURES.map((feature, index) => (
+            <FeatureCard
+              key={`feature-${index}`}
+              title={feature.title}
+              description={feature.description}
+              image={feature.image}
+              alt={feature.alt}
+            />
+          ))}
         </div>
       </div>
     </div>

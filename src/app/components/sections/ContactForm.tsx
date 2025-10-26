@@ -31,7 +31,7 @@ export function ContactForm() {
     formBg: "bg-white/90",
     formBorder: "border-brand-primary/20",
     // テキスト
-    labelText: "text-brand-primary",
+    labelText: "text-neutral-black",
     inputText: "text-brand-primary",
     inputPlaceholder: "placeholder:text-brand-primary/50",
     // 入力フィールド
@@ -44,8 +44,8 @@ export function ContactForm() {
     buttonBg: "bg-brand-primary/15",
     buttonBgHover: "hover:bg-brand-primary/25",
     buttonBgActive: "bg-brand-secondary",
-    buttonText: "text-brand-primary",
-    buttonTextActive: "text-brand-primary",
+    buttonText: "text-neutral-black",
+    buttonTextActive: "text-neutral-black",
     // ラジオボタン
     radioBg: "bg-white",
     radioBgActive: "bg-brand-secondary/30",
@@ -161,11 +161,11 @@ export function ContactForm() {
         <div className="text-center mb-md md:mb-lg">
           <SectionHeader
             title="Youth Now!を体験してください"
-            textColor="text-brand-primary"
+            textColor="text-neautral-black"
             leadingTight
             className="mb-0"
           />
-          <p className="text-body text-brand-primary/80 mt-sm">
+          <p className="text-body text-neutral-black mt-sm">
             最短1分で完了。今なら無料トレンドレポート付き
           </p>
 
@@ -213,20 +213,20 @@ export function ContactForm() {
         </div> */}
 
         {/* ベネフィットリスト（フォーム上部） */}
-        <div className="bg-brand-secondary/10 border border-brand-secondary/20 rounded-2xl p-lg mb-lg">
+        <div className="bg-brand-secondary/30 border border-brand-secondary/20 rounded-2xl p-lg mb-lg">
           <h3 className="text-h6 font-bold text-brand-primary mb-md text-center">
             資料請求で今すぐ手に入るもの
           </h3>
-          <ul className="space-y-sm">
-            <li className="flex items-start gap-sm">
-              <CheckCircle2 className="w-5 h-5 text-brand-secondary flex-shrink-0 mt-0.5" />
+          <ul className="space-y-sm max-w-md mx-auto">
+            <li className="flex items-center gap-sm justify-center">
+              <CheckCircle2 className="w-5 h-5 text-brand-primary flex-shrink-0" />
               <span className="text-body-sm text-brand-primary">
                 <strong>サービス紹介資料（PDF）</strong> -
                 機能と料金プランの詳細
               </span>
             </li>
-            <li className="flex items-start gap-sm">
-              <CheckCircle2 className="w-5 h-5 text-brand-secondary flex-shrink-0 mt-0.5" />
+            <li className="flex items-center gap-sm justify-center">
+              <CheckCircle2 className="w-5 h-5 text-brand-primary flex-shrink-0" />
               <span className="text-body-sm text-brand-primary">
                 <strong>最新トレンドレポート（限定）</strong> -
                 Z世代の最新動向分析

@@ -1,13 +1,6 @@
 "use client";
 
-import { LucideIcon, Zap, BarChart3, Lightbulb } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
-
-const iconMap: Record<string, LucideIcon> = {
-  zap: Zap,
-  barChart3: BarChart3,
-  lightbulb: Lightbulb,
-};
 
 interface SolutionCardProps {
   solutionNumber: string;
@@ -27,34 +20,19 @@ export function SolutionCard({
   problemImage,
   solutionTitle,
   solutionDescription,
-  iconName,
   features,
 }: SolutionCardProps) {
-  const Icon = iconMap[iconName];
-
   return (
-    <div className="relative bg-neutral-light-cyan/40 rounded-3xl md:rounded-[2.5rem] p-6 md:p-8 lg:p-12 shadow-lg border-2 border-neutral-light-cyan/40">
-      {/* 大きな番号（右上） */}
-      <div className="absolute top-8 right-8 md:top-12 md:right-12 lg:top-16 lg:right-16 z-10">
-        <span className="text-7xl md:text-8xl lg:text-9xl font-bold text-white opacity-90">
-          {solutionNumber}
-        </span>
-      </div>
-
+    <div className="relative bg-neutral-light-cyan/30 rounded-3xl md:rounded-[2.5rem] p-6 md:p-8 lg:p-12 shadow-lg border-2 border-neutral-light-cyan/40">
       {/* メインコンテンツ: 左右2カラム */}
       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-lg md:gap-xl lg:gap-2xl items-start">
         {/* 左側: アイコン + ラベル + Before吹き出し */}
-        <div className="flex flex-col items-start gap-md md:gap-lg">
+        <div className="flex flex-col h-full items-start gap-md md:gap-lg">
           {/* アイコンとラベル */}
-          <div className="flex items-center gap-3 md:gap-4">
+          <div className="flex items-center gap-3  md:gap-4">
             {/* 黄色アイコンボックス */}
-            <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-brand-secondary rounded-2xl md:rounded-3xl flex items-center justify-center shadow-md flex-shrink-0">
-              {Icon && (
-                <Icon
-                  className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-brand-primary"
-                  strokeWidth={2.5}
-                />
-              )}
+            <div className="w-20 h-20 lg:w-24 lg:h-24 bg-brand-secondary-dark rounded-2xl md:rounded-3xl text-neutral-white font-bold text-4xl flex items-center justify-center shadow-md flex-shrink-0">
+              {solutionNumber}
             </div>
 
             {/* ラベル（スピード、活用方法など） */}
@@ -64,23 +42,23 @@ export function SolutionCard({
           </div>
 
           {/* Before吹き出しエリア */}
-          <div className="relative flex flex-col items-start gap-sm">
+          <div className="relative flex flex-col items-start justify-center gap-sm flex-1">
             {/* Beforeバッジ */}
-            <div className="bg-neutral-black text-neutral-white font-bold text-xs md:text-sm px-3 md:px-4 py-1 md:py-1.5 rounded-full whitespace-nowrap">
+            <div className="bg-brand-primary text-neutral-white font-bold text-xs md:text-sm px-3 md:px-4 py-1 md:py-1.5 rounded-full whitespace-nowrap">
               Before
             </div>
 
             {/* 吹き出しとキャラクター */}
-            <div className="flex items-end gap-2">
+            <div className="flex gap-2">
               {/* 吹き出し */}
-              <div className="bg-neutral-light-cyan border-2 border-neutral-black rounded-2xl md:rounded-3xl px-3 md:px-4 py-3 md:py-4 shadow-sm max-w-[180px] md:max-w-[220px] lg:max-w-[240px]">
+              <div className="bg-neutral-light-cyan border-2 border-neutral-black rounded-2xl md:rounded-3xl px-3 md:px-4 py-3 md:py-4 shadow-sm max-w-[180px] md:max-w-[200px] lg:max-w-[240px] flex items-center">
                 <p className="text-xs md:text-sm text-neutral-black/80 leading-snug">
                   {problemText}
                 </p>
               </div>
 
               {/* キャラクター画像 */}
-              <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 mb-2">
+              <div className="flex-shrink-0 mb-2">
                 <Image
                   src={problemImage}
                   alt={problemText}
@@ -112,18 +90,21 @@ export function SolutionCard({
           </h3>
 
           {/* 説明文 */}
-          <p className="text-sm md:text-base text-white leading-relaxed">
-            {solutionDescription}
+          <p className="text-sm md:text-base text-neutral-black leading-relaxed whitespace-pre-line">
+            {solutionDescription.split("||").join("\n")}
           </p>
 
           {/* 特徴リスト */}
-          <div className="space-y-2 md:space-y-3 pt-2">
+          <div className="space-y-2 md:space-y-3 pt-2 bg-white/60 md:bg-white/70 p-4 md:p-5 rounded-xl md:rounded-2xl shadow-inner">
             {features.map((feature, index) => (
-              <div key={index} className="flex gap-2.5 md:gap-3 items-start">
-                <div className="bg-brand-secondary text-brand-primary rounded-full w-6 h-6 md:w-7 md:h-7 flex items-center justify-center flex-shrink-0 text-sm md:text-base font-bold mt-0.5 shadow-sm">
+              <div
+                key={index}
+                className="flex gap-2.5 md:gap-3 items-start  backdrop-blur-sm rounded-xl"
+              >
+                <div className="bg-brand-secondary text-brand-primary rounded-full w-6 h-6 md:w-7 md:h-7 flex items-center justify-center flex-shrink-0 text-sm md:text-base font-bold shadow-sm">
                   ✓
                 </div>
-                <p className="text-sm md:text-base text-white leading-relaxed">
+                <p className="text-sm md:text-base text-neutral-black leading-relaxed">
                   {feature}
                 </p>
               </div>

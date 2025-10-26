@@ -5,9 +5,9 @@ import { SectionHeader } from "../ui/section-header";
 import { SectionTitle } from "../ui/SectionTitle";
 import { ContactButton } from "../ui/ContactButton";
 import { SolutionCard } from "../ui/SolutionCard";
-import problem1 from "../../assets/problem_1.png";
-import problem2 from "../../assets/problem_2.png";
-import problem3 from "../../assets/problem_3.png";
+import solution1 from "../../assets/solution_1.png";
+import solution2 from "../../assets/solution_2.png";
+import solution3 from "../../assets/solution_3.png";
 
 export function SolutionSection() {
   const solutions = [
@@ -16,46 +16,46 @@ export function SolutionSection() {
       problemCategory: "スピード",
       problemText:
         "トレンドの移り変わりが早いのに、調査に時間がかかりすぎて追いつけない...",
-      problemImage: problem1,
-      solutionTitle: "独自ネットワークで<br />最短24時間で若者の声が集まる",
+      problemImage: solution1,
+      solutionTitle:
+        '独自ネットワークで、<br />"今"、"生"の若者の声を即キャッチ',
       solutionDescription:
-        "独自のインフルエンサーネットワーク（数千人規模）により、一般的な調査会社が「募集」から始める作業を省略。最短24時間で若者の本音を収集します。",
+        "独自のインフルエンサーネットワーク（数千人規模）を活用し、最短24時間でリアルな声を収集。||スピードだけでなく「回答の質」にこだわり、意思決定にすぐ使えるデータを届けます。",
       iconName: "zap",
       features: [
-        "最短24時間で調査結果をご報告",
-        "数千人のインフルエンサーと即座にコンタクト可能",
-        "独自ネットワークだから実現できるスピード",
+        "数千人規模の若年層の回答をスピーディーに収集",
+        "SNS発信層へのリーチで最新トレンドを正確に把握",
+        "調査からレポーティングまで一気通貫のスムーズ対応",
       ],
     },
     {
       solutionNumber: "02",
       problemCategory: "活用方法",
       problemText: "調査はしたけど結局どう施策に繋げればいいかわからない...",
-      problemImage: problem2,
-      solutionTitle: "豊富データから導く、<br />刺さる施策をご提案",
+      problemImage: solution2,
+      solutionTitle: '豊富なデータから導く、<br />"刺さる"戦略提案',
       solutionDescription:
-        "過去の広告代理店での実績やデータを元に、効果的な施策を提案。調査データを「机上の空論」で終わらせず、実行可能な施策として落とし込みます。",
+        "収集したデータは、若年層特有の感情・行動文脈まで読み解く独自アルゴリズムで分析。||数字では見えない「選ばれる理由」を明確にします。",
       iconName: "lightbulb",
       features: [
-        "実際の調査データから導き出した施策提案",
-        "データと実践知見を組み合わせた確度の高い施策",
-        "調査から実行まで一気通貫でサポート",
+        "実際の購買・発信行動データや実践知見を交えた高精度分析",
+        "ブランド課題に合わせたカスタマイズ設計",
+        "データ解析から施策立案までワンストップでサポート",
       ],
     },
     {
       solutionNumber: "03",
       problemCategory: "仮説検証",
       problemText: "施策を行ってみたけど思ったような成果が出なかった...",
-      problemImage: problem3,
-      solutionTitle: "4つの施策を組んで深いニーズを<br />理解、企画を外さない",
+      problemImage: solution3,
+      solutionTitle: "4つの手法で、<br />若年層の本音を多角的に把握",
       solutionDescription:
-        "アンケート調査（定量）、インフルエンサーインタビュー（定性）、グループインタビュー（定性）、ギフティング調査（インサイト検証）を組み合わせることで、若年層を立体的に理解。企画を外さない。",
+        'アンケート調査（定量）、インフルエンサーインタビュー（定性）、グループインタビュー（定性）、ギフティング調査（定量・定性）を組み合わせ、表層的な"流行"ではなく、"根底の価値観"を掘り下げる。||「数字×ストーリー×トレンド」を立体的に可視化。',
       iconName: "barChart3",
       features: [
         "アンケート調査で市場全体の傾向を数値化",
-        "インフルエンサーインタビュー・グループインタビューで本音を追求",
-        "ギフティング調査で質感の反応を検証",
-        "多角的なアプローチで仮説検証を繰り返し、企画を外さない",
+        "インフルエンサーインタビュー・グループインタビューでリアルな声を深掘り",
+        "ギフティング調査で体験後の本音を回収＆投稿ブーストも可能",
       ],
     },
   ];

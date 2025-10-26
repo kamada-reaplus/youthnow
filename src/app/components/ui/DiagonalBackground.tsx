@@ -25,14 +25,11 @@ export const DiagonalBackground: React.FC<DiagonalBackgroundProps> = ({
   bgColor = "bg-neutral-light-cyan",
   className = "",
 }) => {
-  // bgColorからborder-colorを生成（bg-を border-に置き換え）
-  const borderColor = bgColor.replace('bg-', 'border-');
-
   return (
     <>
       {/* SP版: 固定角度の斜めの背景 */}
       <div
-        className={`md:hidden absolute inset-0 ${bgColor} ${borderColor} border-t-2 ${className}`}
+        className={`md:hidden absolute inset-0 ${bgColor} ${className}`}
         style={{
           clipPath: `polygon(0 100%, 100% calc(100% - ${DIAGONAL_HEIGHT.mobile}px), 100% 100%, 0 100%)`,
         }}
@@ -40,7 +37,7 @@ export const DiagonalBackground: React.FC<DiagonalBackgroundProps> = ({
 
       {/* PC版: 固定角度の斜めの背景 */}
       <div
-        className={`hidden md:block absolute inset-0 ${bgColor} ${borderColor} border-t-2 ${className}`}
+        className={`hidden md:block absolute inset-0 ${bgColor} ${className}`}
         style={{
           clipPath: `polygon(0 100%, 100% calc(100% - ${DIAGONAL_HEIGHT.desktop}px), 100% 100%, 0 100%)`,
         }}

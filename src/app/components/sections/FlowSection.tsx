@@ -181,20 +181,37 @@ export function FlowSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
+  // スクロール位置からcurrentIndexを更新
   useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const scrollLeft = container.scrollLeft;
+      const cardWidth = container.scrollWidth / STEPS.length;
+      const newIndex = Math.round(scrollLeft / cardWidth);
+      setCurrentIndex(newIndex);
+    };
+
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // ドットクリック時のスクロール
+  const handleDotClick = (index: number) => {
     if (!scrollContainerRef.current) return;
 
     const cardWidth = scrollContainerRef.current.scrollWidth / STEPS.length;
     scrollContainerRef.current.scrollTo({
-      left: cardWidth * currentIndex,
+      left: cardWidth * index,
       behavior: "smooth",
     });
-  }, [currentIndex]);
+  };
 
   return (
     <section
       id="flow"
-      className="bg-neutral-light-cyan py-12 md:py-16 px-lg relative overflow-hidden min-h-screen"
+      className="bg-neutral-light-cyan py-12 md:py-16 px-lg relative overflow-hidden min-h-screen -mb-px"
     >
       <DiagonalBackground bgColor="bg-brand-primary" />
       <SectionTitle title="FLOW" />
@@ -232,7 +249,7 @@ export function FlowSection() {
           <NavigationDots
             totalSteps={STEPS.length}
             currentIndex={currentIndex}
-            onDotClick={setCurrentIndex}
+            onDotClick={handleDotClick}
           />
         </div>
 

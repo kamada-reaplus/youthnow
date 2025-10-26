@@ -18,7 +18,7 @@ const navItems: NavItem[] = [
   { id: "hero", label: "TOP", href: "#hero" },
   { id: "problem", label: "あなたのお悩み", href: "#problem" },
   { id: "solution", label: "解決策を見る", href: "#solution" },
-  { id: "pricing", label: "料金", href: "#pricing" },
+  { id: "services", label: "サービス", href: "#services" },
   { id: "story", label: "創業の想い", href: "#story" },
   { id: "flow", label: "フロー", href: "#flow" },
   { id: "faq", label: "よくある質問", href: "#faq" },
@@ -110,7 +110,7 @@ export function Header() {
               alt="Youth Now Logo"
               width={120}
               height={40}
-              style={{ height: 'auto', width: '120px' }}
+              style={{ height: "auto", width: "120px" }}
               priority
             />
           </a>
@@ -142,7 +142,7 @@ export function Header() {
               width={100}
               height={40}
               className="object-contain"
-              style={{ height: '40px', width: 'auto' }}
+              style={{ height: "40px", width: "auto" }}
               priority
             />
           </a>
@@ -201,7 +201,9 @@ export function Header() {
                     >
                       <span
                         className={`text-sm font-bold ${
-                          activeSection === item.id ? "text-brand-primary" : "text-neutral-white"
+                          activeSection === item.id
+                            ? "text-brand-primary"
+                            : "text-neutral-white"
                         }`}
                       >
                         {item.label}

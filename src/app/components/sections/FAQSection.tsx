@@ -50,7 +50,7 @@ export function FAQSection() {
   return (
     <section
       id="faq"
-      className="bg-brand-primary section-spacing px-lg relative overflow-hidden"
+      className="bg-brand-primary section-spacing px-lg relative overflow-hidden -mb-px"
     >
       {/* 斜めの白背景（特徴カードの途中から） */}
       <DiagonalBackground bgColor="bg-neutral-light-cyan" />

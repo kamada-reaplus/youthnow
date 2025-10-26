@@ -51,7 +51,7 @@ export function StorySection() {
           <div className="md:hidden space-y-lg">
             {/* Introduction */}
             <p className="text-body text-neutral-black/70 leading-relaxed text-center">
-              Reaplusは広告代理店事業、インフルエンサー事務所、D2Cブランドを運営する中で、何度も同じ悩みを聞いてきました。
+              Reaplusは広告代理店事業、タレント・インフルエンサー事務所、D2Cブランドを運営する中で、多くのクライアント様から何度も同様のお悩みを聞いてきました。
             </p>
 
             {/* Pain Point */}
@@ -88,7 +88,11 @@ export function StorySection() {
 
             <div className="mb-lg text-center">
               <p className="text-h5 text-neutral-black leading-tight">
-                だからこそ私たちは<span className="text-2xl font-bold text-brand-secondary mx-1">決意</span>しました
+                だからこそ私たちは
+                <span className="text-2xl font-bold text-brand-secondary mx-1">
+                  決意
+                </span>
+                しました
               </p>
             </div>
 
@@ -178,7 +182,11 @@ export function StorySection() {
 
             <div className="mb-md text-center">
               <p className="text-h5 md:text-h4 text-neutral-black leading-tight">
-                だからこそ私たちは<span className="text-3xl md:text-4xl font-bold text-brand-secondary mx-1">決意</span>しました
+                だからこそ私たちは
+                <span className="text-3xl md:text-4xl font-bold text-brand-secondary mx-1">
+                  決意
+                </span>
+                しました
               </p>
             </div>
 
