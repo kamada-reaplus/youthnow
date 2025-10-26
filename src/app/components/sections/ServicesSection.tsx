@@ -68,48 +68,39 @@ const SERVICES = [
 const OUTPUT_SAMPLES = [
   {
     image: "/images/slides/nail1.svg",
-    title: "Z世代のネイルに対する意識調査と効果的なPR戦略",
-    subtitle: "ワンストップ施策提案（P1）",
+    title: "ワンストップ施策提案（P1）",
   },
   {
     image: "/images/slides/nail2.svg",
-    title: "Z世代のネイルに対する意識調査と効果的なPR戦略",
-    subtitle: "ワンストップ施策提案（P2）",
+    title: "ワンストップ施策提案（P2）",
   },
   {
     image: "/images/slides/nail3.svg",
-    title: "Z世代のネイルに対する意識調査と効果的なPR戦略",
-    subtitle: "ワンストップ施策提案（P3）",
+    title: "ワンストップ施策提案（P3）",
   },
   {
     image: "/images/slides/halloween1.svg",
-    title: "ハロウィンにおけるZ世代の参加/消費行動調査",
-    subtitle: "トレンド調査資料（P1）",
+    title: "トレンド調査資料（P1）",
   },
   {
     image: "/images/slides/halloween2.svg",
-    title: "ハロウィンにおけるZ世代の参加/消費行動調査",
-    subtitle: "トレンド調査資料（P2）",
+    title: "トレンド調査資料（P2）",
   },
   {
     image: "/images/slides/halloween3.svg",
-    title: "ハロウィンにおけるZ世代の参加/消費行動調査",
-    subtitle: "トレンド調査資料（P3）",
+    title: "トレンド調査資料（P3）",
   },
   {
     image: "/images/slides/cosme1.svg",
-    title: "コスメに関する消費者の購買行動調査",
-    subtitle: "アンケート調査（P1）",
+    title: "アンケート調査（P1）",
   },
   {
     image: "/images/slides/cosme2.svg",
-    title: "コスメに関する消費者の購買行動調査",
-    subtitle: "アンケート調査（P2）",
+    title: "アンケート調査（P2）",
   },
   {
     image: "/images/slides/cosme3.svg",
-    title: "コスメに関する消費者の購買行動調査",
-    subtitle: "アンケート調査（P3）",
+    title: "アンケート調査（P3）",
   },
 ];
 
@@ -307,11 +298,8 @@ export function ServicesSection() {
 
                 {/* Slide Info Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neutral-black/80 to-transparent p-lg">
-                  <h4 className="text-body md:text-body-lg lg:text-h5 text-neutral-white font-bold mb-xs">
-                    {OUTPUT_SAMPLES[slideIndex].title}
-                  </h4>
                   <p className="text-caption md:text-body-sm lg:text-body text-neutral-white/90">
-                    {OUTPUT_SAMPLES[slideIndex].subtitle}
+                    {OUTPUT_SAMPLES[slideIndex].title}
                   </p>
                 </div>
               </div>
