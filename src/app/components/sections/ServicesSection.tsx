@@ -307,10 +307,10 @@ export function ServicesSection() {
 
                 {/* Slide Info Overlay */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neutral-black/80 to-transparent p-lg">
-                  <h4 className="text-body-lg md:text-h5 text-neutral-white font-bold mb-xs">
+                  <h4 className="text-body md:text-body-lg lg:text-h5 text-neutral-white font-bold mb-xs">
                     {OUTPUT_SAMPLES[slideIndex].title}
                   </h4>
-                  <p className="text-body-sm md:text-body text-neutral-white/90">
+                  <p className="text-caption md:text-body-sm lg:text-body text-neutral-white/90">
                     {OUTPUT_SAMPLES[slideIndex].subtitle}
                   </p>
                 </div>

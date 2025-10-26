@@ -80,7 +80,7 @@ export function SolutionCard({
           </div>
 
           {/* ソリューションタイトル */}
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white leading-tight pr-16 md:pr-20 lg:pr-24">
+          <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-snug pr-12 sm:pr-16 md:pr-20 lg:pr-24">
             {solutionTitle.split("<br />").map((line, index, array) => (
               <span key={index}>
                 {line}
