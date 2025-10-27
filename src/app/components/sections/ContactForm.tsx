@@ -163,7 +163,8 @@ export function ContactForm() {
             title="Youth Now!を体験してください"
             textColor="text-neutral-black"
             leadingTight
-            className="mb-0"
+            responsive
+            className="mb-0 px-lg"
           />
           <p className="text-body text-neutral-black mt-sm">
             最短1分で完了。今なら無料トレンドレポート付き

@@ -223,22 +223,6 @@ export function ServicesSection() {
     setSlideIndex(index);
   }, []);
 
-  // 隣接スライドのプリロード（Next.jsのImage最適化に任せるため軽量）
-  useEffect(() => {
-    const preloadAdjacent = () => {
-      const prevIndex =
-        slideIndex === 0 ? OUTPUT_SAMPLES.length - 1 : slideIndex - 1;
-      const nextIndex = (slideIndex + 1) % OUTPUT_SAMPLES.length;
-
-      [prevIndex, nextIndex].forEach((index) => {
-        const img = new window.Image();
-        img.src = OUTPUT_SAMPLES[index].image;
-      });
-    };
-
-    preloadAdjacent();
-  }, [slideIndex]);
-
   return (
     <section
       id="services"
@@ -307,20 +291,29 @@ export function ServicesSection() {
               {/* Slide */}
               <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-neutral-white">
                 <div className="aspect-[16/9] relative">
-                  <Image
-                    key={slideIndex}
-                    src={OUTPUT_SAMPLES[slideIndex].image}
-                    alt={OUTPUT_SAMPLES[slideIndex].title}
-                    fill
-                    className="object-contain transition-opacity duration-300"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                    priority={slideIndex === 0}
-                    unoptimized
-                  />
+                  {/* すべてのスライドを事前にレンダリング */}
+                  {OUTPUT_SAMPLES.map((sample, index) => (
+                    <div
+                      key={index}
+                      className={`absolute inset-0 transition-opacity duration-300 ${
+                        index === slideIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+                      }`}
+                    >
+                      <Image
+                        src={sample.image}
+                        alt={sample.title}
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                        priority={index === 0}
+                        unoptimized
+                      />
+                    </div>
+                  ))}
                 </div>
 
                 {/* Slide Info Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neutral-black/80 to-transparent p-lg transition-opacity duration-300">
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neutral-black/80 to-transparent p-lg z-20">
                   <p className="text-caption md:text-body-sm lg:text-body text-neutral-white/90">
                     {OUTPUT_SAMPLES[slideIndex].title}
                   </p>
