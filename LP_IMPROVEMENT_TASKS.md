@@ -725,7 +725,7 @@ export default function RootLayout({ children }) {
       <ul className="space-y-2 text-sm">
         <li className="flex items-center gap-2">
           <span className="text-brand-secondary">✓</span>
-          <span>最新Z世代トレンドレポート（PDF・20ページ）</span>
+          <span>最新若年層トレンドレポート（PDF・20ページ）</span>
         </li>
         <li className="flex items-center gap-2">
           <span className="text-brand-secondary">✓</span>

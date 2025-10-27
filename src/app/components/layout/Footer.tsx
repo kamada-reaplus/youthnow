@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "../../assets/logo-black.png";
+import logo from "../../assets/logo.png";
 
 // デザインシステム使用コンポーネント
 // - カラー: neutral-white, neutral-black, brand-primary など
@@ -8,7 +8,7 @@ import logo from "../../assets/logo-black.png";
 
 export function Footer() {
   return (
-    <footer className="bg-neutral-light-cyan border-t border-neutral-black/5">
+    <footer className="bg-brand-primary border-t border-neutral-black/5">
       <div className="container mx-auto max-w-6xl px-lg py-xl md:py-2xl">
         {/* メインコンテンツ */}
         <div className="text-center mb-lg">
@@ -21,10 +21,10 @@ export function Footer() {
               className="w-auto h-6 md:h-8"
             />
           </div>
-          <p className="text-body md:text-body-lg text-neutral-black/80 font-medium">
+          <p className="text-body md:text-body-lg text-neutral-white font-medium">
             トレンドのすぐそばに
           </p>
-          <p className="text-body-sm md:text-body text-neutral-black/60 mt-xs max-w-2xl mx-auto">
+          <p className="text-body-sm md:text-body text-neutral-white mt-xs max-w-2xl mx-auto">
             消費者の&ldquo;今&rdquo;を可視化する次世代型インサイトマーケティング
           </p>
         </div>
@@ -32,9 +32,25 @@ export function Footer() {
         {/* 区切り線 */}
         <div className="border-t border-neutral-black/10 my-lg"></div>
 
+        {/* 運営会社 */}
+        <div className="text-center mb-lg">
+          <p className="text-body-sm text-neutral-white/70 mb-xs">運営会社</p>
+          <p className="text-body md:text-body-lg text-neutral-white font-medium mb-sm">
+            株式会社Reaplus
+          </p>
+          <a
+            href="https://reaplus.jp/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-body-sm md:text-body text-neutral-white hover:text-brand-secondary underline underline-offset-2 transition-colors duration-200"
+          >
+            https://reaplus.jp/
+          </a>
+        </div>
+
         {/* コピーライト */}
         <div className="text-center">
-          <p className="text-caption md:text-body-sm text-neutral-black/50">
+          <p className="text-caption md:text-body-sm text-neutral-white/50">
             © {new Date().getFullYear()} Youth Now! All rights reserved.
           </p>
         </div>

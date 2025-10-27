@@ -37,7 +37,7 @@ const STEPS: Step[] = [
     title: "問い合わせ",
     icon: Mail,
     description:
-      "まずはフォームまたはメールよりご連絡ください。サービスの概要資料や\n過去の調査レポート\nサンプルをお送りします。",
+      "まずはフォームまたはメールよりご連絡ください。\nサービスの概要資料や過去の調査レポートサンプルをお送りします。",
   },
   {
     number: "02",
@@ -58,7 +58,7 @@ const STEPS: Step[] = [
     title: "契約",
     icon: FileText,
     description:
-      "ご提案後 問題がなければ\n正式に契約書の記入を\nお願いしています。",
+      "ご提案後、問題がなければ正式に契約書の記入をお願いしています。",
   },
   {
     number: "05",
@@ -87,9 +87,7 @@ function DesktopFlowCard({ step }: FlowCardProps) {
 
       {/* Small Number in top-left */}
       <div className="absolute top-sm left-sm">
-        <span className="text-caption font-bold text-brand-primary">
-          {step.number}
-        </span>
+        <span className="text-caption text-brand-primary">{step.number}</span>
       </div>
 
       {/* Icon - Large and centered */}
@@ -98,12 +96,12 @@ function DesktopFlowCard({ step }: FlowCardProps) {
       </div>
 
       {/* Title */}
-      <h3 className="text-body-sm lg:text-body text-neutral-black text-center mb-md font-bold px-xs">
+      <h3 className="text-body-sm lg:text-body text-neutral-black text-center mb-md px-xs">
         {step.title}
       </h3>
 
       {/* Description */}
-      <p className="text-caption text-neutral-black/70 leading-relaxed text-center px-xs">
+      <p className="text-caption text-neutral-black/70 leading-relaxed text-center px-xs whitespace-pre-line">
         {step.description}
       </p>
 
@@ -121,9 +119,7 @@ function MobileFlowCard({ step }: FlowCardProps) {
     <div className="bg-neutral-white border border-neutral-black/20 rounded-2xl shadow-md p-lg h-full relative">
       {/* Small Number in top-left */}
       <div className="absolute top-md left-md">
-        <span className="text-body-sm font-bold text-brand-primary">
-          {step.number}
-        </span>
+        <span className="text-body-sm text-brand-primary">{step.number}</span>
       </div>
 
       {/* Icon - Large and centered */}
@@ -132,7 +128,7 @@ function MobileFlowCard({ step }: FlowCardProps) {
       </div>
 
       {/* Title */}
-      <h3 className="text-h6 text-neutral-black text-center mb-md font-bold">
+      <h3 className="text-h6 text-neutral-black text-center mb-md">
         {step.title}
       </h3>
 
@@ -140,7 +136,7 @@ function MobileFlowCard({ step }: FlowCardProps) {
       <div className="flex-1" />
 
       {/* Description */}
-      <p className="text-body-sm text-neutral-black/70 leading-relaxed text-center mb-md">
+      <p className="text-body-sm text-neutral-black/70 leading-relaxed text-center mb-md whitespace-pre-line">
         {step.description}
       </p>
     </div>
@@ -269,7 +265,7 @@ export function FlowSection() {
 
         {/* Support Message */}
         <div className="text-center mb-lg">
-          <p className="text-body md:text-h6 font-bold text-neutral-black leading-relaxed mb-sm">
+          <p className="text-body md:text-h6 text-neutral-black leading-relaxed mb-sm">
             不明な点がございましたら、
             <br className="md:hidden" />
             いつでもお気軽にお問い合わせください。

@@ -163,7 +163,9 @@ export async function POST(request: NextRequest) {
         <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
           <!-- ヘッダー -->
           <div style="background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%); padding: 40px 20px; text-align: center;">
-            ${logoSvg ? `<div style="margin: 0 0 20px 0;">${logoSvg}</div>` : ""}
+            ${
+              logoSvg ? `<div style="margin: 0 0 20px 0;">${logoSvg}</div>` : ""
+            }
             <h1 style="color: #ffffff; font-size: 28px; margin: 0; font-weight: bold;">Youth Now</h1>
             <p style="color: #ffffff; font-size: 14px; margin: 10px 0 0 0; opacity: 0.9;">次世代型インサイトマーケティング</p>
           </div>
@@ -187,7 +189,7 @@ export async function POST(request: NextRequest) {
               <p style="color: #1F2937; font-size: 14px; font-weight: bold; margin: 0 0 10px 0;">📎 添付ファイル</p>
               <ul style="color: #4B5563; font-size: 14px; line-height: 1.8; margin: 0; padding-left: 20px;">
                 <li>サービス紹介資料.pdf</li>
-                <li>Z世代トレンドレポート.pdf (特典)</li>
+                <li>若年層トレンドレポート.pdf (特典)</li>
               </ul>
             </div>
 
@@ -227,7 +229,7 @@ export async function POST(request: NextRequest) {
     }
     if (trendReportBuffer) {
       attachments.push({
-        filename: "Z世代トレンドレポート_特典.pdf",
+        filename: "若年層トレンドレポート_特典.pdf",
         content: trendReportBuffer,
       });
     }
@@ -246,7 +248,9 @@ export async function POST(request: NextRequest) {
       process.env.GOOGLE_APPS_SCRIPT_API_KEY
     ) {
       try {
-        const submissionId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+        const submissionId = `${Date.now()}-${Math.random()
+          .toString(36)
+          .substr(2, 9)}`;
 
         const spreadsheetData = {
           type: "contact",

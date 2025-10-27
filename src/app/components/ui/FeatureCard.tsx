@@ -17,7 +17,7 @@ export function FeatureCard({
     <div className="bg-neutral-white rounded-xl p-2.5 md:p-4 shadow-lg border-2 border-neutral-black flex flex-col h-full">
       {/* タイトル部分 - 固定高さ */}
       <div className="text-brand-primary mb-1 md:mb-1.5 text-center min-h-[2.5rem] md:min-h-[3rem] flex items-center justify-center px-1">
-        <span className="block font-bold text-xs md:text-sm leading-snug">
+        <span className="block text-xs md:text-sm leading-snug">
           {title}
         </span>
       </div>

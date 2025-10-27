@@ -284,7 +284,7 @@ export function ReusableContactForm({
       <div className="container mx-auto max-w-md relative z-10">
         {/* ヘッダー */}
         {title && (
-          <h2 className={`text-h3 font-bold ${textColor} text-center mb-md`}>
+          <h2 className={`text-h3 ${textColor} text-center mb-md`}>
             {title}
           </h2>
         )}
@@ -297,7 +297,7 @@ export function ReusableContactForm({
               className={`inline-flex items-center gap-sm text-body-sm ${textColor}`}
             >
               <Clock className="w-5 h-5" />
-              <span className="font-bold">{completionTime}</span>
+              <span className="">{completionTime}</span>
             </div>
           </div>
         )}
@@ -310,7 +310,7 @@ export function ReusableContactForm({
                 className={`w-6 h-6 ${successColor} flex-shrink-0 mt-1`}
               />
               <div>
-                <h3 className={`text-h6 ${successColor} font-bold mb-sm`}>
+                <h3 className={`text-h6 ${successColor} mb-sm`}>
                   {successTitle}
                 </h3>
                 <p
@@ -335,7 +335,7 @@ export function ReusableContactForm({
             {showPurposeSelection && (
               <div>
                 <label
-                  className={`block text-body-sm font-bold ${labelColor} mb-md`}
+                  className={`block text-body-sm ${labelColor} mb-md`}
                 >
                   お問い合わせ目的
                 </label>
@@ -450,7 +450,7 @@ export function ReusableContactForm({
             {/* 興味のある内容 */}
             <div>
               <label
-                className={`block text-body-sm font-bold ${labelColor} mb-md`}
+                className={`block text-body-sm ${labelColor} mb-md`}
               >
                 最も知りたいこと <span className={errorColor}>*</span>
               </label>
@@ -547,7 +547,7 @@ export function ReusableContactForm({
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`w-full ${buttonBackgroundColor} ${buttonTextColor} py-lg px-xl rounded-full font-bold shadow-lg transition-all flex items-center justify-center gap-sm ${
+              className={`w-full ${buttonBackgroundColor} ${buttonTextColor} py-lg px-xl rounded-full shadow-lg transition-all flex items-center justify-center gap-sm ${
                 isSubmitting
                   ? "opacity-50 cursor-not-allowed"
                   : `${buttonHoverOpacity} hover:shadow-xl hover:scale-[1.02]`
@@ -589,7 +589,7 @@ export function ReusableContactForm({
             {showBonusSection && (
               <div className="text-center">
                 <p
-                  className={`text-body-sm ${buttonTextColor} mb-xs font-bold`}
+                  className={`text-body-sm ${buttonTextColor} mb-xs`}
                 >
                   {bonusText}
                 </p>
@@ -608,7 +608,7 @@ export function ReusableContactForm({
           <div
             className={`${formBackgroundColor} backdrop-blur-sm rounded-3xl p-2xl`}
           >
-            <h3 className={`text-h6 ${labelColor} font-bold mb-lg`}>
+            <h3 className={`text-h6 ${labelColor} mb-lg`}>
               資料に含まれる内容
             </h3>
             <ul className={`space-y-sm text-body-sm ${inputTextColor}/80`}>
@@ -667,7 +667,7 @@ function FormField({
     <div>
       <label
         htmlFor={id}
-        className={`block text-body-sm font-bold ${labelColor} mb-sm`}
+        className={`block text-body-sm ${labelColor} mb-sm`}
       >
         {label}{" "}
         {required ? (

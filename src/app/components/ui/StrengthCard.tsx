@@ -107,7 +107,7 @@ export default function StrengthCard({
               )}
               {!Icon && !visual && !image && (
                 <div className="absolute -top-2 -right-2 lg:static w-32 h-32 lg:w-48 lg:h-48 rounded-full bg-gradient-to-br from-brand-primary to-brand-secondary flex items-center justify-center shadow-2xl">
-                  <span className="text-4xl lg:text-7xl font-bold text-white opacity-20">
+                  <span className="text-4xl lg:text-7xl text-white opacity-20">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
@@ -128,16 +128,16 @@ export default function StrengthCard({
               {solvesProblem && (
                 <div className="mb-lg flex items-center gap-2 md:gap-3">
                   <div className="flex items-center gap-2 bg-brand-secondary/10 border-2 border-brand-secondary rounded-full px-3 md:px-4 py-1.5 md:py-2">
-                    <span className="text-brand-secondary font-bold text-sm md:text-base">
+                    <span className="text-brand-secondary text-sm md:text-base">
                       ✓
                     </span>
-                    <span className="text-xs md:text-sm font-bold text-neutral-black/80">
+                    <span className="text-xs md:text-sm text-neutral-black/80">
                       解決する課題:
                     </span>
-                    <span className="inline-flex items-center justify-center bg-brand-primary text-neutral-white font-bold text-xs md:text-sm px-2 md:px-2.5 py-0.5 md:py-1 rounded-full">
+                    <span className="inline-flex items-center justify-center bg-brand-primary text-neutral-white text-xs md:text-sm px-2 md:px-2.5 py-0.5 md:py-1 rounded-full">
                       課題{solvesProblem.number}
                     </span>
-                    <span className="text-sm md:text-base font-bold text-brand-primary">
+                    <span className="text-sm md:text-base text-brand-primary">
                       {solvesProblem.category}
                     </span>
                   </div>
@@ -145,12 +145,12 @@ export default function StrengthCard({
               )}
 
               <div className="mb-lg">
-                <p className="text-5xl md:text-6xl lg:text-7xl font-bold text-brand-primary leading-none">
+                <p className="text-5xl md:text-6xl lg:text-7xl text-brand-primary leading-none">
                   {String(index + 1).padStart(2, "0")}
                 </p>
               </div>
 
-              <h3 className="text-h4 md:text-h3 lg:text-h2 font-bold mb-md text-brand-primary leading-tight break-words">
+              <h3 className="text-h4 md:text-h3 lg:text-h2 mb-md text-brand-primary leading-tight break-words">
                 {title}
               </h3>
               {subtitle && (
@@ -171,7 +171,7 @@ export default function StrengthCard({
                           key={statIndex}
                           className="text-center bg-white/50 rounded-xl p-md"
                         >
-                          <div className="text-h5 lg:text-h4 font-bold text-brand-primary mb-xs leading-tight break-words">
+                          <div className="text-h5 lg:text-h4 text-brand-primary mb-xs leading-tight break-words">
                             {stat.value}
                           </div>
                           <div className="text-body-sm text-neutral-black/70 leading-snug break-words">
@@ -190,7 +190,7 @@ export default function StrengthCard({
                         key={featureIndex}
                         className="flex gap-sm items-start"
                       >
-                        <div className="bg-brand-primary text-neutral-white rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">
+                        <div className="bg-brand-primary text-neutral-white rounded-full w-5 h-5 flex items-center justify-center flex-shrink-0 text-xs mt-0.5">
                           ✓
                         </div>
                         <p className="text-body-sm text-neutral-black/80 leading-relaxed break-words">

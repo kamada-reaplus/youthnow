@@ -100,7 +100,7 @@ export function ContactButton({
         className={`flex justify-center relative z-10 ${sizeConfig.labelMargin}`}
       >
         <div
-          className={`${color.labelBg} ${color.labelText} ${color.labelBorder} border-2 rounded-full ${sizeConfig.labelPadding} shadow-sm font-bold ${sizeConfig.labelText}`}
+          className={`${color.labelBg} ${color.labelText} ${color.labelBorder} border-2 rounded-full ${sizeConfig.labelPadding} shadow-sm ${sizeConfig.labelText}`}
         >
           {label}
         </div>
@@ -109,13 +109,13 @@ export function ContactButton({
       {/* Main Button */}
       <button
         onClick={handleClick}
-        className={`relative ${color.bg} ${color.hoverBg} ${color.buttonText} rounded-full ${sizeConfig.buttonPadding} transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] w-full ${sizeConfig.buttonMinWidth} group font-bold`}
+        className={`relative ${color.bg} ${color.hoverBg} ${color.buttonText} rounded-full ${sizeConfig.buttonPadding} transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] w-full ${sizeConfig.buttonMinWidth} group`}
       >
         <span className={`block ${sizeConfig.buttonText} pr-12`}>{text}</span>
 
         {/* Arrow Icon */}
         <div
-          className={`absolute ${sizeConfig.iconRight} top-1/2 -translate-y-1/2 ${color.iconBg} ${color.iconText} ${sizeConfig.iconSize} rounded-full flex items-center justify-center shadow-md group-hover:translate-x-1 transition-transform duration-300 font-bold`}
+          className={`absolute ${sizeConfig.iconRight} top-1/2 -translate-y-1/2 ${color.iconBg} ${color.iconText} ${sizeConfig.iconSize} rounded-full flex items-center justify-center shadow-md group-hover:translate-x-1 transition-transform duration-300`}
         >
           <ArrowRight className={sizeConfig.arrowSize} />
         </div>

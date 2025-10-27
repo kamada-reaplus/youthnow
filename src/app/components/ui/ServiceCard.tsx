@@ -27,7 +27,7 @@ export function ServiceCard({
       {/* Badge (optional) */}
       {badge && (
         <div className="absolute top-md right-md">
-          <span className="inline-block bg-brand-secondary text-neutral-black text-caption font-bold px-sm py-xs rounded-full">
+          <span className="inline-block bg-brand-secondary text-neutral-black text-caption px-sm py-xs rounded-full">
             {badge}
           </span>
         </div>
@@ -41,7 +41,7 @@ export function ServiceCard({
       </div>
 
       {/* Title */}
-      <h3 className="text-body font-bold text-neutral-black text-center mb-sm leading-tight whitespace-pre-line flex-shrink-0">
+      <h3 className="text-body text-neutral-black text-center mb-sm leading-tight whitespace-pre-line flex-shrink-0">
         {title}
       </h3>
 

@@ -102,6 +102,7 @@
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    font-weight: 700;
   }
 
   /* セクション間の隙間を完全に削除 */
@@ -163,25 +164,25 @@
 
     p {
       font-size: 16px;
-      font-weight: 400;
+      font-weight: 700;
       line-height: 1.7;
     }
 
     label {
       font-size: 16px;
-      font-weight: 400;
+      font-weight: 700;
       line-height: 1.7;
     }
 
     button {
       font-size: 16px;
-      font-weight: 400;
+      font-weight: 700;
       line-height: 1.7;
     }
 
     input {
       font-size: 16px;
-      font-weight: 400;
+      font-weight: 700;
       line-height: 1.7;
     }
   }

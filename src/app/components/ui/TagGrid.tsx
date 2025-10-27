@@ -10,7 +10,7 @@ export function TagGrid({ items, className = "" }: TagGridProps) {
       <div className="md:hidden max-w-xl mx-auto space-y-md">
         {/* 最初の1つを中央に配置 */}
         <div className="flex justify-center">
-          <div className="bg-brand-primary-main border border-neutral-white/30 rounded-full px-lg py-sm text-body-sm text-neutral-white shadow-sm text-center font-bold">
+          <div className="bg-brand-primary-main border border-neutral-white/30 rounded-full px-lg py-sm text-body-sm text-neutral-white shadow-sm text-center">
             {items[0]}
           </div>
         </div>
@@ -25,7 +25,7 @@ export function TagGrid({ items, className = "" }: TagGridProps) {
                 {pair.map((item, itemIndex) => (
                   <div
                     key={itemIndex}
-                    className="bg-brand-primary-main border border-neutral-white/30 rounded-full px-lg py-sm text-body-sm text-neutral-white shadow-sm text-center font-bold"
+                    className="bg-brand-primary-main border border-neutral-white/30 rounded-full px-lg py-sm text-body-sm text-neutral-white shadow-sm text-center"
                   >
                     {item}
                   </div>
@@ -41,7 +41,7 @@ export function TagGrid({ items, className = "" }: TagGridProps) {
         {items.map((item, index) => (
           <div
             key={index}
-            className="bg-brand-primary-main border border-neutral-white/30 rounded-full px-md lg:px-lg py-1 lg:py-1.5 text-body-sm lg:text-body-sm text-neutral-white shadow-sm text-center font-bold whitespace-nowrap"
+            className="bg-brand-primary-main border border-neutral-white/30 rounded-full px-md lg:px-lg py-1 lg:py-1.5 text-body-sm lg:text-body-sm text-neutral-white shadow-sm text-center whitespace-nowrap"
           >
             {item}
           </div>

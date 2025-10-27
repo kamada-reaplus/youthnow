@@ -23,7 +23,7 @@ export function CTABlock({
     >
       {/* 上部テキスト */}
       {topText && (
-        <p className="text-h5 md:text-h4 font-bold text-center text-white drop-shadow-md">
+        <p className="text-h5 md:text-h4 text-center text-white drop-shadow-md">
           {topText}
         </p>
       )}
@@ -40,7 +40,7 @@ export function CTABlock({
 
       {/* 下部テキスト */}
       {bottomText && (
-        <p className="text-h5 md:text-h4 font-bold text-white drop-shadow-md">
+        <p className="text-h5 md:text-h4 text-white drop-shadow-md">
           {bottomText}
         </p>
       )}

@@ -31,12 +31,12 @@ export function SolutionCard({
           {/* アイコンとラベル */}
           <div className="flex items-center gap-3  md:gap-4">
             {/* 黄色アイコンボックス */}
-            <div className="w-20 h-20 lg:w-24 lg:h-24 bg-brand-secondary-dark rounded-2xl md:rounded-3xl text-neutral-white font-bold text-4xl flex items-center justify-center shadow-md flex-shrink-0">
+            <div className="w-20 h-20 lg:w-24 lg:h-24 bg-brand-secondary rounded-2xl md:rounded-3xl text-brand-primary text-4xl flex items-center justify-center flex-shrink-0">
               {solutionNumber}
             </div>
 
             {/* ラベル（スピード、活用方法など） */}
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+            <h3 className="text-2xl md:text-3xl lg:text-4xl text-white">
               {problemCategory}
             </h3>
           </div>
@@ -44,7 +44,7 @@ export function SolutionCard({
           {/* Before吹き出しエリア */}
           <div className="relative flex flex-col items-start justify-center gap-sm flex-1">
             {/* Beforeバッジ */}
-            <div className="bg-brand-primary text-neutral-white font-bold text-xs md:text-sm px-3 md:px-4 py-1 md:py-1.5 rounded-full whitespace-nowrap">
+            <div className="bg-brand-primary text-neutral-white text-xs md:text-sm px-3 md:px-4 py-1 md:py-1.5 rounded-full whitespace-nowrap">
               Before
             </div>
 
@@ -52,7 +52,7 @@ export function SolutionCard({
             <div className="flex gap-2">
               {/* 吹き出し */}
               <div className="bg-neutral-light-cyan border-2 border-neutral-black rounded-2xl md:rounded-3xl px-3 md:px-4 py-3 md:py-4 shadow-sm max-w-[180px] md:max-w-[200px] lg:max-w-[240px] flex items-center">
-                <p className="text-xs md:text-sm text-neutral-black/80 leading-snug">
+                <p className="text-xs md:text-sm text-neutral-black/70 leading-snug">
                   {problemText}
                 </p>
               </div>
@@ -74,13 +74,13 @@ export function SolutionCard({
         <div className="space-y-3 md:space-y-4 relative">
           {/* Afterバッジ */}
           <div className="inline-block">
-            <div className="bg-brand-secondary text-brand-primary font-bold text-sm md:text-base px-4 md:px-5 py-1.5 md:py-2 rounded-full shadow-sm">
+            <div className="bg-brand-secondary text-brand-primary text-sm md:text-base px-4 md:px-5 py-1.5 md:py-2 rounded-full shadow-sm">
               After
             </div>
           </div>
 
           {/* ソリューションタイトル */}
-          <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white leading-snug pr-12 sm:pr-16 md:pr-20 lg:pr-24">
+          <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-neutral-white leading-snug pr-12 sm:pr-16 md:pr-20 lg:pr-24">
             {solutionTitle.split("<br />").map((line, index, array) => (
               <span key={index}>
                 {line}
@@ -90,7 +90,7 @@ export function SolutionCard({
           </h3>
 
           {/* 説明文 */}
-          <p className="text-sm md:text-base text-neutral-black leading-relaxed whitespace-pre-line">
+          <p className="text-sm md:text-base text-neutral-black/70 leading-relaxed whitespace-pre-line">
             {solutionDescription.split("||").join("\n")}
           </p>
 
@@ -101,10 +101,10 @@ export function SolutionCard({
                 key={index}
                 className="flex gap-2.5 md:gap-3 items-start  backdrop-blur-sm rounded-xl"
               >
-                <div className="bg-brand-secondary text-brand-primary rounded-full w-6 h-6 md:w-7 md:h-7 flex items-center justify-center flex-shrink-0 text-sm md:text-base font-bold shadow-sm">
+                <div className="bg-brand-secondary text-brand-primary rounded-full w-6 h-6 md:w-7 md:h-7 flex items-center justify-center flex-shrink-0 text-sm md:text-base shadow-sm">
                   ✓
                 </div>
-                <p className="text-sm md:text-base text-neutral-black leading-relaxed">
+                <p className="text-sm md:text-base text-neutral-black/70 leading-relaxed">
                   {feature}
                 </p>
               </div>

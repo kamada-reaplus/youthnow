@@ -39,7 +39,7 @@ export function PricingCard({
     >
       {badge && (
         <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-          <div className="bg-brand-secondary text-brand-primary text-xs px-4 py-1 rounded-full font-bold">
+          <div className="bg-brand-secondary text-brand-primary text-xs px-4 py-1 rounded-full">
             {badge}
           </div>
         </div>
@@ -47,14 +47,14 @@ export function PricingCard({
 
       <div className="text-center mb-6">
         <h3
-          className={`text-2xl font-bold mb-2 ${
+          className={`text-2xl mb-2 ${
             isStandard ? "text-neutral-white" : "text-brand-primary"
           }`}
         >
           {name}
         </h3>
         <div
-          className={`text-4xl font-bold mb-2 ${
+          className={`text-4xl mb-2 ${
             isStandard ? "text-neutral-white" : "text-neutral-dark"
           }`}
         >
@@ -81,7 +81,7 @@ export function PricingCard({
       <div className="space-y-8">
         <div>
           <h4
-            className={`text-sm font-bold mb-4 ${
+            className={`text-sm mb-4 ${
               isStandard ? "text-neutral-white/90" : "text-neutral-medium"
             }`}
           >
@@ -126,7 +126,7 @@ export function PricingCard({
             レポート
           </p>
           <p
-            className={`text-base font-bold leading-relaxed ${
+            className={`text-base leading-relaxed ${
               isStandard ? "text-neutral-white" : "text-neutral-dark"
             }`}
           >
@@ -147,7 +147,7 @@ export function PricingCard({
             納期目安
           </p>
           <p
-            className={`text-base font-bold leading-relaxed ${
+            className={`text-base leading-relaxed ${
               isStandard ? "text-neutral-white" : "text-neutral-dark"
             }`}
           >

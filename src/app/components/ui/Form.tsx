@@ -241,7 +241,7 @@ export function Form({
         {showPurposeField && (
           <div>
             <label
-              className={`block text-body-sm font-bold ${colors.labelText} mb-sm`}
+              className={`block text-body-sm ${colors.labelText} mb-sm`}
             >
               お問い合わせ目的
             </label>
@@ -335,7 +335,7 @@ export function Form({
         <div>
           <label
             htmlFor="interest"
-            className={`block text-body-sm font-bold ${colors.labelText} mb-sm`}
+            className={`block text-body-sm ${colors.labelText} mb-sm`}
           >
             最も知りたいこと{" "}
             <span className={`${colors.labelText}/60`}>(任意)</span>
@@ -433,7 +433,7 @@ export function Form({
             disabled={isSubmitting}
             className={`w-full ${colors.submitBg} ${
               colors.submitText
-            } py-lg px-xl rounded-full font-bold text-body shadow-lg transition-all flex items-center justify-center gap-sm ${
+            } py-lg px-xl rounded-full text-body shadow-lg transition-all flex items-center justify-center gap-sm ${
               isSubmitting
                 ? "opacity-50 cursor-not-allowed"
                 : `${colors.submitHover} hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]`
@@ -526,7 +526,7 @@ function FormField({
     <div>
       <label
         htmlFor={id}
-        className={`block text-body-sm font-bold ${colors.labelText} mb-sm`}
+        className={`block text-body-sm ${colors.labelText} mb-sm`}
       >
         {label}{" "}
         {required ? (

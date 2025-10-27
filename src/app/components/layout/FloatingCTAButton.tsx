@@ -66,17 +66,14 @@ export function FloatingCTAButton() {
       {/* メインのフローティングボタン */}
       <button
         onClick={handleClick}
-        className="relative bg-brand-primary hover:bg-brand-primary/90 active:bg-brand-primary/80 text-white rounded-full px-4 py-3 md:px-5 md:py-4 shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 md:gap-3 group border-2 border-neutral-white"
+        className="relative bg-brand-primary hover:bg-brand-primary/90 active:bg-brand-primary/80 text-white rounded-full px-4 py-3 md:px-6 md:py-5 shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center gap-2 md:gap-4 group border-2 border-neutral-white"
         aria-label="お問い合わせ"
       >
         {/* アイコン */}
-        <MessageCircle className="w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
+        <MessageCircle className="w-5 h-5 md:w-7 md:h-7 flex-shrink-0" />
 
-        {/* テキスト（スマホでは常に表示、PCではホバー時に展開） */}
-        <span className="block md:hidden font-bold text-sm whitespace-nowrap">
-          お問い合わせ
-        </span>
-        <span className="hidden md:block max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 whitespace-nowrap font-bold text-sm">
+        {/* テキスト（スマホ・PCともに常に表示） */}
+        <span className="text-sm md:text-base whitespace-nowrap">
           お問い合わせ
         </span>
 
@@ -85,7 +82,7 @@ export function FloatingCTAButton() {
       </button>
 
       {/* バッジ（未読風） */}
-      <span className="absolute -top-1 -right-1 bg-brand-secondary text-brand-primary text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center shadow-md pointer-events-none">
+      <span className="absolute -top-1 -right-1 bg-brand-secondary text-brand-primary text-xs rounded-full w-6 h-6 flex items-center justify-center shadow-md pointer-events-none">
         !
       </span>
     </div>

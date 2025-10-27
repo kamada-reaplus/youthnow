@@ -43,10 +43,10 @@ const config: Config = {
         h4: ["24px", { lineHeight: "1.4", fontWeight: "700" }],
         h5: ["20px", { lineHeight: "1.5", fontWeight: "700" }],
         h6: ["18px", { lineHeight: "1.5", fontWeight: "700" }],
-        "body-lg": ["18px", { lineHeight: "1.7", fontWeight: "400" }],
-        body: ["16px", { lineHeight: "1.7", fontWeight: "400" }],
-        "body-sm": ["14px", { lineHeight: "1.6", fontWeight: "400" }],
-        caption: ["12px", { lineHeight: "1.5", fontWeight: "400" }],
+        "body-lg": ["18px", { lineHeight: "1.7", fontWeight: "700" }],
+        body: ["16px", { lineHeight: "1.7", fontWeight: "700" }],
+        "body-sm": ["14px", { lineHeight: "1.6", fontWeight: "700" }],
+        caption: ["12px", { lineHeight: "1.5", fontWeight: "700" }],
       },
       spacing: {
         xs: "4px", // 0.25rem

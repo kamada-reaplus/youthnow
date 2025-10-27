@@ -161,7 +161,7 @@ export function ContactForm() {
         <div className="text-center mb-md md:mb-lg">
           <SectionHeader
             title="Youth Now!を体験してください"
-            textColor="text-neautral-black"
+            textColor="text-neutral-black"
             leadingTight
             className="mb-0"
           />
@@ -171,7 +171,7 @@ export function ContactForm() {
 
           {/* 緊急性・希少性の追加 */}
           {/* <div className="mt-6 inline-block bg-brand-secondary/10 border-2 border-brand-secondary rounded-lg px-6 py-3">
-            <p className="text-brand-primary font-bold text-lg">
+            <p className="text-brand-primary text-lg">
               ⏰ 今月の無料相談枠 残り<span className="text-2xl mx-2">3</span>社
             </p>
             <p className="text-sm text-neutral-dark mt-2">
@@ -186,35 +186,35 @@ export function ContactForm() {
             <div className="flex items-center justify-center mb-xs">
               <Users className="w-5 h-5 text-brand-secondary" />
             </div>
-            <div className="text-h5 font-bold text-brand-primary">500+</div>
+            <div className="text-h5 text-brand-primary">500+</div>
             <div className="text-caption text-brand-primary/70">導入企業</div>
           </div>
           <div className="bg-white/60 backdrop-blur-sm border border-brand-primary/10 rounded-xl p-md text-center">
             <div className="flex items-center justify-center mb-xs">
               <TrendingUp className="w-5 h-5 text-brand-secondary" />
             </div>
-            <div className="text-h5 font-bold text-brand-primary">98%</div>
+            <div className="text-h5 text-brand-primary">98%</div>
             <div className="text-caption text-brand-primary/70">満足度</div>
           </div>
           <div className="bg-white/60 backdrop-blur-sm border border-brand-primary/10 rounded-xl p-md text-center">
             <div className="flex items-center justify-center mb-xs">
               <Clock className="w-5 h-5 text-brand-secondary" />
             </div>
-            <div className="text-h5 font-bold text-brand-primary">24時間</div>
+            <div className="text-h5 text-brand-primary">24時間</div>
             <div className="text-caption text-brand-primary/70">以内に返信</div>
           </div>
           <div className="bg-white/60 backdrop-blur-sm border border-brand-primary/10 rounded-xl p-md text-center">
             <div className="flex items-center justify-center mb-xs">
               <Shield className="w-5 h-5 text-brand-secondary" />
             </div>
-            <div className="text-h5 font-bold text-brand-primary">SSL</div>
+            <div className="text-h5 text-brand-primary">SSL</div>
             <div className="text-caption text-brand-primary/70">暗号化通信</div>
           </div>
         </div> */}
 
         {/* ベネフィットリスト（フォーム上部） */}
         <div className="bg-brand-secondary/30 border border-brand-secondary/20 rounded-2xl p-lg mb-lg">
-          <h3 className="text-h6 font-bold text-brand-primary mb-md text-center">
+          <h3 className="text-h6 text-brand-primary mb-md text-center">
             資料請求で今すぐ手に入るもの
           </h3>
           <ul className="space-y-sm max-w-md mx-auto">
@@ -229,7 +229,7 @@ export function ContactForm() {
               <CheckCircle2 className="w-5 h-5 text-brand-primary flex-shrink-0" />
               <span className="text-body-sm text-brand-primary">
                 <strong>最新トレンドレポート（限定）</strong> -
-                Z世代の最新動向分析
+                若年層の最新動向分析
               </span>
             </li>
           </ul>
@@ -255,7 +255,7 @@ export function ContactForm() {
             <div className="flex items-start gap-md">
               <CheckCircle2 className="w-6 h-6 text-green-600 flex-shrink-0 mt-1" />
               <div>
-                <h3 className="text-h6 text-green-800 font-bold mb-sm">
+                <h3 className="text-h6 text-green-800 mb-sm">
                   送信完了しました!
                 </h3>
                 <p className="text-body-sm text-green-700 mb-sm">
@@ -268,7 +268,7 @@ export function ContactForm() {
                   <br />
                   • サービス紹介資料(PDF)
                   <br />
-                  • Z世代トレンドレポート(PDF・特典)
+                  • 若年層トレンドレポート(PDF・特典)
                   <br />
                   が添付されています
                 </div>

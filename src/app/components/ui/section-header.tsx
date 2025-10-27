@@ -80,7 +80,7 @@ export function SectionHeader({
     <div className={`${centered ? "text-center" : ""} ${className}`}>
       <div className="relative inline-block">
         <h2
-          className={`${textSizeClass} font-bold ${textColor} ${
+          className={`${textSizeClass} ${textColor} ${
             leadingTight ? "leading-tight" : ""
           } relative z-10 ${subtitle ? "mb-md" : ""}`}
         >
@@ -88,7 +88,7 @@ export function SectionHeader({
         </h2>
         {subtitle && (
           <h3
-            className={`${subtitleSizeClass} font-bold ${textColor} ${
+            className={`${subtitleSizeClass} ${textColor} ${
               leadingTight ? "leading-tight" : ""
             } relative z-10`}
           >

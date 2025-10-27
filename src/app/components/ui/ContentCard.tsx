@@ -45,12 +45,12 @@ export function ContentCard({
         {(category || number) && (
           <div className="flex items-center gap-2 md:gap-3 mb-md md:mb-lg flex-wrap">
             {number && (
-              <span className="inline-flex items-center justify-center bg-brand-primary text-neutral-white font-bold text-sm md:text-base lg:text-lg px-2.5 md:px-3 lg:px-3.5 py-1 md:py-1.5 lg:py-1.5 rounded-full whitespace-nowrap flex-shrink-0">
+              <span className="inline-flex items-center justify-center bg-brand-primary text-neutral-white text-sm md:text-base lg:text-lg px-2.5 md:px-3 lg:px-3.5 py-1 md:py-1.5 lg:py-1.5 rounded-full whitespace-nowrap flex-shrink-0">
                 課題{number}
               </span>
             )}
             {category && (
-              <span className="text-base md:text-xl lg:text-2xl font-bold text-brand-primary whitespace-nowrap">
+              <span className="text-base md:text-xl lg:text-2xl text-brand-primary whitespace-nowrap">
                 {category}
               </span>
             )}

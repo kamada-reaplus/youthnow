@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "市場調査",
     "インフルエンサー調査",
     "Youth Now",
-    "Z世代",
+    "若年層",
     "マーケティングリサーチ",
   ],
   openGraph: {

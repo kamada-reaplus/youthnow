@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import {
   BarChart3,
   Users,
@@ -207,16 +207,37 @@ export function ServicesSection() {
     });
   };
 
-  // Output スライダーのハンドラー
-  const nextSlide = () => {
+  // Output スライダーのハンドラー（メモ化で再レンダリング防止）
+  const nextSlide = useCallback(() => {
     setSlideIndex((prev) => (prev + 1) % OUTPUT_SAMPLES.length);
-  };
+  }, []);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     setSlideIndex((prev) =>
       prev === 0 ? OUTPUT_SAMPLES.length - 1 : prev - 1
     );
-  };
+  }, []);
+
+  // スライドインデックス直接変更（インジケータークリック用）
+  const handleSlideClick = useCallback((index: number) => {
+    setSlideIndex(index);
+  }, []);
+
+  // 隣接スライドのプリロード（Next.jsのImage最適化に任せるため軽量）
+  useEffect(() => {
+    const preloadAdjacent = () => {
+      const prevIndex =
+        slideIndex === 0 ? OUTPUT_SAMPLES.length - 1 : slideIndex - 1;
+      const nextIndex = (slideIndex + 1) % OUTPUT_SAMPLES.length;
+
+      [prevIndex, nextIndex].forEach((index) => {
+        const img = new window.Image();
+        img.src = OUTPUT_SAMPLES[index].image;
+      });
+    };
+
+    preloadAdjacent();
+  }, [slideIndex]);
 
   return (
     <section
@@ -287,17 +308,19 @@ export function ServicesSection() {
               <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-neutral-white">
                 <div className="aspect-[16/9] relative">
                   <Image
+                    key={slideIndex}
                     src={OUTPUT_SAMPLES[slideIndex].image}
                     alt={OUTPUT_SAMPLES[slideIndex].title}
                     fill
-                    className="object-contain"
+                    className="object-contain transition-opacity duration-300"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                     priority={slideIndex === 0}
+                    unoptimized
                   />
                 </div>
 
                 {/* Slide Info Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neutral-black/80 to-transparent p-lg">
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neutral-black/80 to-transparent p-lg transition-opacity duration-300">
                   <p className="text-caption md:text-body-sm lg:text-body text-neutral-white/90">
                     {OUTPUT_SAMPLES[slideIndex].title}
                   </p>
@@ -325,7 +348,7 @@ export function ServicesSection() {
                 {OUTPUT_SAMPLES.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => setSlideIndex(index)}
+                    onClick={() => handleSlideClick(index)}
                     className={`w-2 h-2 rounded-full transition-all ${
                       index === slideIndex
                         ? "bg-brand-primary w-8"

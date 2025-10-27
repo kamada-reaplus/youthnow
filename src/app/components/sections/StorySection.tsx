@@ -60,15 +60,15 @@ export function StorySection() {
                 <div className="w-full max-w-[200px] relative aspect-square">
                   <Image
                     src={Story}
-                    alt="Z世代向け商品を作りたいが、何が刺さるかわからない"
+                    alt="若年層向け商品を作りたいが、何が刺さるかわからない"
                     fill
                     className="object-contain"
                     loading="lazy"
                   />
                 </div>
                 <div className="text-center">
-                  <p className="text-body-sm text-brand-primary leading-relaxed font-bold">
-                    「Z世代向け商品を作りたいが、
+                  <p className="text-body-sm text-brand-primary leading-relaxed">
+                    「若年層向け商品を作りたいが、
                     <br />
                     何が刺さるか分からない」
                   </p>
@@ -78,7 +78,7 @@ export function StorySection() {
 
             {/* Problem */}
             <div className="space-y-md">
-              <p className="text-h6 text-neutral-black font-bold text-center">
+              <p className="text-h6 text-neutral-black text-center">
                 既存の会社では・・・
               </p>
               <div className="max-w-md mx-auto">
@@ -89,9 +89,7 @@ export function StorySection() {
             <div className="mb-lg text-center">
               <p className="text-h5 text-neutral-black leading-tight">
                 だからこそ私たちは
-                <span className="text-2xl font-bold text-brand-secondary mx-1">
-                  決意
-                </span>
+                <span className="text-2xl text-brand-secondary mx-1">決意</span>
                 しました
               </p>
             </div>
@@ -108,7 +106,7 @@ export function StorySection() {
               <p className="text-body text-neutral-black/70 leading-relaxed">
                 これらすべてを掛け合わせた
               </p>
-              <p className="text-h5 text-brand-primary font-bold my-sm leading-relaxed">
+              <p className="text-h5 text-brand-primary my-sm leading-relaxed">
                 「今までにない調査体験」
               </p>
               <p className="text-body text-neutral-black/70 leading-relaxed">
@@ -150,15 +148,15 @@ export function StorySection() {
                 <div className="w-48 lg:w-56 h-48 lg:h-56 relative flex-shrink-0">
                   <Image
                     src={Story}
-                    alt="Z世代向け商品を作りたいが、何が刺さるかわからない"
+                    alt="若年層向け商品を作りたいが、何が刺さるかわからない"
                     fill
                     className="object-contain"
                     loading="lazy"
                   />
                 </div>
                 <div className="max-w-lg">
-                  <p className="text-h5 lg:text-h4 text-brand-primary leading-relaxed font-bold">
-                    「Z世代向け商品を作りたいが、
+                  <p className="text-h5 lg:text-h4 text-brand-primary leading-relaxed">
+                    「若年層向け商品を作りたいが、
                     <br />
                     何が刺さるか分からない」
                   </p>
@@ -168,7 +166,7 @@ export function StorySection() {
 
             {/* Problem - 横並び */}
             <div className="space-y-md">
-              <p className="text-h6 md:text-h5 text-neutral-black font-bold text-center">
+              <p className="text-h6 md:text-h5 text-neutral-black text-center">
                 既存の会社では・・・
               </p>
               <div className="max-w-4xl mx-auto">
@@ -183,7 +181,7 @@ export function StorySection() {
             <div className="mb-md text-center">
               <p className="text-h5 md:text-h4 text-neutral-black leading-tight">
                 だからこそ私たちは
-                <span className="text-3xl md:text-4xl font-bold text-brand-secondary mx-1">
+                <span className="text-3xl md:text-4xl text-brand-secondary mx-1">
                   決意
                 </span>
                 しました
@@ -206,7 +204,7 @@ export function StorySection() {
               <p className="text-body md:text-h6 text-neutral-black/70 leading-relaxed">
                 これらすべてを掛け合わせた
               </p>
-              <p className="text-h5 md:text-h4 text-brand-primary font-bold my-sm leading-relaxed">
+              <p className="text-h5 md:text-h4 text-brand-primary my-sm leading-relaxed">
                 「今までにない調査体験」
               </p>
               <p className="text-body md:text-h6 text-neutral-black/70 leading-relaxed">

@@ -43,7 +43,7 @@ export function Hero() {
       <BackgroundLayer />
 
       <h1 className="sr-only">
-        Youth Now - 若年層インサイトマーケティング
+        Youth Now! - 若年層インサイトマーケティング
         最短24時間で数千人から本音収集
       </h1>
 
@@ -149,7 +149,7 @@ function SharedContent({ isMobile }: SharedContentProps) {
 
             {/* サブキャッチ - マーカー風 */}
             <div className="self-start -mt-0.5">
-              <p className="font-bold leading-tight text-white text-[clamp(0.85rem,6vw,1rem)]">
+              <p className="leading-tight text-white text-[clamp(0.85rem,6vw,1rem)]">
                 若年層の
                 <br />
                 <span className="relative inline-block mx-0.5">
@@ -225,7 +225,7 @@ function SharedContent({ isMobile }: SharedContentProps) {
         </div>
 
         <div className="self-start -mt-1">
-          <p className="font-bold leading-tight text-white text-[clamp(1.6rem,2.8vw,2.2rem)] lg:text-[clamp(1.8rem,3.2vw,2.6rem)]">
+          <p className="leading-tight text-white text-[clamp(1.6rem,2.8vw,2.2rem)] lg:text-[clamp(1.8rem,3.2vw,2.6rem)]">
             若年層の
             <span className="relative inline-block mx-1">
               <span className="relative z-10 font-extrabold text-white text-[clamp(1.8rem,3.2vw,2.5rem)] lg:text-[clamp(2rem,3.6vw,2.8rem)]">

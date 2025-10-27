@@ -161,7 +161,7 @@ export function Header() {
                 title={item.label}
               >
                 <span
-                  className={`text-xs font-bold ${
+                  className={`text-xs ${
                     activeSection === item.id
                       ? "text-brand-primary"
                       : "text-neutral-white"
@@ -200,7 +200,7 @@ export function Header() {
                       }`}
                     >
                       <span
-                        className={`text-sm font-bold ${
+                        className={`text-sm ${
                           activeSection === item.id
                             ? "text-brand-primary"
                             : "text-neutral-white"

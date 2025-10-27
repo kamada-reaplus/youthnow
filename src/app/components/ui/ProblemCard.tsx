@@ -34,8 +34,8 @@ export function ProblemCard({
 
   const getTextStyle = () => {
     return isProblem
-      ? "text-body text-neutral-black font-bold"
-      : "text-body text-neutral-black font-bold";
+      ? "text-body text-neutral-black"
+      : "text-body text-neutral-black";
   };
 
   const getContainerClass = () => {

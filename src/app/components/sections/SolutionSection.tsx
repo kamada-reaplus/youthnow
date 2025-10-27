@@ -104,7 +104,7 @@ export function SolutionSection() {
           <ContactButton
             variant="yellow"
             size="medium"
-            text="Youth Nowで解決！"
+            text="Youth Now!で解決"
           />
         </div>
       </div>
