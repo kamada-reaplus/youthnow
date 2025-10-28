@@ -406,7 +406,9 @@ export function Form({
             />
             <span className={`text-body-sm ${colors.checkboxText}`}>
               <a
-                href="#privacy"
+                href="/privacy-policy"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`${colors.checkboxLinkText} underline ${colors.checkboxLinkHover} transition-colors`}
               >
                 個人情報の取り扱い

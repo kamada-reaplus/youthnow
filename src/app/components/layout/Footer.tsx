@@ -33,18 +33,27 @@ export function Footer() {
         <div className="border-t border-neutral-black/10 my-lg"></div>
 
         {/* 運営会社 */}
-        <div className="text-center mb-lg">
-          <p className="text-body-sm text-neutral-white/70 mb-xs">運営会社</p>
-          <p className="text-body md:text-body-lg text-neutral-white font-medium mb-sm">
-            株式会社Reaplus
+        <div className="text-center mb-md">
+          <p className="text-caption md:text-body-sm text-neutral-white">
+            運営会社：株式会社Reaplus
           </p>
           <a
             href="https://reaplus.jp/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block text-body-sm md:text-body text-neutral-white hover:text-brand-secondary underline underline-offset-2 transition-colors duration-200"
+            className="text-caption md:text-body-sm text-neutral-white hover:text-brand-secondary underline underline-offset-2 transition-colors duration-200"
           >
             https://reaplus.jp/
+          </a>
+        </div>
+
+        {/* リンク */}
+        <div className="text-center mb-md">
+          <a
+            href="/privacy-policy"
+            className="text-caption md:text-body-sm text-neutral-white hover:text-brand-secondary underline underline-offset-2 transition-colors duration-200"
+          >
+            プライバシーポリシー
           </a>
         </div>
 
