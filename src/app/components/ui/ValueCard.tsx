@@ -19,9 +19,9 @@ const cardVariants = cva(
           "bg-white/90 backdrop-blur-md border border-white/30 shadow-lg",
       },
       padding: {
-        sm: "p-5 md:p-6 lg:p-8",
-        md: "p-6 md:p-8 lg:p-12",
-        lg: "p-8 md:p-12 lg:p-16",
+        sm: "p-4 md:p-6 lg:p-8",
+        md: "p-5 md:p-8 lg:p-12",
+        lg: "p-6 md:p-12 lg:p-16",
       },
     },
     defaultVariants: {
@@ -57,7 +57,7 @@ const ValueCardLeft = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      "flex flex-col h-full items-start gap-md md:gap-lg",
+      "flex flex-col h-full items-start gap-3 md:gap-lg",
       className
     )}
   >
@@ -67,14 +67,14 @@ const ValueCardLeft = ({
 
 // 番号（円形デザイン）
 const ValueNumber = ({ children }: { children: React.ReactNode }) => (
-  <div className="inline-flex items-center justify-center w-12 h-12 bg-brand-primary rounded-full border-2 border-brand-primary">
+  <div className="hidden md:inline-flex items-center justify-center w-12 h-12 bg-brand-primary rounded-full border-2 border-brand-primary">
     <span className="font-extrabold text-white text-xl">{children}</span>
   </div>
 );
 
 // カテゴリテキスト（シンプルな青文字）
 const ProblemCategory = ({ children }: { children: React.ReactNode }) => (
-  <span className="font-bold text-brand-primary text-base md:text-lg">
+  <span className="font-bold text-brand-primary text-lg md:text-lg">
     {children}
   </span>
 );
@@ -84,7 +84,7 @@ const LeftHeader = ({
   children,
   className,
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("flex items-center gap-3 md:gap-4", className)}>
+  <div className={cn("flex items-center gap-2 md:gap-4", className)}>
     {children}
   </div>
 );
@@ -98,8 +98,8 @@ const BeforeBadge = () => (
 
 // 吹き出し（Beforeの発話バブル）
 const BeforeBubble = ({ children }: { children: React.ReactNode }) => (
-  <div className="bg-neutral-light-cyan border border-neutral-black/20 rounded-2xl md:rounded-3xl px-4 md:px-5 py-4 md:py-5 shadow-sm max-w-[220px] md:max-w-[260px] lg:max-w-[300px] flex items-center">
-    <p className="text-sm md:text-base text-neutral-black/80 leading-snug">
+  <div className="bg-neutral-light-cyan border border-neutral-black/20 rounded-2xl md:rounded-3xl px-3 md:px-5 py-3 md:py-5 shadow-sm max-w-[200px] md:max-w-[260px] lg:max-w-[300px] flex items-center">
+    <p className="text-xs md:text-base text-neutral-black/80 leading-snug">
       {children}
     </p>
   </div>
@@ -107,11 +107,11 @@ const BeforeBubble = ({ children }: { children: React.ReactNode }) => (
 
 // キャラクター画像
 const ProblemImage = ({ src, alt }: { src: StaticImageData; alt: string }) => (
-  <div className="flex-shrink-0 mb-2">
+  <div className="flex-shrink-0 mb-1">
     <Image
       src={src}
       alt={alt}
-      className="w-16 h-16 md:w-20 md:h-20 object-contain"
+      className="w-14 h-14 md:w-20 md:h-20 object-contain"
       loading="lazy"
     />
   </div>
@@ -124,7 +124,7 @@ const LeftBefore = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      "relative flex flex-col items-start justify-center gap-sm flex-1",
+      "relative flex flex-col items-start justify-center gap-2 md:gap-sm flex-1",
       className
     )}
   >
@@ -137,7 +137,7 @@ const VALUECardRight = ({
   children,
   className,
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("space-y-3 md:space-y-4 relative", className)}>
+  <div className={cn("space-y-2.5 md:space-y-4 relative", className)}>
     {children}
   </div>
 );
@@ -159,7 +159,7 @@ const VALUETitle = ({
 }) => (
   <h3
     id={id}
-    className="text-2xl md:text-3xl font-bold text-gray-900 leading-tight"
+    className="text-xl md:text-3xl font-bold text-gray-900 leading-tight"
   >
     {children}
   </h3>
@@ -174,7 +174,7 @@ const VALUEDescription = ({
 }) => (
   <p
     id={id}
-    className="text-sm font-normal text-gray-600 leading-relaxed whitespace-pre-line"
+    className="text-xs md:text-sm font-normal text-gray-600 leading-relaxed whitespace-pre-line"
   >
     {children}
   </p>
@@ -183,21 +183,21 @@ const VALUEDescription = ({
 const FeatureList = ({ children }: { children: React.ReactNode }) => (
   <ul
     role="list"
-    className="space-y-2 md:space-y-3 pt-2 bg-neutral-light-cyan/40 p-4 md:p-5 rounded-xl md:rounded-2xl border"
+    className="space-y-1.5 md:space-y-2.5 pt-1.5 bg-neutral-light-cyan/40 p-3 md:p-5 rounded-xl md:rounded-2xl border"
   >
     {children}
   </ul>
 );
 
 const FeatureItem = ({ children }: { children: React.ReactNode }) => (
-  <li className="flex gap-2.5 md:gap-3 items-start rounded-xl">
+  <li className="flex gap-2 md:gap-3 items-start rounded-xl">
     <span
-      className="bg-brand-primary text-neutral-white rounded-full w-6 h-6 md:w-7 md:h-7 flex items-center justify-center flex-shrink-0 text-sm md:text-base shadow-sm"
+      className="bg-brand-primary text-neutral-white rounded-full w-5 h-5 md:w-7 md:h-7 flex items-center justify-center flex-shrink-0 text-xs md:text-base shadow-sm"
       aria-hidden
     >
       ✓
     </span>
-    <p className="text-sm font-bold text-gray-600 leading-relaxed">
+    <p className="text-xs md:text-sm font-bold text-gray-600 leading-relaxed">
       {children}
     </p>
   </li>
@@ -216,7 +216,7 @@ const TransitionArrow = () => (
 
 // レイアウトグリッド（矢印を含む3カラム構成、Beforeを小さく、Afterを広く）
 const TwoColumn = ({ children }: { children: React.ReactNode }) => (
-  <div className="grid grid-cols-1 md:grid-cols-[minmax(200px,25%)_auto_1fr] gap-lg md:gap-md lg:gap-lg items-center">
+  <div className="grid grid-cols-1 md:grid-cols-[minmax(200px,25%)_auto_1fr] gap-4 md:gap-md lg:gap-lg items-center">
     {children}
   </div>
 );

@@ -35,7 +35,7 @@ export function OutputSlider({ samples }: OutputSliderProps) {
         <div className="aspect-[16/9] relative">
           {samples.map((sample, index) => (
             <div
-              key={sample.title}
+              key={`slide-${index}`}
               className={`absolute inset-0 transition-opacity duration-300 ${
                 index === slideIndex ? "opacity-100 z-10" : "opacity-0 z-0"
               }`}
@@ -82,9 +82,9 @@ export function OutputSlider({ samples }: OutputSliderProps) {
 
       {/* Slide Indicators */}
       <div className="flex justify-center gap-sm mt-lg">
-        {samples.map((sample, index) => (
+        {samples.map((_, index) => (
           <button
-            key={`indicator-${sample.title}`}
+            key={`indicator-${index}`}
             onClick={() => handleSlideClick(index)}
             className={`w-2 h-2 rounded-full transition-all ${
               index === slideIndex

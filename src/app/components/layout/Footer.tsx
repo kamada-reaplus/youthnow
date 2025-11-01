@@ -13,7 +13,10 @@ export function Footer() {
         {/* メインコンテンツ */}
         <div className="text-center mb-lg">
           <div className="flex justify-center mb-sm">
-            <BrandLogo width={200} height={60} className="w-auto h-6 md:h-8" />
+            <BrandLogo
+              responsive
+              className="h-6 md:h-8 w-auto"
+            />
           </div>
           <p className="text-body md:text-body-lg text-neutral-white font-medium">
             トレンドのすぐそばに

@@ -72,6 +72,9 @@ function Logo() {
       <Image
         src={logoHeader}
         alt="次世代型 インサイトマーケティング Youth Now!"
+        width={0}
+        height={0}
+        sizes="100vw"
         className="w-full h-auto"
         quality={75}
         priority
@@ -120,7 +123,7 @@ function SharedContent({ isMobile }: SharedContentProps) {
     return (
       <div className="flex flex-col items-center w-full space-y-4">
         {/* 画像とテキストエリア */}
-        <div className="flex flex-row items-center justify-center gap-2 w-full max-w-[450px] mx-auto px-2">
+        <div className="flex flex-row items-center justify-center gap-2 w-full max-w-[450px] mx-auto px-2 mb-4">
           {/* スマートフォン画像 */}
           <div className="flex-shrink-0">
             <div className="w-[clamp(120px,35vw,160px)]">

@@ -10,6 +10,8 @@ type BrandLogoProps = {
   priority?: boolean;
   alt?: string;
   className?: string;
+  style?: React.CSSProperties;
+  responsive?: boolean;
 };
 
 export function BrandLogo({
@@ -19,9 +21,27 @@ export function BrandLogo({
   priority = false,
   alt = "Youth Now! ロゴ",
   className = "",
+  style,
+  responsive = false,
 }: BrandLogoProps) {
   const src =
     variant === "black" ? logoBlack : variant === "svg" ? logoSvg : logoColor;
+
+  if (responsive) {
+    return (
+      <Image
+        src={src}
+        alt={alt}
+        width={0}
+        height={0}
+        sizes="100vw"
+        className={`object-contain ${className}`}
+        style={{ ...style, width: 'auto', height: 'auto' }}
+        priority={priority}
+      />
+    );
+  }
+
   return (
     <Image
       src={src}
@@ -29,6 +49,7 @@ export function BrandLogo({
       width={width}
       height={height}
       className={`object-contain ${className}`}
+      style={style}
       priority={priority}
     />
   );

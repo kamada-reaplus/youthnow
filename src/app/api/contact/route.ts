@@ -120,21 +120,21 @@ export async function POST(request: NextRequest) {
       process.cwd(),
       "public/downloads/service-guide.pdf"
     );
-    const trendReportPath = path.join(
-      process.cwd(),
-      "public/downloads/trend-report.pdf"
-    );
+    // const trendReportPath = path.join(
+    //   process.cwd(),
+    //   "public/downloads/trend-report.pdf"
+    // );
 
     let serviceGuideBuffer: Buffer | undefined;
-    let trendReportBuffer: Buffer | undefined;
+    // let trendReportBuffer: Buffer | undefined;
 
     try {
       if (fs.existsSync(serviceGuidePath)) {
         serviceGuideBuffer = fs.readFileSync(serviceGuidePath);
       }
-      if (fs.existsSync(trendReportPath)) {
-        trendReportBuffer = fs.readFileSync(trendReportPath);
-      }
+      // if (fs.existsSync(trendReportPath)) {
+      //   trendReportBuffer = fs.readFileSync(trendReportPath);
+      // }
     } catch (error) {
       console.error("PDF読み込みエラー:", error);
     }
@@ -181,7 +181,7 @@ export async function POST(request: NextRequest) {
             </p>
 
             <p style="color: #4B5563; font-size: 16px; line-height: 1.8; margin: 0 0 30px 0;">
-              ご請求いただきましたサービス資料と、特典の最新トレンドレポートをPDFファイルで添付いたしました。
+              ご請求いただきましたサービス資料をPDFファイルで添付いたしました。
             </p>
 
             <!-- 添付ファイル情報 -->
@@ -189,7 +189,6 @@ export async function POST(request: NextRequest) {
               <p style="color: #1F2937; font-size: 14px; font-weight: bold; margin: 0 0 10px 0;">📎 添付ファイル</p>
               <ul style="color: #4B5563; font-size: 14px; line-height: 1.8; margin: 0; padding-left: 20px;">
                 <li>サービス紹介資料.pdf</li>
-                <li>若年層トレンドレポート.pdf (特典)</li>
               </ul>
             </div>
 
@@ -201,7 +200,7 @@ export async function POST(request: NextRequest) {
             <!-- CTA -->
             <div style="text-align: center; margin: 40px 0;">
               <p style="color: #6B7280; font-size: 14px; margin: 0 0 15px 0;">さらに詳しく知りたい方は</p>
-              <a href="https://youthnow.example.com" style="display: inline-block; background-color: #FFD700; color: #1F2937; text-decoration: none; padding: 14px 40px; border-radius: 50px; font-weight: bold; font-size: 16px;">
+              <a href="https://youthnow.jp" style="display: inline-block; background-color: #FFD700; color: #1F2937; text-decoration: none; padding: 14px 40px; border-radius: 50px; font-weight: bold; font-size: 16px;">
                 公式サイトで詳細を見る
               </a>
             </div>
@@ -227,12 +226,12 @@ export async function POST(request: NextRequest) {
         content: serviceGuideBuffer,
       });
     }
-    if (trendReportBuffer) {
-      attachments.push({
-        filename: "若年層トレンドレポート_特典.pdf",
-        content: trendReportBuffer,
-      });
-    }
+    // if (trendReportBuffer) {
+    //   attachments.push({
+    //     filename: "若年層トレンドレポート_特典.pdf",
+    //     content: trendReportBuffer,
+    //   });
+    // }
 
     await resend.emails.send({
       from: `Youth Now <${process.env.FROM_EMAIL || "onboarding@resend.dev"}>`,

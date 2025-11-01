@@ -146,7 +146,7 @@ export function ServicesSection() {
               {SERVICES.map((service) => (
                 <div
                   key={service.title}
-                  className="flex-shrink-0 w-[85vw] max-w-[340px] snap-center"
+                  className="flex-shrink-0 w-[300px] snap-center"
                 >
                   <ServiceCard {...service} />
                 </div>
