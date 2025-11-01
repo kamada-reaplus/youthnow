@@ -341,39 +341,51 @@ export function Form({
           <p className={`text-caption ${colors.labelText}/60 mb-xs`}>
             ご希望に合わせたご提案をさせていただきます
           </p>
-          <select
-            id="interest"
-            name="interest"
-            value={formData.interest}
-            onChange={(e) => handleChange("interest", e.target.value)}
-            onBlur={() => handleBlur("interest")}
-            aria-invalid={
-              touched.interest && errors.interest ? "true" : "false"
-            }
-            aria-describedby={
-              touched.interest && errors.interest ? "interest-error" : undefined
-            }
-            className={`w-full ${
-              colors.inputBg
-            } border-2 rounded-lg px-lg py-md ${colors.inputText} ${
-              colors.inputPlaceholder
-            } focus:outline-none transition-all ${
-              touched.interest && errors.interest
-                ? colors.inputBorderError
-                : `${colors.inputBorder} ${colors.inputBorderFocus}`
-            } ${
-              !errors.interest && formData.interest
-                ? colors.inputBorderValid
-                : ""
-            }`}
-          >
-            <option value="">選択してください</option>
-            {interests.map((interest, index) => (
-              <option key={index} value={interest}>
-                {interest}
-              </option>
-            ))}
-          </select>
+          <div className="relative">
+            <select
+              id="interest"
+              name="interest"
+              value={formData.interest}
+              onChange={(e) => handleChange("interest", e.target.value)}
+              onBlur={() => handleBlur("interest")}
+              aria-invalid={
+                touched.interest && errors.interest ? "true" : "false"
+              }
+              aria-describedby={
+                touched.interest && errors.interest ? "interest-error" : undefined
+              }
+              style={{
+                WebkitAppearance: 'none',
+                MozAppearance: 'none',
+                backgroundImage: 'none',
+              }}
+              className={`w-full pr-10 ${
+                colors.inputBg
+              } border-2 rounded-lg px-lg py-md ${colors.inputText} ${
+                colors.inputPlaceholder
+              } focus:outline-none transition-all appearance-none cursor-pointer ${
+                touched.interest && errors.interest
+                  ? colors.inputBorderError
+                  : `${colors.inputBorder} ${colors.inputBorderFocus}`
+              } ${
+                !errors.interest && formData.interest
+                  ? colors.inputBorderValid
+                  : ""
+              }`}
+            >
+              <option value="">選択してください</option>
+              {interests.map((interest, index) => (
+                <option key={index} value={interest}>
+                  {interest}
+                </option>
+              ))}
+            </select>
+            <div className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
+              <svg className="w-5 h-5 text-neutral-black/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
           {touched.interest && errors.interest && (
             <div
               id="interest-error"
