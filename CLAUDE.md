@@ -31,7 +31,7 @@ npm lint
 アプリは階層的なコンポーネント構成に従っています:
 
 - **レイアウトコンポーネント** ([src/app/components/layout/](src/app/components/layout/)): サイト全体の構造 (Header, Footer, FloatingCTAButton)
-- **セクションコンポーネント** ([src/app/components/sections/](src/app/components/sections/)): ページの全幅セクション (Hero, ProblemSection, SolutionSection など)
+- **セクションコンポーネント** ([src/app/components/sections/](src/app/components/sections/)): ページの全幅セクション (Hero, ProblemSection, VALUESection など)
 - **UI コンポーネント** ([src/app/components/ui/](src/app/components/ui/)): 再利用可能な UI 要素 (SectionHeader, ContactButton, AbstractBackground, SectionDivider など)
 
 ### ページ構成パターン

@@ -1,7 +1,12 @@
 "use client";
-
 import { ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Container } from "./Container";
+import {
+  trackFormStart,
+  trackFormSubmit,
+  trackFormComplete,
+} from "@/app/lib/analytics";
 
 // フォームバリデーション用の型定義
 type ValidationErrors = {
@@ -150,6 +155,15 @@ export function ReusableContactForm({
   const [touched, setTouched] = useState<TouchedFields>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [formStarted, setFormStarted] = useState(false);
+
+  // フォーム開始トラッキング（初回入力時）
+  useEffect(() => {
+    if (!formStarted && Object.keys(touched).length > 0) {
+      trackFormStart(title || "お問い合わせフォーム");
+      setFormStarted(true);
+    }
+  }, [touched, formStarted, title]);
 
   // バリデーション関数
   const validateField = (name: string, value: string | boolean) => {
@@ -252,6 +266,10 @@ export function ReusableContactForm({
         await new Promise((resolve) => setTimeout(resolve, 1500));
       }
 
+      // 送信成功トラッキング
+      trackFormSubmit(title || "お問い合わせフォーム", true);
+      trackFormComplete(title || "お問い合わせフォーム");
+
       setSubmitSuccess(true);
       setFormData({
         company: "",
@@ -264,9 +282,13 @@ export function ReusableContactForm({
       });
       setErrors({});
       setTouched({});
+      setFormStarted(false);
 
       if (onSuccess) onSuccess();
     } catch (error) {
+      // 送信失敗トラッキング
+      trackFormSubmit(title || "お問い合わせフォーム", false);
+
       if (onError) {
         onError(error as Error);
       } else {
@@ -281,12 +303,10 @@ export function ReusableContactForm({
     <div
       className={`${backgroundColor} section-spacing px-lg relative overflow-hidden scroll-mt-20 ${className}`}
     >
-      <div className="container mx-auto max-w-md relative z-10">
+      <Container padding="none" className="relative z-10 max-w-md">
         {/* ヘッダー */}
         {title && (
-          <h2 className={`text-h3 ${textColor} text-center mb-md`}>
-            {title}
-          </h2>
+          <h2 className={`text-h3 ${textColor} text-center mb-md`}>{title}</h2>
         )}
         {subtitle && (
           <p className={`text-h6 ${textColor} text-center mb-lg`}>{subtitle}</p>
@@ -334,9 +354,7 @@ export function ReusableContactForm({
             {/* 目的選択 */}
             {showPurposeSelection && (
               <div>
-                <label
-                  className={`block text-body-sm ${labelColor} mb-md`}
-                >
+                <label className={`block text-body-sm ${labelColor} mb-md`}>
                   お問い合わせ目的
                 </label>
                 <div className="grid grid-cols-3 gap-sm">
@@ -449,9 +467,7 @@ export function ReusableContactForm({
 
             {/* 興味のある内容 */}
             <div>
-              <label
-                className={`block text-body-sm ${labelColor} mb-md`}
-              >
+              <label className={`block text-body-sm ${labelColor} mb-md`}>
                 最も知りたいこと <span className={errorColor}>*</span>
               </label>
               <div className="space-y-md">
@@ -588,9 +604,7 @@ export function ReusableContactForm({
             {/* ボーナス */}
             {showBonusSection && (
               <div className="text-center">
-                <p
-                  className={`text-body-sm ${buttonTextColor} mb-xs`}
-                >
+                <p className={`text-body-sm ${buttonTextColor} mb-xs`}>
                   {bonusText}
                 </p>
                 {bonusSubtext && (
@@ -618,7 +632,7 @@ export function ReusableContactForm({
             </ul>
           </div>
         )}
-      </div>
+      </Container>
     </div>
   );
 }
@@ -665,10 +679,7 @@ function FormField({
 }: FormFieldProps) {
   return (
     <div>
-      <label
-        htmlFor={id}
-        className={`block text-body-sm ${labelColor} mb-sm`}
-      >
+      <label htmlFor={id} className={`block text-body-sm ${labelColor} mb-sm`}>
         {label}{" "}
         {required ? (
           <span className={errorColor}>*</span>

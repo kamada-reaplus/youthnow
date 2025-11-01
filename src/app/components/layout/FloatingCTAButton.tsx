@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { MessageCircle } from "lucide-react";
+import { trackButtonClick } from "@/app/lib/analytics";
 
 // デザインシステム使用コンポーネント
 // - カラー: brand-primary, neutral-white など
@@ -48,6 +49,9 @@ export function FloatingCTAButton() {
   }, []);
 
   const handleClick = () => {
+    // イベントトラッキング
+    trackButtonClick("お問い合わせ", "floating_cta_button");
+
     // スクロールしてコンタクトフォームまで移動
     const contactSection = document.getElementById("contact");
     if (contactSection) {

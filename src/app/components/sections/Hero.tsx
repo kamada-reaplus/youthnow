@@ -39,7 +39,7 @@ const FEATURES: Feature[] = [
 
 export function Hero() {
   return (
-    <section className="text-white min-h-screen flex flex-col items-center px-3 py-6 relative overflow-hidden">
+    <section className="text-white min-h-screen flex flex-col items-center px-3 py-4 relative overflow-hidden">
       <BackgroundLayer />
 
       <h1 className="sr-only">
@@ -83,7 +83,7 @@ function Logo() {
 
 function MainContent() {
   return (
-    <div className="flex flex-col items-center w-full z-10 space-y-6 md:space-y-8">
+    <div className="flex flex-col items-center w-full z-10 space-y-2 md:space-y-4">
       <MobileLayout />
       <DesktopLayout />
 
@@ -138,13 +138,14 @@ function SharedContent({ isMobile }: SharedContentProps) {
 
           {/* テキストエリア */}
           <div className="flex flex-col space-y-2 flex-1">
-            {/* メインキャッチ - PC版と同じ白背景 */}
+            {/* メインキャッチ - 吹き出しボックス */}
             <div className="self-start">
-              <div className="bg-white rounded-lg border-2 border-brand-primary px-3 py-1.5 shadow-[2px_2px_0px_0px_rgba(255,215,0,1)]">
-                <h2 className="font-extrabold leading-tight text-brand-primary text-[clamp(1rem,5vw,1.3rem)]">
+              <span className="relative inline-block bg-white px-3 py-1.5 rounded-2xl border-2 border-brand-primary">
+                <h2 className="font-extrabold text-brand-primary text-[clamp(1rem,5vw,1.3rem)]">
                   企画も販促も
                 </h2>
-              </div>
+                <span className="absolute -bottom-2 left-4 w-3 h-3 bg-white border-b-2 border-r-2 border-brand-primary rotate-45"></span>
+              </span>
             </div>
 
             {/* サブキャッチ - マーカー風 */}
@@ -162,15 +163,19 @@ function SharedContent({ isMobile }: SharedContentProps) {
               </p>
             </div>
 
-            {/* サブメッセージ - PC版と同じデザイン */}
+            {/* サブメッセージ */}
             <div className="self-start">
               <p className="text-white font-extrabold leading-tight text-[clamp(0.75rem,2vw,1rem)]">
-                <span className="inline-block text-brand-primary bg-brand-secondary rounded-lg border-2 border-brand-primary px-1.5 py-1 mx-1 shadow-[2px_2px_0px_0px_rgba(255,255,255,1)]">
-                  データ
+                <span className="relative inline-block bg-brand-secondary px-2 py-1 rounded-full mx-1">
+                  <span className="font-extrabold text-brand-primary">
+                    データ
+                  </span>
                 </span>
                 と
-                <span className="inline-block text-brand-primary bg-brand-secondary rounded-lg border-2 border-brand-primary px-1.5 py-1 mx-1 shadow-[2px_2px_0px_0px_rgba(255,255,255,1)]">
-                  インサイト
+                <span className="relative inline-block bg-brand-secondary px-2 py-1 rounded-full mx-1">
+                  <span className="font-extrabold text-brand-primary">
+                    インサイト
+                  </span>
                 </span>
                 で、
                 <br />
@@ -217,11 +222,12 @@ function SharedContent({ isMobile }: SharedContentProps) {
       {/* 右側: テキストエリアとFeatureCard */}
       <div className="flex flex-col justify-start space-y-4">
         <div className="self-start">
-          <div className="bg-white rounded-lg border-2 border-brand-primary px-6 py-3 shadow-[4px_4px_0px_0px_rgba(255,215,0,1)]">
-            <h2 className="font-extrabold leading-tight text-brand-primary text-[clamp(2rem,3vw,2.5rem)]">
+          <span className="relative inline-block bg-white px-6 py-3 rounded-2xl border-2 border-brand-primary">
+            <h2 className="font-extrabold text-brand-primary text-[clamp(2rem,3vw,2.5rem)]">
               企画も販促も
             </h2>
-          </div>
+            <span className="absolute -bottom-2 left-6 w-4 h-4 bg-white border-b-2 border-r-2 border-brand-primary rotate-45"></span>
+          </span>
         </div>
 
         <div className="self-start -mt-1">
@@ -240,12 +246,16 @@ function SharedContent({ isMobile }: SharedContentProps) {
         <div className="self-start">
           <div>
             <p className="text-neutral-white font-extrabold leading-tight text-[clamp(1.1rem,2vw,1.5rem)] lg:text-[clamp(1.3rem,2.3vw,1.8rem)]">
-              <span className="inline-block text-brand-primary bg-brand-secondary rounded-lg border-2 border-brand-primary px-2 py-2 mx-1 shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">
-                データ
+              <span className="relative inline-block bg-brand-secondary px-3 py-1.5 rounded-full mx-1">
+                <span className="font-extrabold text-brand-primary">
+                  データ
+                </span>
               </span>
               と
-              <span className="inline-block text-brand-primary bg-brand-secondary rounded-lg border-2 border-brand-primary px-2 py-2 mx-2 shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">
-                インサイト
+              <span className="relative inline-block bg-brand-secondary px-3 py-1.5 rounded-full mx-2">
+                <span className="font-extrabold text-brand-primary">
+                  インサイト
+                </span>
               </span>
               で、次の一手を早く。
             </p>
@@ -253,7 +263,7 @@ function SharedContent({ isMobile }: SharedContentProps) {
         </div>
 
         {/* 3つの特徴カード */}
-        <div className="grid grid-cols-3 w-full gap-2 lg:gap-2.5 max-w-[420px] lg:max-w-[480px] !mt-4 lg:!mt-5">
+        <div className="grid grid-cols-3 w-full gap-2 lg:gap-2.5 max-w-[450px] lg:max-w-[620px] !mt-4 lg:!mt-5">
           {FEATURES.map((feature, index) => (
             <FeatureCard
               key={`feature-${index}`}

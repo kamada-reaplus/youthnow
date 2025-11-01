@@ -54,23 +54,27 @@ export function PricingCard({
           {name}
         </h3>
         <div
-          className={`text-4xl mb-2 ${
-            isStandard ? "text-neutral-white" : "text-neutral-dark"
+          className={`text-3xl font-bold mb-2 ${
+            isStandard ? "text-white" : "text-gray-900"
           }`}
         >
           {price}
         </div>
+
+        {/* 税抜 */}
         <div
-          className={`text-sm ${
-            isStandard ? "text-neutral-white/80" : "text-neutral-medium"
+          className={`text-sm font-normal ${
+            isStandard ? "text-gray-100" : "text-gray-600"
           }`}
         >
           (税抜)
         </div>
+
+        {/* 説明文 */}
         {description && (
           <p
-            className={`mt-2 text-sm ${
-              isStandard ? "text-neutral-white/90" : "text-neutral-medium"
+            className={`mt-2 text-base font-normal ${
+              isStandard ? "text-gray-50" : "text-gray-700"
             }`}
           >
             {description}

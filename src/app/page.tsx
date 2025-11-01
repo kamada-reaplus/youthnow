@@ -6,10 +6,10 @@ import { Hero } from "./components/sections/Hero";
 import { ProblemSection } from "./components/sections/ProblemSection";
 
 // Below-the-foldは動的インポート
-const SolutionSection = dynamic(
+const ValueSection = dynamic(
   () =>
-    import("./components/sections/SolutionSection").then((mod) => ({
-      default: mod.SolutionSection,
+    import("./components/sections/ValueSection").then((mod) => ({
+      default: mod.ValueSection,
     })),
   {
     loading: () => <div className="h-screen" />,
@@ -54,13 +54,13 @@ export default function Home() {
           <section id="problem" aria-label="課題セクション">
             <ProblemSection />
           </section>
-          <section id="solution" aria-label="ソリューションセクション">
-            <SolutionSection />
+          <section id="value" aria-label="バリューセクション">
+            <ValueSection />
           </section>
           <section id="services" aria-label="サービスセクション">
             <ServicesSection />
           </section>
-          <section id="strength" aria-label="強みセクション">
+          <section id="story" aria-label="創業の想いセクション">
             <StorySection />
           </section>
           <section id="flow" aria-label="利用フローセクション">

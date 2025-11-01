@@ -240,9 +240,7 @@ export function Form({
         {/* 目的選択 */}
         {showPurposeField && (
           <div>
-            <label
-              className={`block text-body-sm ${colors.labelText} mb-sm`}
-            >
+            <label className={`block text-body-sm ${colors.labelText} mb-sm`}>
               お問い合わせ目的
             </label>
             <p className={`text-caption ${colors.labelText}/60 mb-sm`}>
@@ -254,7 +252,7 @@ export function Form({
                   key={purpose}
                   type="button"
                   onClick={() => handleChange("purpose", purpose)}
-                  className={`px-sm py-sm rounded-lg text-body-sm font-medium transition-all whitespace-nowrap ${
+                  className={`px-sm py-sm rounded-lg text-body-sm font-bold transition-all whitespace-nowrap ${
                     formData.purpose === purpose
                       ? `${colors.buttonBgActive} ${colors.buttonTextActive} shadow-md scale-105`
                       : `${colors.buttonBg} ${colors.buttonText} ${colors.buttonBgHover} hover:scale-102`
@@ -349,15 +347,25 @@ export function Form({
             value={formData.interest}
             onChange={(e) => handleChange("interest", e.target.value)}
             onBlur={() => handleBlur("interest")}
-            aria-invalid={touched.interest && errors.interest ? "true" : "false"}
-            aria-describedby={touched.interest && errors.interest ? "interest-error" : undefined}
-            className={`w-full ${colors.inputBg} border-2 rounded-lg px-lg py-md ${
-              colors.inputText
-            } ${colors.inputPlaceholder} focus:outline-none transition-all ${
+            aria-invalid={
+              touched.interest && errors.interest ? "true" : "false"
+            }
+            aria-describedby={
+              touched.interest && errors.interest ? "interest-error" : undefined
+            }
+            className={`w-full ${
+              colors.inputBg
+            } border-2 rounded-lg px-lg py-md ${colors.inputText} ${
+              colors.inputPlaceholder
+            } focus:outline-none transition-all ${
               touched.interest && errors.interest
                 ? colors.inputBorderError
                 : `${colors.inputBorder} ${colors.inputBorderFocus}`
-            } ${!errors.interest && formData.interest ? colors.inputBorderValid : ""}`}
+            } ${
+              !errors.interest && formData.interest
+                ? colors.inputBorderValid
+                : ""
+            }`}
           >
             <option value="">選択してください</option>
             {interests.map((interest, index) => (
@@ -472,7 +480,9 @@ export function Form({
               </>
             )}
           </button>
-          <p className={`text-caption ${colors.labelText}/60 text-center mt-sm`}>
+          <p
+            className={`text-caption ${colors.labelText}/60 text-center mt-sm`}
+          >
             ※ 送信後すぐにメールが届きます（通常1分以内）
           </p>
         </div>
@@ -554,10 +564,14 @@ function FormField({
           autoComplete={autoComplete}
           required={required}
           aria-invalid={error ? "true" : "false"}
-          aria-describedby={error ? `${id}-error` : helpText ? `${id}-help` : undefined}
-          className={`w-full ${colors.inputBg} border-2 rounded-lg px-lg py-md ${
-            colors.inputText
-          } ${colors.inputPlaceholder} focus:outline-none transition-all ${
+          aria-describedby={
+            error ? `${id}-error` : helpText ? `${id}-help` : undefined
+          }
+          className={`w-full ${
+            colors.inputBg
+          } border-2 rounded-lg px-lg py-md ${colors.inputText} ${
+            colors.inputPlaceholder
+          } focus:outline-none transition-all ${
             error
               ? colors.inputBorderError
               : isValid

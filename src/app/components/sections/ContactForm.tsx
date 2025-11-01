@@ -1,9 +1,9 @@
 "use client";
+import { Container } from "../ui/Container";
 
 import { CheckCircle2, Shield } from "lucide-react";
 import { useState } from "react";
-import { SectionHeader } from "../ui/section-header";
-import { SectionTitle } from "../ui/SectionTitle";
+import { Section } from "../ui/composite";
 import { Form, FormData } from "../ui/Form";
 
 export function ContactForm() {
@@ -63,7 +63,7 @@ export function ContactForm() {
     checkboxLinkHover: "hover:text-brand-secondary",
     // 送信ボタン
     submitBg: "bg-brand-secondary",
-    submitText: "text-brand-primary",
+    submitText: "text-neutral-black",
     submitHover: "hover:brightness-110",
     // エラー
     errorText: "text-error",
@@ -156,19 +156,22 @@ export function ContactForm() {
       id="contact"
       className="bg-neutral-light-cyan py-8 md:py-12 px-lg relative overflow-hidden scroll-mt-20"
     >
-      <SectionTitle title="CONTACT" />
-      <div className="container mx-auto max-w-md md:max-w-2xl lg:max-w-3xl relative z-10">
+      <Section id="contact" centered>
+        <Section.Header spacing="md" className="px-lg">
+          <Section.Label size="lg" color="primary">
+            CONTACT
+          </Section.Label>
+          <Section.Title size="responsive" color="black">
+            Youth Now!を体験してください
+          </Section.Title>
+        </Section.Header>
+      </Section>
+      <Container
+        padding="none"
+        className="relative z-10 max-w-md md:max-w-2xl lg:max-w-3xl"
+      >
         <div className="text-center mb-md md:mb-lg">
-          <SectionHeader
-            title="Youth Now!を体験してください"
-            textColor="text-neutral-black"
-            leadingTight
-            responsive
-            className="mb-0 px-lg"
-          />
-          <p className="text-body text-neutral-black mt-sm">
-            最短1分で完了。今なら無料トレンドレポート付き
-          </p>
+          {/* <p className="text-body text-neutral-black mt-sm">最短30秒で完了。</p> */}
 
           {/* 緊急性・希少性の追加 */}
           {/* <div className="mt-6 inline-block bg-brand-secondary/10 border-2 border-brand-secondary rounded-lg px-6 py-3">
@@ -214,7 +217,7 @@ export function ContactForm() {
         </div> */}
 
         {/* ベネフィットリスト（フォーム上部） */}
-        <div className="bg-brand-secondary/30 border border-brand-secondary/20 rounded-2xl p-lg mb-lg">
+        {/* <div className="bg-brand-secondary/30 border border-brand-secondary/20 rounded-2xl p-lg mb-lg">
           <h3 className="text-h6 text-brand-primary mb-md text-center">
             資料請求で今すぐ手に入るもの
           </h3>
@@ -234,7 +237,7 @@ export function ContactForm() {
               </span>
             </li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Form */}
         <Form
@@ -294,7 +297,7 @@ export function ContactForm() {
             入力いただいた情報は厳重に管理し、サービスのご案内以外には使用いたしません
           </p>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

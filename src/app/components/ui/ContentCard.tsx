@@ -57,7 +57,7 @@ export function ContentCard({
           </div>
         )}
 
-        <p className="text-body-sm md:text-body lg:text-h6 text-neutral-black/70 leading-relaxed">
+        <p className="text-base md:text-lg text-gray-700 leading-relaxed">
           {text}
         </p>
       </div>

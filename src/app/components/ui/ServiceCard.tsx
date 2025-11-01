@@ -1,54 +1,65 @@
 "use client";
 
 import { LucideIcon } from "lucide-react";
+import { parseTextWithMarker } from "@/app/lib/utils";
 
 interface ServiceCardProps {
   icon: LucideIcon;
   title: string;
-  badge?: string;
+  category: string;
+  catchphrase: string;
   description: string;
+  badge?: string;
   className?: string;
 }
 
 export function ServiceCard({
   icon: Icon,
   title,
-  badge,
+  category,
+  catchphrase,
   description,
   className = "",
 }: ServiceCardProps) {
   return (
     <div
-      className={`bg-neutral-white border-2 border-neutral-black/10 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-lg group hover:border-brand-primary/40 relative overflow-hidden flex flex-col h-[300px] ${className}`}
+      className={`bg-neutral-white border-2 border-neutral-black/10 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 p-6 group hover:border-brand-primary/40 relative overflow-hidden flex flex-col min-h-[300px] ${className}`}
     >
       {/* Top accent bar - appears on hover */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-brand-primary opacity-0 group-hover:opacity-100 transition-opacity" />
 
-      {/* Badge (optional) */}
-      {badge && (
-        <div className="absolute top-md right-md">
-          <span className="inline-block bg-brand-secondary text-neutral-black text-caption px-sm py-xs rounded-full">
-            {badge}
-          </span>
-        </div>
-      )}
-
-      {/* Icon - centered and prominent */}
-      <div className="flex justify-center mb-md flex-shrink-0">
+      {/* Icon - 濃い水色で強調 */}
+      <div className="flex justify-center mb-4 flex-shrink-0">
         <div className="w-16 h-16 flex items-center justify-center rounded-full bg-brand-primary/10 group-hover:bg-brand-primary/20 transition-colors">
-          <Icon className="w-8 h-8 text-brand-primary" />
+          <Icon className="w-9 h-9 text-brand-primary stroke-[2.5]" />
         </div>
       </div>
 
-      {/* Title */}
-      <h3 className="text-body text-neutral-black text-center mb-sm leading-tight whitespace-pre-line flex-shrink-0">
-        {title}
-      </h3>
+      {/* Title - バッジデザイン */}
+      <div className="flex justify-center mb-3 flex-shrink-0">
+        <div className="inline-block bg-brand-primary text-white px-4 py-2 rounded-full shadow-sm">
+          <h3 className="font-bold text-base leading-tight text-center">
+            {title}
+          </h3>
+        </div>
+      </div>
 
-      {/* Description */}
+      {/* Category Tag - アクセントカラー */}
+      <div className="flex justify-center mb-3 flex-shrink-0">
+        <span className="text-brand-primary text-sm font-bold">
+          【{category}】
+        </span>
+      </div>
+
+      {/* Catchphrase - 中太で目立たせる */}
+      <p className="text-base font-semibold text-gray-800 text-center mb-3 leading-snug flex-shrink-0">
+        {parseTextWithMarker(catchphrase)}
+      </p>
+
+      {/* Description - 小さく薄く */}
       <div className="flex-grow flex items-start justify-center overflow-hidden">
-        <p className="text-body-sm text-neutral-black/70 text-center leading-relaxed whitespace-pre-line">
-          {description}
+        <p className="text-sm font-normal text-gray-600 text-center leading-relaxed">
+          {parseTextWithMarker(description)}
         </p>
       </div>
     </div>

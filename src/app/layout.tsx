@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import GoogleTagManager from "@/app/components/analytics/GoogleTagManager";
+import MicrosoftClarity from "@/app/components/analytics/MicrosoftClarity";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -66,11 +68,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // 環境変数から計測ツールのIDを取得
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
+  const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID;
+  const enableAnalytics =
+    process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === "true" ||
+    process.env.NODE_ENV === "production";
+
   return (
     <html lang="ja">
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-rounded-mplus antialiased`}
       >
+        {/* 計測ツール: GTM経由でGA4やその他のタグを管理 */}
+        {enableAnalytics && gtmId && <GoogleTagManager gtmId={gtmId} />}
+
+        {/* Microsoft Clarity: ヒートマップ・セッション録画 */}
+        {enableAnalytics && clarityId && (
+          <MicrosoftClarity clarityId={clarityId} />
+        )}
+
         {children}
       </body>
     </html>

@@ -36,7 +36,9 @@ export default function PrivacyPolicyPage() {
             </h2>
             <div className="text-body text-neutral-black space-y-xs">
               <p>法人名：株式会社Reaplus</p>
-              <p>住所：東京都目黒区五本木2丁目13-2　1F</p>
+              <p>
+                住所：〒150-0033 東京都渋谷区猿楽町9-8アーバンパーク代官山Ⅰ 0208
+              </p>
               <p>代表者：松元 詞音</p>
             </div>
           </section>
@@ -180,9 +182,9 @@ export default function PrivacyPolicyPage() {
                   <strong>送付先住所</strong>
                 </p>
                 <p>
-                  〒153-0053
+                  〒150-0033
                   <br />
-                  東京都目黒区五本木2丁目13-2　1F
+                  東京都渋谷区猿楽町9-8アーバンパーク代官山Ⅰ 0208
                   <br />
                   株式会社Reaplus　お問い合わせ窓口
                 </p>
@@ -301,8 +303,7 @@ export default function PrivacyPolicyPage() {
                 クッキーを使用することで当サイトはお客様のコンピュータを識別できるようになりますが、お客様個人を特定できるものではありません。
               </p>
               <p>
-                Cookie を無効にする方法や Google
-                アドセンスに関する詳細は
+                Cookie を無効にする方法や Google アドセンスに関する詳細は
                 <a
                   href="https://policies.google.com/technologies/ads?hl=ja"
                   target="_blank"
@@ -319,10 +320,10 @@ export default function PrivacyPolicyPage() {
 
         {/* 制定日 */}
         <div className="mt-2xl pt-xl border-t-2 border-brand-primary/20">
-          <div className="text-body text-neutral-black text-center space-y-xs">
+          <div className="text-body text-neutral-black space-y-xs">
             <p>以上</p>
             <p className="mt-lg">制定年月日　2023年7月20日</p>
-            <p>最終改正年月日　2023年7月20日</p>
+            <p>最終改正年月日　2025年11月1日</p>
             <p className="mt-md font-bold">株式会社Reaplus</p>
             <p>代表取締役 松元　詞音</p>
           </div>

@@ -122,7 +122,7 @@ export function AbstractBackground() {
         <circle cx="300" cy="250" r="2" fill="#00BCD4" />
         <circle cx="500" cy="220" r="4" fill="#4DD0E1" />
 
-        {/* Solution section area */}
+        {/* VALUE section area */}
         <circle cx="200" cy="350" r="3" fill="#FFC700" />
         <circle cx="400" cy="380" r="2" fill="#4DD0E1" />
         <circle cx="600" cy="330" r="4" fill="#00BCD4" />

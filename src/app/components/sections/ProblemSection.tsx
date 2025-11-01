@@ -1,13 +1,9 @@
-import Image from "next/image";
-import { SectionHeader } from "../ui/section-header";
-import { SectionTitle } from "../ui/SectionTitle";
+import { Section } from "../ui/composite";
 import { ContentCard } from "../ui/ContentCard";
-import { DiagonalBackground } from "../ui/DiagonalBackground";
-import problem1 from "../../assets/problem_1.png";
-import problem2 from "../../assets/problem_2.png";
-import problem3 from "../../assets/problem_3.png";
-import arrow from "../../assets/arrow_yellow.png";
-import type { StaticImageData } from "next/image";
+import { SectionShell } from "../ui/SectionShell";
+import ArrowDivider from "../ui/ArrowDivider";
+import { Container } from "../ui/Container";
+import { PROBLEMS } from "../../content/problems";
 
 /**
  * デザインシステム使用コンポーネント
@@ -16,67 +12,38 @@ import type { StaticImageData } from "next/image";
  * - タイポグラフィ: text-body, text-body-sm, text-h6 など
  */
 
-interface Problem {
-  text: string;
-  image: StaticImageData;
-  category: string;
-  number: string;
-}
-
-const PROBLEMS: Problem[] = [
-  {
-    text: "トレンドの移り変わりが早いのに、調査に時間がかかりすぎて追いつけない...",
-    image: problem1,
-    category: "スピード",
-    number: "01",
-  },
-  {
-    text: "調査はしたけど、結局どう施策に繋げればいいかわからない...",
-    image: problem2,
-    category: "活用方法",
-    number: "02",
-  },
-  {
-    text: "施策を打ってみたけど、思ったような成果が出なかった...",
-    image: problem3,
-    category: "仮説検証",
-    number: "03",
-  },
-];
+// データは content/problems.ts に外出し
 
 export function ProblemSection() {
   return (
-    <section
+    <SectionShell
       id="problem"
-      className="relative overflow-hidden bg-neutral-light-cyan px-lg pb-8 md:py-6 -mb-px"
+      bgColor="bg-neutral-light-cyan"
+      diagonalBgColor="bg-brand-primary"
+      className="px-lg pb-8 md:py-6 relative overflow-hidden -mb-px"
     >
-      <DiagonalBackground bgColor="bg-brand-primary" />
+      <Section id="problem" centered>
+        <Section.Header spacing="lg" className="px-lg">
+          <Section.Label size="lg" color="primary">
+            PROBLEM
+          </Section.Label>
+          <Section.Title color="black" size="responsive">
+            若年層マーケティングで
+            <br />
+            こんな課題を感じていませんか?
+          </Section.Title>
+        </Section.Header>
+      </Section>
 
-      <SectionTitle title="PROBLEM" />
-
-      <SectionHeaderBlock />
-
-      <div className="container relative z-10 mx-auto max-w-5xl">
+      <Container size="5xl" padding="none" className="relative z-10">
         <MainContentCard />
         <ArrowDivider />
-      </div>
-    </section>
+      </Container>
+    </SectionShell>
   );
 }
 
-function SectionHeaderBlock() {
-  return (
-    <div className="mb-2xl text-center md:mb-xl">
-      <SectionHeader
-        title="若年層マーケティングで<br />こんな課題を感じていませんか?"
-        textColor="text-neutral-black"
-        leadingTight
-        responsive
-        className="mb-0 px-lg"
-      />
-    </div>
-  );
-}
+// 新しい Section コンポーネントを使用
 
 function MainContentCard() {
   return (
@@ -106,17 +73,4 @@ function ProblemList() {
   );
 }
 
-function ArrowDivider() {
-  return (
-    <div className="mb-xl flex justify-center md:mb-lg">
-      <div className="w-16 lg:w-16">
-        <Image
-          src={arrow}
-          alt="矢印"
-          className="h-auto w-full"
-          loading="lazy"
-        />
-      </div>
-    </div>
-  );
-}
+// 共通化済み ArrowDivider を使用

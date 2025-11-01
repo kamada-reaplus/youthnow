@@ -1,199 +1,106 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
-import {
-  BarChart3,
-  Users,
-  MessageCircle,
-  Gift,
-  Lightbulb,
-  FileText,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
-import Image from "next/image";
-import { SectionHeader } from "../ui/section-header";
-import { SectionTitle } from "../ui/SectionTitle";
+import { useState, useRef, useEffect, useMemo } from "react";
+import { Section } from "../ui/composite";
 import { ServiceCard } from "../ui/ServiceCard";
 import { PricingCard } from "../ui/PricingCard";
-import { DiagonalBackground } from "../ui/DiagonalBackground";
+import { SectionShell } from "../ui/SectionShell";
 import { ContactButton } from "../ui/ContactButton";
+import { OutputSlider } from "../ui/OutputSlider";
+import { NavigationDots } from "../ui/NavigationDots";
+import { Container } from "../ui/Container";
+import { SERVICES, OUTPUT_SAMPLES } from "../../content/services";
 
 // デザインシステム使用コンポーネント
 // - カラー: neutral-white, neutral-black, brand-primary, brand-secondary など
 // - スペーシング: section-spacing, px-lg, gap-xl など
 // - タイポグラフィ: text-h2, text-body, text-body-sm など
 
-const SERVICES = [
-  {
-    icon: BarChart3,
-    title: "アンケート調査\n【定量調査】",
-    description:
-      '数で見抜く、購買行動のリアル。\n商品の利用シーンや購買行動を数値化し、若年層の意思決定パターンを可視化。\nターゲット設計や販促戦略の"根拠データ"を提供します。',
-  },
-  {
-    icon: Users,
-    title: "インフルエンサー\nインタビュー【定性調査】",
-    description:
-      "発信者視点から、トレンドの芽を探る。\nフォロワー数万〜数十万規模のインフルエンサーにヒアリング。\n流行の「作り手」から、共感を生む要因を分析します。",
-  },
-  {
-    icon: MessageCircle,
-    title: "グループインタビュー\n【定性調査】",
-    description:
-      '共感の瞬間を、言葉で捉える。\n若年層4〜8名による座談会形式で、定量調査では見えない感情のトーンを可視化。\n会話の中から"本音"や"無意識のニーズ"を抽出します。',
-  },
-  {
-    icon: Gift,
-    title: "ギフティング調査\n【定量・定性調査】",
-    description:
-      "体験が購買意欲にどう影響するかを測る。\n商品やサービスを若年層に提供し、SNS発信と同時に購買意向の変化を可視化。\n使用前とは異なる、手に届いた後のリアルな声を発見できます。",
-  },
-  {
-    icon: Lightbulb,
-    title: "ワンストップ施策提案\n【施策立案】",
-    badge: "人気",
-    description:
-      "データを施策に変えるまで、ワンチームで。\n調査結果を分析し、マーケティングや広告施策へ落とし込み。\nインサイトを軸に、実行可能なプランを設計します。",
-  },
-  {
-    icon: FileText,
-    title: "トレンド調査資料\n【レポート】",
-    description:
-      '若年層の"いま"を定点観測。\n業種横断で若年層のトレンドをまとめたレポートを定期配信。\n社内資料や次期企画立案のインプットとして活用できます。',
-  },
-];
+// Output sliderの型はui/OutputSliderから再利用
 
-// アウトプット例のスライド
-const OUTPUT_SAMPLES = [
-  {
-    image: "/images/slides/nail1.svg",
-    title: "ワンストップ施策提案（P1）",
-  },
-  {
-    image: "/images/slides/nail2.svg",
-    title: "ワンストップ施策提案（P2）",
-  },
-  {
-    image: "/images/slides/nail3.svg",
-    title: "ワンストップ施策提案（P3）",
-  },
-  {
-    image: "/images/slides/halloween1.svg",
-    title: "トレンド調査資料（P1）",
-  },
-  {
-    image: "/images/slides/halloween2.svg",
-    title: "トレンド調査資料（P2）",
-  },
-  {
-    image: "/images/slides/halloween3.svg",
-    title: "トレンド調査資料（P3）",
-  },
-  {
-    image: "/images/slides/cosme1.svg",
-    title: "アンケート調査（P1）",
-  },
-  {
-    image: "/images/slides/cosme2.svg",
-    title: "アンケート調査（P2）",
-  },
-  {
-    image: "/images/slides/cosme3.svg",
-    title: "アンケート調査（P3）",
-  },
-];
+type PlanKey = "light" | "standard" | "custom";
 
-interface NavigationDotsProps {
-  totalItems: number;
-  currentIndex: number;
-  onDotClick: (index: number) => void;
+interface Plan {
+  name: string;
+  price: string;
+  description: string;
+  features: string[];
+  report: string;
+  timeline: string;
+  badge?: string;
 }
 
-function NavigationDots({
-  totalItems,
-  currentIndex,
-  onDotClick,
-}: NavigationDotsProps) {
-  return (
-    <div className="flex justify-center gap-sm mt-lg">
-      {Array.from({ length: totalItems }).map((_, index) => (
-        <button
-          key={index}
-          onClick={() => onDotClick(index)}
-          className={`w-2 h-2 rounded-full transition-all ${
-            index === currentIndex
-              ? "bg-brand-primary w-6"
-              : "bg-neutral-black/20"
-          }`}
-          aria-label={`サービス${index + 1}へ移動`}
-        />
-      ))}
-    </div>
-  );
-}
+// データは content/services.ts に外出し
+// NavigationDotsはui/NavigationDotsに移動
+
+// OutputSliderはui/OutputSliderに移動
+
+// ===== プラン定義を外出し =====
+const PLANS: Record<PlanKey, Plan> = {
+  light: {
+    name: "ライト",
+    price: "¥250,000",
+    description: "初回調査に最適なベーシックプラン",
+    features: [
+      "定量調査（アンケート）[500人 10問]",
+      "トレンド調査資料（レポート）",
+    ],
+    report: "簡易レポート（10〜15P）",
+    timeline: "調査開始から2〜4週間",
+  },
+  standard: {
+    name: "スタンダード",
+    price: "¥500,000",
+    description: "本格的なマーケティング戦略立案に",
+    badge: "おすすめ",
+    features: [
+      "定量調査（アンケート）[500人 10問]",
+      "トレンド調査資料（レポート）",
+      "座談会（グループインタビュー）[4名]",
+      "インフルエンサーインタビュー[2名〜]",
+    ],
+    report: "詳細レポート（30〜50P）",
+    timeline: "1ヶ月〜1ヶ月半",
+  },
+  custom: {
+    name: "カスタム",
+    price: "¥500,000〜",
+    description: "完全オーダーメイドの調査プラン",
+    features: ["定量調査（アンケート）[1,000人 10問]", "ギフティング調査"],
+    report: "カスタム仕様",
+    timeline: "内容に応じて別途調整",
+  },
+};
 
 export function ServicesSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [slideIndex, setSlideIndex] = useState(0);
-  const [selectedPlan, setSelectedPlan] = useState<
-    "light" | "standard" | "custom"
-  >("standard");
+  const [selectedPlan, setSelectedPlan] = useState<PlanKey>("standard");
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  // Pricing Plans データ
-  const plans = {
-    light: {
-      name: "ライト",
-      price: "¥250,000",
-      description: "初回調査に最適なベーシックプラン",
-      features: [
-        "定量調査（アンケート）[500人 10問]",
-        "トレンド調査資料（レポート）",
-      ],
-      report: "簡易レポート（10〜15P）",
-      timeline: "調査開始から2〜4週間",
-    },
-    standard: {
-      name: "スタンダード",
-      price: "¥500,000",
-      description: "本格的なマーケティング戦略立案に",
-      badge: "おすすめ",
-      features: [
-        "定量調査（アンケート）[500人 10問]",
-        "トレンド調査資料（レポート）",
-        "座談会（グループインタビュー）[4名]",
-        "インフルエンサーインタビュー[2名〜]",
-      ],
-      report: "詳細レポート（30〜50P）",
-      timeline: "1ヶ月〜1ヶ月半",
-    },
-    custom: {
-      name: "カスタム",
-      price: "¥500,000〜",
-      description: "完全オーダーメイドの調査プラン",
-      features: ["定量調査（アンケート）[1,000人 10問]", "ギフティング調査"],
-      report: "カスタム仕様",
-      timeline: "内容に応じて別途調整",
-    },
-  };
-
-  const currentPlan = plans[selectedPlan];
+  const currentPlan = useMemo(() => PLANS[selectedPlan], [selectedPlan]);
 
   // スクロール位置からcurrentIndexを更新
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
 
+    let rafId = 0 as number | undefined;
     const handleScroll = () => {
-      const scrollLeft = container.scrollLeft;
-      const cardWidth = container.scrollWidth / SERVICES.length;
-      const newIndex = Math.round(scrollLeft / cardWidth);
-      setCurrentIndex(newIndex);
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(() => {
+        const scrollLeft = container.scrollLeft;
+        const cardWidth = container.scrollWidth / SERVICES.length;
+        const newIndex = Math.round(scrollLeft / cardWidth);
+        setCurrentIndex(newIndex);
+        rafId = undefined;
+      });
     };
 
-    container.addEventListener("scroll", handleScroll);
-    return () => container.removeEventListener("scroll", handleScroll);
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      container.removeEventListener("scroll", handleScroll as EventListener);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   // ドットクリック時のスクロール
@@ -208,50 +115,37 @@ export function ServicesSection() {
   };
 
   // Output スライダーのハンドラー（メモ化で再レンダリング防止）
-  const nextSlide = useCallback(() => {
-    setSlideIndex((prev) => (prev + 1) % OUTPUT_SAMPLES.length);
-  }, []);
-
-  const prevSlide = useCallback(() => {
-    setSlideIndex((prev) =>
-      prev === 0 ? OUTPUT_SAMPLES.length - 1 : prev - 1
-    );
-  }, []);
-
-  // スライドインデックス直接変更（インジケータークリック用）
-  const handleSlideClick = useCallback((index: number) => {
-    setSlideIndex(index);
-  }, []);
+  // OutputSliderに責務移譲済み
 
   return (
-    <section
+    <SectionShell
       id="services"
-      className="section-spacing bg-neutral-light-cyan relative overflow-hidden -mb-px"
+      bgColor="bg-neutral-light-cyan"
+      diagonalBgColor="bg-brand-primary"
+      className="section-spacing relative overflow-hidden -mb-px"
     >
-      <DiagonalBackground bgColor="bg-brand-primary" />
-      <SectionTitle title="SERVICES" />
+      <Section id="services" centered>
+        <Section.Header spacing="md" className="px-lg">
+          <Section.Label size="lg" color="primary">
+            SERVICES
+          </Section.Label>
+          <Section.Title size="responsive" color="black">
+            提供サービス
+          </Section.Title>
+        </Section.Header>
+      </Section>
 
-      <div className="container mx-auto px-lg relative z-10">
+      <Container size="7xl" padding="none" className="relative z-10 px-lg">
         <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-lg md:mb-xl">
-            <SectionHeader title="提供サービス" responsive className="mb-md" />
-            <p className="text-body-sm md:text-body text-neutral-black/70 max-w-2xl mx-auto">
-              若年層の「リアル」を多角的に調査し、
-              <br className="md:hidden" />
-              マーケティング戦略に落とし込みます
-            </p>
-          </div>
-
           {/* Mobile: Swipeable Cards */}
           <div className="md:hidden">
             <div
               ref={scrollContainerRef}
               className="flex gap-md overflow-x-auto snap-x snap-mandatory scrollbar-hide px-lg -mx-lg pb-lg"
             >
-              {SERVICES.map((service, index) => (
+              {SERVICES.map((service) => (
                 <div
-                  key={index}
+                  key={service.title}
                   className="flex-shrink-0 w-[85vw] max-w-[340px] snap-center"
                 >
                   <ServiceCard {...service} />
@@ -268,105 +162,45 @@ export function ServicesSection() {
 
           {/* Desktop: 3x2 Grid */}
           <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-lg">
-            {SERVICES.map((service, index) => (
-              <ServiceCard key={index} {...service} />
+            {SERVICES.map((service) => (
+              <ServiceCard key={service.title} {...service} />
             ))}
           </div>
 
           {/* OUTPUT セクション */}
           <div className="mt-xl pt-xl">
-            <div className="text-center mb-lg md:mb-xl">
-              <SectionHeader
-                title="アウトプット例"
-                responsive
-                className="mb-md"
-              />
-              <p className="text-body-sm md:text-body text-neutral-black/70 max-w-2xl mx-auto">
-                実際の調査レポートの一部をご紹介
-              </p>
-            </div>
+            <Section centered>
+              <Section.Header spacing="md">
+                <Section.Title size="responsive" color="black">
+                  アウトプット例
+                </Section.Title>
+                <Section.Subtitle
+                  size="md"
+                  color="muted"
+                  className="max-w-2xl mx-auto mt-sm"
+                >
+                  実際の調査レポートの一部をご紹介
+                </Section.Subtitle>
+              </Section.Header>
+            </Section>
 
             {/* Slider Container */}
-            <div className="relative max-w-4xl mx-auto">
-              {/* Slide */}
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-neutral-white">
-                <div className="aspect-[16/9] relative">
-                  {/* すべてのスライドを事前にレンダリング */}
-                  {OUTPUT_SAMPLES.map((sample, index) => (
-                    <div
-                      key={index}
-                      className={`absolute inset-0 transition-opacity duration-300 ${
-                        index === slideIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-                      }`}
-                    >
-                      <Image
-                        src={sample.image}
-                        alt={sample.title}
-                        fill
-                        className="object-contain"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                        priority={index === 0}
-                        unoptimized
-                      />
-                    </div>
-                  ))}
-                </div>
-
-                {/* Slide Info Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neutral-black/80 to-transparent p-lg z-20">
-                  <p className="text-caption md:text-body-sm lg:text-body text-neutral-white/90">
-                    {OUTPUT_SAMPLES[slideIndex].title}
-                  </p>
-                </div>
-              </div>
-
-              {/* Navigation Buttons */}
-              <button
-                onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 bg-neutral-white hover:bg-brand-primary text-neutral-black hover:text-neutral-white rounded-full p-md shadow-lg transition-all duration-300 z-10"
-                aria-label="前のスライド"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 bg-neutral-white hover:bg-brand-primary text-neutral-black hover:text-neutral-white rounded-full p-md shadow-lg transition-all duration-300 z-10"
-                aria-label="次のスライド"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-
-              {/* Slide Indicators */}
-              <div className="flex justify-center gap-sm mt-lg">
-                {OUTPUT_SAMPLES.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleSlideClick(index)}
-                    className={`w-2 h-2 rounded-full transition-all ${
-                      index === slideIndex
-                        ? "bg-brand-primary w-8"
-                        : "bg-neutral-black/20 hover:bg-neutral-black/40"
-                    }`}
-                    aria-label={`スライド${index + 1}へ移動`}
-                  />
-                ))}
-              </div>
-            </div>
+            <OutputSlider samples={OUTPUT_SAMPLES} />
             {/* CTA追加 */}
             <div className="mt-6 text-center">
-              <ContactButton
-                variant="yellow"
-                label="30秒で入力完了!"
-                text="資料を請求する"
-              />
+              <ContactButton label="30秒で入力完了!" text="資料を請求する" />
             </div>
           </div>
 
           {/* PRICING セクション */}
           <div className="mt-xl pt-xl">
-            <div className="text-center mb-2xl">
-              <SectionHeader title="料金プラン" responsive className="mb-md" />
-            </div>
+            <Section centered>
+              <Section.Header spacing="lg">
+                <Section.Title size="responsive" color="black">
+                  料金プラン
+                </Section.Title>
+              </Section.Header>
+            </Section>
 
             {/* SP: プラン選択ボタン */}
             <div className="flex justify-center mb-8 md:hidden">
@@ -422,32 +256,32 @@ export function ServicesSection() {
             {/* PC: 3カラム表示 */}
             <div className="hidden md:grid md:grid-cols-3 gap-4 lg:gap-6">
               <PricingCard
-                name={plans.light.name}
-                price={plans.light.price}
-                description={plans.light.description}
-                features={plans.light.features}
-                report={plans.light.report}
-                timeline={plans.light.timeline}
+                name={PLANS.light.name}
+                price={PLANS.light.price}
+                description={PLANS.light.description}
+                features={PLANS.light.features}
+                report={PLANS.light.report}
+                timeline={PLANS.light.timeline}
               />
 
               <PricingCard
-                name={plans.standard.name}
-                price={plans.standard.price}
-                description={plans.standard.description}
-                features={plans.standard.features}
-                report={plans.standard.report}
-                timeline={plans.standard.timeline}
-                badge={plans.standard.badge}
+                name={PLANS.standard.name}
+                price={PLANS.standard.price}
+                description={PLANS.standard.description}
+                features={PLANS.standard.features}
+                report={PLANS.standard.report}
+                timeline={PLANS.standard.timeline}
+                badge={PLANS.standard.badge}
                 variant="standard"
               />
 
               <PricingCard
-                name={plans.custom.name}
-                price={plans.custom.price}
-                description={plans.custom.description}
-                features={plans.custom.features}
-                report={plans.custom.report}
-                timeline={plans.custom.timeline}
+                name={PLANS.custom.name}
+                price={PLANS.custom.price}
+                description={PLANS.custom.description}
+                features={PLANS.custom.features}
+                report={PLANS.custom.report}
+                timeline={PLANS.custom.timeline}
               />
             </div>
 
@@ -461,7 +295,7 @@ export function ServicesSection() {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </Container>
+    </SectionShell>
   );
 }

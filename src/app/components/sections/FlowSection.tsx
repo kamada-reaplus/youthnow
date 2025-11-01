@@ -1,4 +1,5 @@
 "use client";
+import { Container } from "../ui/Container";
 
 import {
   Mail,
@@ -7,12 +8,10 @@ import {
   FileText,
   Users,
   BarChart3,
-  ArrowRight,
   LucideIcon,
 } from "lucide-react";
-import { SectionHeader } from "../ui/section-header";
+import { Section } from "../ui/composite";
 import { DiagonalBackground } from "../ui/DiagonalBackground";
-import { SectionTitle } from "../ui/SectionTitle";
 import { useState, useRef, useEffect } from "react";
 
 // デザインシステム使用コンポーネント
@@ -81,13 +80,13 @@ function DesktopFlowCard({ step }: FlowCardProps) {
   const Icon = step.icon;
 
   return (
-    <div className="bg-neutral-white border border-neutral-black/20 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 p-md lg:p-lg group hover:border-brand-primary/40 relative overflow-hidden flex flex-col w-[160px] lg:w-[180px] h-[320px] lg:h-[360px]">
+    <div className="bg-neutral-white border border-neutral-black/20 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 p-md lg:p-lg group hover:border-brand-primary/40 relative overflow-hidden flex flex-col w-[160px] lg:w-[210px] h-[320px] lg:h-[300px]">
       {/* Top accent bar */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-brand-primary opacity-0 group-hover:opacity-100 transition-opacity" />
 
       {/* Small Number in top-left */}
       <div className="absolute top-sm left-sm">
-        <span className="text-caption text-brand-primary">{step.number}</span>
+        <span className="text-md text-brand-primary">STEP {step.number}</span>
       </div>
 
       {/* Icon - Large and centered */}
@@ -119,7 +118,7 @@ function MobileFlowCard({ step }: FlowCardProps) {
     <div className="bg-neutral-white border border-neutral-black/20 rounded-2xl shadow-md p-lg h-full relative">
       {/* Small Number in top-left */}
       <div className="absolute top-md left-md">
-        <span className="text-body-sm text-brand-primary">{step.number}</span>
+        <span className="text-xl text-brand-primary">STEP {step.number}</span>
       </div>
 
       {/* Icon - Large and centered */}
@@ -210,24 +209,31 @@ export function FlowSection() {
       className="bg-neutral-light-cyan py-12 md:py-16 px-lg relative overflow-hidden min-h-screen -mb-px"
     >
       <DiagonalBackground bgColor="bg-brand-primary" />
-      <SectionTitle title="FLOW" />
 
-      <div className="container mx-auto max-w-[1400px] relative z-10 w-full flex flex-col justify-center">
-        {/* Header */}
-        <div className="text-center mb-lg md:mb-xl">
-          <SectionHeader
-            title="ご利用の流れ"
-            textColor="text-neutral-black"
-            responsive
-            className="mb-md px-lg"
-          />
-          <p className="text-body-sm md:text-body text-neutral-black/70 max-w-2xl mx-auto px-lg">
+      <Section id="flow" centered>
+        <Section.Header spacing="md" className="px-lg">
+          <Section.Label size="lg" color="primary">
+            FLOW
+          </Section.Label>
+          <Section.Title size="responsive" color="black">
+            ご利用の流れ
+          </Section.Title>
+          <Section.Subtitle
+            size="md"
+            color="muted"
+            className="max-w-2xl mx-auto mt-sm"
+          >
             簡単6ステップで高品質な調査を実現
-          </p>
-        </div>
+          </Section.Subtitle>
+        </Section.Header>
+      </Section>
 
-        {/* Mobile: Swipeable Cards */}
-        <div className="md:hidden mb-xl">
+      <Container
+        padding="none"
+        className="relative z-10 w-full flex flex-col justify-center max-w-[1400px]"
+      >
+        {/* Mobile & Tablet: Swipeable Cards */}
+        <div className="xl:hidden mb-xl">
           <div
             ref={scrollContainerRef}
             className="flex gap-md overflow-x-auto snap-x snap-mandatory scrollbar-hide px-lg -mx-lg pb-lg"
@@ -235,7 +241,7 @@ export function FlowSection() {
             {STEPS.map((step, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-[85vw] max-w-[340px] snap-center"
+                className="flex-shrink-0 w-[85vw] max-w-[340px] md:max-w-[400px] snap-center"
               >
                 <MobileFlowCard step={step} />
               </div>
@@ -249,17 +255,10 @@ export function FlowSection() {
           />
         </div>
 
-        {/* Desktop: 横1列 x 6個の縦長カード */}
-        <div className="hidden md:flex items-center justify-center gap-sm lg:gap-md mb-xl w-full px-md">
+        {/* Desktop (XL以上): 横1列 x 6個の縦長カード */}
+        <div className="hidden xl:flex items-start justify-center gap-3 lg:gap-4 mb-xl w-full px-md">
           {STEPS.map((step, index) => (
-            <div key={index} className="flex items-center">
-              <DesktopFlowCard step={step} />
-
-              {/* Arrow between cards */}
-              {index < STEPS.length - 1 && (
-                <ArrowRight className="w-4 h-4 lg:w-5 lg:h-5 text-brand-primary flex-shrink-0 mx-1" />
-              )}
-            </div>
+            <DesktopFlowCard key={index} step={step} />
           ))}
         </div>
 
@@ -274,7 +273,7 @@ export function FlowSection() {
             専門スタッフが丁寧にサポートいたします
           </p>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

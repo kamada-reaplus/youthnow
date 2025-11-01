@@ -1,29 +1,15 @@
 "use client";
-import Image from "next/image";
-import logo from "../../assets/logo.png";
+import { BrandLogo } from "../ui/BrandLogo";
+import { Container } from "../ui/Container";
 import { useState, useEffect, useRef } from "react";
+import { navItems } from "../../config/navigation";
 import { Menu, X } from "lucide-react";
 
 // デザインシステム使用コンポーネント
 // - カラー: brand-primary/95, border-brand-primary
 // - スペーシング: px-lg, gap-sm など
 
-interface NavItem {
-  id: string;
-  label: string;
-  href: string;
-}
-
-const navItems: NavItem[] = [
-  { id: "hero", label: "TOP", href: "#hero" },
-  { id: "problem", label: "あなたのお悩み", href: "#problem" },
-  { id: "solution", label: "解決策を見る", href: "#solution" },
-  { id: "services", label: "サービス", href: "#services" },
-  { id: "story", label: "創業の想い", href: "#story" },
-  { id: "flow", label: "フロー", href: "#flow" },
-  { id: "faq", label: "よくある質問", href: "#faq" },
-  { id: "contact", label: "お問い合わせ", href: "#contact" },
-];
+// navItems は config から参照
 
 export function Header() {
   const [isVisible, setIsVisible] = useState(false);
@@ -103,16 +89,12 @@ export function Header() {
         }`}
       >
         {/* モバイル用：ロゴ + ハンバーガーメニュー */}
-        <div className="md:hidden container mx-auto px-lg h-4xl flex items-center justify-between max-w-7xl">
+        <Container
+          padding="none"
+          className="md:hidden h-4xl flex items-center justify-between max-w-7xl mx-0 px-4"
+        >
           <a href="#hero" onClick={(e) => handleNavClick(e, "#hero")}>
-            <Image
-              src={logo}
-              alt="Youth Now Logo"
-              width={120}
-              height={40}
-              style={{ height: "auto", width: "120px" }}
-              priority
-            />
+            <BrandLogo width={120} height={40} priority />
           </a>
 
           {/* ハンバーガーメニューボタン */}
@@ -127,24 +109,19 @@ export function Header() {
               <Menu className="w-6 h-6" />
             )}
           </button>
-        </div>
+        </Container>
 
         {/* PC用：ロゴ + ナビゲーションリンク */}
-        <div className="hidden md:flex container mx-auto px-8 h-16 items-center justify-between max-w-7xl">
+        <Container
+          padding="none"
+          className="hidden md:flex px-8 h-16 items-center justify-between max-w-7xl"
+        >
           <a
             href="#hero"
             onClick={(e) => handleNavClick(e, "#hero")}
             className="flex-shrink-0"
           >
-            <Image
-              src={logo}
-              alt="Youth Now Logo"
-              width={100}
-              height={40}
-              className="object-contain"
-              style={{ height: "40px", width: "auto" }}
-              priority
-            />
+            <BrandLogo width={100} height={40} priority />
           </a>
 
           <nav className="flex items-center gap-1">
@@ -172,7 +149,7 @@ export function Header() {
               </a>
             ))}
           </nav>
-        </div>
+        </Container>
       </header>
 
       {/* モバイルメニュー（スライドイン） */}
@@ -180,13 +157,13 @@ export function Header() {
         <div className="md:hidden fixed inset-0 z-40 animate-in fade-in duration-200">
           {/* 背景オーバーレイ */}
           <div
-            className="absolute inset-0 bg-neutral-dark/80 backdrop-blur-sm"
+            className="absolute inset-0 bg-neutral-black/80 backdrop-blur-sm"
             onClick={() => setIsMobileMenuOpen(false)}
           />
 
           {/* メニューコンテンツ */}
           <nav className="absolute top-4xl right-0 left-0 bg-brand-primary shadow-2xl border-b-2 border-brand-secondary">
-            <div className="container mx-auto px-lg py-6">
+            <Container padding="none" className="px-lg py-6">
               <ul className="space-y-2">
                 {navItems.map((item) => (
                   <li key={item.id}>
@@ -212,7 +189,7 @@ export function Header() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Container>
           </nav>
         </div>
       )}

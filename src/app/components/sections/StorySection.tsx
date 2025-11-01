@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { DiagonalBackground } from "../ui/DiagonalBackground";
 import { ProblemCard } from "../ui/ProblemCard";
-import { SectionHeader } from "../ui/section-header";
-import { SectionTitle } from "../ui/SectionTitle";
+import { Section } from "../ui/composite";
 import Story from "../../assets/story.png";
-import LogoBlack from "../../assets/logo-black.png";
+import { BrandLogo } from "../ui/BrandLogo";
 import { ContactButton } from "../ui/ContactButton";
+import { QuoteBox } from "../ui/QuoteBox";
+import { Container } from "../ui/Container";
 
 // デザインシステム使用コンポーネント
 // - カラー: neutral-white, neutral-black, brand-primary など
@@ -32,19 +33,18 @@ export function StorySection() {
       {/* 斜めの白背景（特徴カードの途中から） */}
       <DiagonalBackground bgColor="bg-neutral-light-cyan" />
 
-      <div className="container mx-auto max-w-5xl relative z-10 w-full">
+      <Container size="5xl" padding="none" className="relative z-10 w-full">
         {/* Section Header */}
-        <SectionTitle title="REASON" titleColor="text-neutral-white" />
-
-        <div className="mb-lg md:mb-xl">
-          <SectionHeader
-            title="なぜYouth Now!を作ったのか?"
-            textColor="text-neutral-white"
-            leadingTight
-            responsive
-            className="mb-0"
-          />
-        </div>
+        <Section id="reason" centered>
+          <Section.Header spacing="md">
+            <Section.Label size="lg" color="white">
+              REASON
+            </Section.Label>
+            <Section.Title size="responsive" color="white">
+              なぜYouth Now!を作ったのか?
+            </Section.Title>
+          </Section.Header>
+        </Section>
         {/* Story Content */}
         <div className="bg-neutral-white rounded-3xl md:rounded-[48px] shadow-lg p-lg md:p-xl">
           {/* Mobile: 縦レイアウト */}
@@ -119,14 +119,9 @@ export function StorySection() {
               <p className="text-body text-neutral-black/70 leading-relaxed mb-sm">
                 それが
               </p>
-              <Image
-                src={LogoBlack}
-                alt="Youth Now! ロゴ"
-                width={240}
-                height={86}
-                className="mx-auto mb-sm"
-                loading="lazy"
-              />
+              <div className="mx-auto mb-sm w-fit">
+                <BrandLogo variant="black" width={240} height={86} />
+              </div>
               <p className="text-body text-neutral-black/70 leading-relaxed">
                 です。
               </p>
@@ -144,7 +139,12 @@ export function StorySection() {
 
             {/* Pain Point */}
             <div className="relative py-md flex justify-center">
-              <div className="flex items-center gap-xl bg-brand-primary/5 rounded-2xl p-lg max-w-fit mx-auto">
+              <QuoteBox
+                className="w-fit mx-auto flex items-center gap-xl"
+                gradientClass="bg-brand-primary/5"
+                rounded="rounded-2xl"
+                padding="p-lg"
+              >
                 <div className="w-48 lg:w-56 h-48 lg:h-56 relative flex-shrink-0">
                   <Image
                     src={Story}
@@ -161,7 +161,7 @@ export function StorySection() {
                     何が刺さるか分からない」
                   </p>
                 </div>
-              </div>
+              </QuoteBox>
             </div>
 
             {/* Problem - 横並び */}
@@ -217,14 +217,9 @@ export function StorySection() {
               <p className="text-body md:text-h6 text-neutral-black/70 leading-relaxed mb-sm">
                 それが
               </p>
-              <Image
-                src={LogoBlack}
-                alt="Youth Now! ロゴ"
-                width={240}
-                height={86}
-                className="mx-auto mb-sm"
-                loading="lazy"
-              />
+              <div className="mx-auto mb-sm w-fit">
+                <BrandLogo variant="black" width={240} height={86} />
+              </div>
               <p className="text-body md:text-h6 text-neutral-black/70 leading-relaxed">
                 です。
               </p>
@@ -235,7 +230,7 @@ export function StorySection() {
         <div className="flex justify-center">
           <ContactButton variant="yellow" size="medium" />
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
